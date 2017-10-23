@@ -3,7 +3,7 @@ const path = require('path');
 const routes = require('./routes');
 const app = express();
 const port = process.env.PORT || 8084;
-const router = express.router();
+const router = express.Router();
 const bodyParser = require('body-parser');
 
 app.set('view engine', 'html');
