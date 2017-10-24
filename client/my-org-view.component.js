@@ -9,19 +9,17 @@ angular.
               $scope.urlHash = location.hash.toString();
               $scope.view = $scope.urlHash.replace(/\#\!\//, '');
 
-              $http.get('http://34.203.219.137/g4/organizations')
-                      .success(function(result) {
-                          $scope.organization = result;
-                      })
-                      .error(function(data, status) {
+              $http.get('/api/organizations')
+                      .then(function successCallback(result) {
+                          $scope.organization = result.data;
+                      }, function errorCallback(data, status) {
                           $log.info(data);
                       });
               
-              $http.get('http://34.203.219.137/g4/members')
-                      .success(function(result) {
-                          $scope.members = result;
-                      })
-                      .error(function(data, status) {
+              $http.get('/api/members')
+                      .then(function successCallback(result) {
+                          $scope.members = result.data;
+                      }, function errorCallback(data, status) {
                           $log.info(data);
                       });
       }
