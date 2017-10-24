@@ -1,0 +1,70 @@
+.grid-card {
+        width: 320px;
+        height: 200px;
+}
+
+.grid-card > .mdl-card__title {
+        background-color: #c45946;
+        color: white;
+}
+
+.nav-top {
+        background-color: rgb(63,81,181);
+}
+
+.create-title {
+        text-align: center;
+}
+
+.title {
+        text-align: center;
+        color: #757575;
+}
+
+.new-list {
+        text-align: center;
+}
+
+.centered {
+        text-align: center;
+        margin: auto;
+}
+
+.main {
+        padding-top: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        padding-left: 20px;
+}
+
+.org-card-wide {
+        max-width: 500px;
+}
+
+.org-card-wide > .mdl-card__title {
+        background-color: #c45946;
+        color: white;
+        height: 100px;
+}
+
+.drawer-title {
+        color: rgb(63,81,181);
+        font-weight: bold;
+}
+
+.main-title {
+        color: white;
+}
+
+.current-page {
+        color: #42dff4;
+}
+.no-hover tr:hover {
+    background-color: #FFFFFF !important;
+}
+
+.in-line-btn {
+        display: inline;
+        
+
+}

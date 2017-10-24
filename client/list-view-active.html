@@ -1,0 +1,28 @@
+
+
+	<list-view-top></list-view-top>
+
+
+	<div class="mdl-grid" ng-app='myApp' ng-controller='myCtrl' id="list-cards">
+	  <div ng-repeat=" list in lists" class="mdl-cell mdl-cell--4-col">
+
+	          <div   class="grid-card mdl-card mdl-shadow--2dp" >
+	            <div class="mdl-card__title mdl-card--expand">
+	              <h2 class="mdl-card__title-text">{{list.list_name}}</h2>
+	            </div>
+	            <div class="mdl-card__supporting-text">
+	              There are {{list.list_id}} people in this list
+	            </div>
+	            <div class="mdl-card__actions mdl-card--border">
+	              <a ng-click="open(list.list_id)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+	                View
+	              </a>
+	            </div>
+	          </div>
+	  </div>
+
+	</div>
+
+<div id="list-table">
+
+</div>
