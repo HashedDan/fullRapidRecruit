@@ -10,7 +10,7 @@ angular.
               $scope.view = $scope.urlHash.replace(/\#\!\//, '');
               console.log($scope.view);
               //there should be a root scope variable that the controller for list card grid will use to know which query to run
-              $http.get('http://34.203.219.137/g4/lists')
+              $http.get('/api/lists')
                       .success(function(result) {
                           $scope.lists = result;
                       })

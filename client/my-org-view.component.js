@@ -10,16 +10,18 @@ angular.
               $scope.view = $scope.urlHash.replace(/\#\!\//, '');
 
               $http.get('/api/organizations')
-                      .then(function successCallback(result) {
-                          $scope.organization = result.data;
-                      }, function errorCallback(data, status) {
+                      .success(function(result) {
+                          $scope.organization = result;
+                      })
+                      .error(function(data, status) {
                           $log.info(data);
                       });
               
               $http.get('/api/members')
-                      .then(function successCallback(result) {
-                          $scope.members = result.data;
-                      }, function errorCallback(data, status) {
+                      .success(function(result) {
+                          $scope.members = result;
+                      })
+                      .error(function(data, status) {
                           $log.info(data);
                       });
       }

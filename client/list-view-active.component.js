@@ -15,7 +15,7 @@ angular.
       //   }
       // }
 
-      $http.get('http://34.203.219.137/g4/lists')
+      $http.get('/api/lists')
               .success(function(result) {
                   $scope.lists = result;
               })
