@@ -2,5 +2,5 @@
 
 ## Installation instructions
 
-''' npm install '''
-''' bower install '''
+' npm install '
+' bower install '
