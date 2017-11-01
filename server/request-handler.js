@@ -11,9 +11,16 @@ client.connect();
   ORGANIZATION ROUTES
 */
 exports.getOrganizations = (req, res) => {
-  const query = client.query('SELECT * FROM organizations', (err, results) => {
-    return res.json(results.rows);
-  })
+  if (req.query.id != null) {
+    const query = client.query('SELECT * FROM organizations WHERE org_id =' + req.query.id, (err, results) => {
+      return res.json(results.rows);
+    })
+  }
+  else {
+    const query = client.query('SELECT * FROM organizations', (err, results) => {
+      return res.json(results.rows);
+    })
+  }
 };
 
 /*
