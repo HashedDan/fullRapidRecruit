@@ -20,6 +20,9 @@ angular.
         when('/vote', {
           template: '<vote-view></vote-view>'
         }).
+        when('/events', {
+          template: '<events-view></events-view>'
+        }).
          when('/my-org', {
           template: '<my-org-view></my-org-view>'
         }).
