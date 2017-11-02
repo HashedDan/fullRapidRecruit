@@ -5,6 +5,7 @@ const app = express();
 const port = process.env.PORT || 8084;
 const router = express.Router();
 const bodyParser = require('body-parser');
+const passport = require('./auth/local.js');
 
 app.set('view engine', 'html');
 
@@ -14,6 +15,9 @@ app.use((err, req, res, next) => {
   console.log(err);
   res.status(500).send('Server Error');
 });
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/api', routes);
 

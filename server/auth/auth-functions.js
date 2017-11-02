@@ -14,7 +14,7 @@ function createMember(req, res) {
 	.then(() => {
 		const salt = bcrypt.genSaltSync();
 		const hash = bcrypt.hashSync(req.body.password, salt);
-		const query = client.query('INSERT INTO members (member_first, member_last, member_org, member_email, member_pass, member_creation) VALUES ($1, $2, $3, $4, $5, $6)', [req.body.first, req.body.last, req.body.org, req.body.email, hash, "2004-10-19 08:23:54+00"], (err, results) => {
+		const query = client.query('INSERT INTO members (member_first, member_last, member_org, member_email, member_pass) VALUES ($1, $2, $3, $4, $5)', [req.body.first, req.body.last, req.body.org, req.body.email, hash], (err, results) => {
 	      if (err) {
 	      	res.status(400).json({status: err.message});
 	      }

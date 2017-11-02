@@ -16,7 +16,10 @@ const options = {
 };
 
 passport.use(new LocalStrategy(options, (email, password, done) => {
+	console.log(email);
 	const query = client.query('SELECT * FROM members WHERE member_email = $1', [email], (err, results) => {
+		console.log(err);
+		console.log(results);
 		if (results.rows.length == 0) {
 			return done(null, false);
 		}

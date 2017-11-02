@@ -14,6 +14,7 @@ client.connect();
 */
 exports.register = (req, res, next) => {
   return authFuncs.createMember(req, res).then((response) => {
+    console.log(response);
     passport.authenticate('local', (err, user, info) => {
       if (user) { handleResponse(res, 200, 'success'); }
     })(req, res, next);
@@ -22,6 +23,19 @@ exports.register = (req, res, next) => {
    handleResponse(res, 500, 'error'); });
 }
 
+exports.login = (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) { handleResponse(res, 500, 'error'); }
+    if (!user) { handleResponse(res, 404, 'User not found'); }
+    if (user) {
+      req.logIn(user, function (err) {
+        console.log(err);
+        if (err) { handleResponse(res, 500, 'error'); }
+        handleResponse(res, 200, 'success');
+      });
+    }
+  })(req, res, next);
+}
 /*
   ORGANIZATION ROUTES
 */

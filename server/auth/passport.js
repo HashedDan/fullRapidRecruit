@@ -12,7 +12,7 @@ module.exports = () => {
   });
 
   passport.deserializeUser((id, done) => {
-    const query = client.query('SELECT * FROM members WHERE  members_id = ' + id, (err, results) => {
+    const query = client.query('SELECT * FROM members WHERE  member_id = ' + id, (err, results) => {
 		user = results.rows[0];
 		return done(null, user);
     })
