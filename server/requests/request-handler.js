@@ -1,11 +1,27 @@
 const express = require('express');
 const router = express.Router();
+const authFuncs = require('../auth/auth-functions.js');
+const passport = require('../auth/local.js');
 const pg = require('pg');
-const path = require('path');
 const connection = 'postgres://g4:guqdTp5A2VSUjedF@localhost:5432/g4';
 
 var client = new pg.Client(connection);
 client.connect();
+
+
+/*
+  LOGIN/REGISTER ROUTES
+*/
+exports.register = (req, res, next) => {
+  return authFuncs.createMember(req, res).then((response) => {
+    passport.authenticate('local', (err, user, info) => {
+      if (user) { handleResponse(res, 200, 'success'); }
+    })(req, res, next);
+  })
+  .catch((err) => {
+   console.log(err);
+   handleResponse(res, 500, 'error'); });
+}
 
 /*
   ORGANIZATION ROUTES
@@ -13,7 +29,7 @@ client.connect();
 exports.getOrganizations = (req, res) => {
   if (req.query.id != null) {
     const query = client.query('SELECT * FROM organizations WHERE org_id =' + req.query.id, (err, results) => {
-      return res.json(results.rows);
+      return res.json(results.rows[0]);
     })
   }
   else {
@@ -112,3 +128,11 @@ exports.getShare = (req, res) => {
     return res.json(results.rows);
   })
 };
+
+
+// HELPERS
+
+function handleResponse(res, code, statusMsg) {
+  getOrganizations();
+  // res.status(code).json({status: statusMsg});
+}

@@ -1,10 +1,16 @@
 const router = require('express').Router();
-const requestHandler = require('./request-handler.js');
+const requestHandler = require('./requests/request-handler.js');
+const authFuncs = require('./auth/auth-functions.js');
+
+/*
+	LOGIN ROUTES
+*/
+router.post('/register', authFuncs.loginRedirect, requestHandler.register);
 
 /*
 	ORGANIZATION ROUTES
 */
-router.get('/organizations', requestHandler.getOrganizations);
+router.get('/organizations', authFuncs.loginRequired, requestHandler.getOrganizations);
 
 /*
 	MEMBERS ROUTES
