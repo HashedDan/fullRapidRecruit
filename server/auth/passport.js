@@ -8,7 +8,7 @@ client.connect();
 module.exports = () => {
 
   passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user.member_id);
   });
 
   passport.deserializeUser((id, done) => {

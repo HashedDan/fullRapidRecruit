@@ -4,6 +4,7 @@ const authFuncs = require('../auth/auth-functions.js');
 const passport = require('../auth/local.js');
 const pg = require('pg');
 const connection = 'postgres://g4:guqdTp5A2VSUjedF@localhost:5432/g4';
+const bcrypt = require('bcryptjs');
 
 var client = new pg.Client(connection);
 client.connect();
@@ -13,14 +14,25 @@ client.connect();
   LOGIN/REGISTER ROUTES
 */
 exports.register = (req, res, next) => {
-  return authFuncs.createMember(req, res).then((response) => {
-    console.log(response);
-    passport.authenticate('local', (err, user, info) => {
-      if (user) { handleResponse(res, 200, 'success'); }
-    })(req, res, next);
-  })
-  .catch((err) => {
-   handleResponse(res, 500, 'error'); });
+  const salt = bcrypt.genSaltSync();
+  const hash = bcrypt.hashSync(req.body.password, salt);
+  const query = client.query('INSERT INTO members (member_first, member_last, member_org, member_email, member_pass) VALUES ($1, $2, $3, $4, $5)', [req.body.first, req.body.last, req.body.org, req.body.email, hash], (err, results) => {
+      if (err) {
+        res.status(400).json({status: err.message});
+      }
+      else {
+        passport.authenticate('local', (err, user, info) => {
+        if (user) { handleResponse(res, 200, 'success'); }
+          })(req, res, next);
+      }
+    })
+  // return authFuncs.createMember(req, res).then((response) => {
+  //   passport.authenticate('local', (err, user, info) => {
+  //     if (user) { handleResponse(res, 200, 'success'); }
+  //   })(req, res, next);
+  // })
+  // .catch((err) => {
+  //  handleResponse(res, 500, 'error'); });
 }
 
 exports.login = (req, res, next) => {
@@ -29,7 +41,6 @@ exports.login = (req, res, next) => {
     if (!user) { handleResponse(res, 404, 'User not found'); }
     if (user) {
       req.logIn(user, function (err) {
-        console.log(err);
         if (err) { handleResponse(res, 500, 'error'); }
         handleResponse(res, 200, 'success');
       });

@@ -9,6 +9,7 @@ const connection = 'postgres://g4:guqdTp5A2VSUjedF@localhost:5432/g4';
 var client = new pg.Client(connection);
 client.connect();
 
+init();
 
 const options = {
 	usernameField: 'email',
@@ -18,9 +19,7 @@ const options = {
 passport.use(new LocalStrategy(options, (email, password, done) => {
 	console.log(email);
 	const query = client.query('SELECT * FROM members WHERE member_email = $1', [email], (err, results) => {
-		console.log(err);
-		console.log(results);
-		if (results.rows.length == 0) {
+		if (results.rows.length < 1) {
 			return done(null, false);
 		}
 		user = results.rows[0];
@@ -29,6 +28,7 @@ passport.use(new LocalStrategy(options, (email, password, done) => {
 		}
 		else {
 			console.log("successful authentification");
+			console.log(user);
 			return done(null, user);
 		}
     })
