@@ -6,6 +6,7 @@ const port = process.env.PORT || 8084;
 const router = express.Router();
 const bodyParser = require('body-parser');
 const passport = require('./auth/local.js');
+var session = require('express-session');
 
 app.set('view engine', 'html');
 
@@ -15,6 +16,13 @@ app.use((err, req, res, next) => {
   console.log(err);
   res.status(500).send('Server Error');
 });
+
+app.use(session({
+  store: new (require('connect-pg-simple')(session))(),
+  secret: process.env.FOO_COOKIE_SECRET,
+  resave: false,
+  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days 
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());

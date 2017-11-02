@@ -9,7 +9,7 @@ angular.
               $scope.urlHash = location.hash.toString();
               $scope.view = $scope.urlHash.replace(/\#\!\//, '');
 
-              $http.get('/api/organizations')
+              $http.get('/api/organizations', {params: {id: 2}})
                       .success(function(result) {
                           $scope.organization = result;
                       })

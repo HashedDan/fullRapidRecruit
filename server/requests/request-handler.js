@@ -47,13 +47,15 @@ exports.login = (req, res, next) => {
     }
   })(req, res, next);
 }
+
 /*
   ORGANIZATION ROUTES
 */
 exports.getOrganizations = (req, res) => {
-  if (req.query.id != null) {
+  if (req.query != null) {
+    console.log(req.query.id);
     const query = client.query('SELECT * FROM organizations WHERE org_id =' + req.query.id, (err, results) => {
-      return res.json(results.rows[0]);
+      return res.json(results.rows);
     })
   }
   else {
