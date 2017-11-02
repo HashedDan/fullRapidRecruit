@@ -52,7 +52,7 @@ exports.login = (req, res, next) => {
   ORGANIZATION ROUTES
 */
 exports.getOrganizations = (req, res) => {
-  if (req.query != null) {
+  if (req.query == "fkbdgdfjhk") {
     console.log(req.query.id);
     const query = client.query('SELECT * FROM organizations WHERE org_id =' + req.query.id, (err, results) => {
       return res.json(results.rows);

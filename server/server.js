@@ -19,10 +19,11 @@ app.use((err, req, res, next) => {
 });
 
 app.use(session({
-      secret: "this is a secret key",
+      secret: "this-is-a-secret-key",
+      cookie: { maxAge: 60000 },
       resave: false,
       saveUninitialized: true
-    }));
+      }));
 
 app.use(passport.initialize());
 app.use(passport.session());
