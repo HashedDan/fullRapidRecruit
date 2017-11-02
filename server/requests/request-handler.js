@@ -19,7 +19,6 @@ exports.register = (req, res, next) => {
     })(req, res, next);
   })
   .catch((err) => {
-   console.log(err);
    handleResponse(res, 500, 'error'); });
 }
 
@@ -133,6 +132,5 @@ exports.getShare = (req, res) => {
 // HELPERS
 
 function handleResponse(res, code, statusMsg) {
-  getOrganizations();
-  // res.status(code).json({status: statusMsg});
+  res.status(code).json({status: statusMsg});
 }

@@ -10,18 +10,22 @@ var client = new pg.Client(connection);
 client.connect();
 
 
-const options = {};
+const options = {
+	usernameField: 'email',
+	passwordField: 'password'
+};
 
 passport.use(new LocalStrategy(options, (email, password, done) => {
-	const query = client.query('SELECT * FROM members WHERE  members_email = ' + email, (err, results) => {
-		if (results.rows.length != 0) {
+	const query = client.query('SELECT * FROM members WHERE member_email = $1', [email], (err, results) => {
+		if (results.rows.length == 0) {
 			return done(null, false);
 		}
 		user = results.rows[0];
-		if (!authFuncs.comparePass(password, user.members_password)) {
+		if (!authFuncs.comparePasswords(password, user.member_pass)) {
 			return done(null, false);
 		}
 		else {
+			console.log("successful authentification");
 			return done(null, user);
 		}
     })
