@@ -12,17 +12,17 @@ app.set('view engine', 'html');
 
 app.use([bodyParser.json(), bodyParser.urlencoded({extended: true})]);
 app.use(express.static(path.join(__dirname, '../client')));
+
 app.use((err, req, res, next) => {
   console.log(err);
   res.status(500).send('Server Error');
 });
 
 app.use(session({
-  store: new (require('connect-pg-simple')(session))(),
-  secret: process.env.FOO_COOKIE_SECRET,
-  resave: false,
-  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days 
-}));
+      secret: "this is a secret key",
+      resave: false,
+      saveUninitialized: true
+    }));
 
 app.use(passport.initialize());
 app.use(passport.session());
