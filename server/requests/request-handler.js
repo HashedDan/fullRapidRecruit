@@ -21,9 +21,19 @@ exports.register = (req, res, next) => {
         res.status(400).json({status: err.message});
       }
       else {
+        // passport.authenticate('local', (err, user, info) => {
+        // if (user) { handleResponse(res, 200, 'success'); }
+        //   })(req, res, next);
         passport.authenticate('local', (err, user, info) => {
-        if (user) { handleResponse(res, 200, 'success'); }
-          })(req, res, next);
+          if (err) { handleResponse(res, 500, 'error'); }
+          if (!user) { handleResponse(res, 404, 'User not found'); }
+          if (user) {
+            req.logIn(user, function (err) {
+              if (err) { handleResponse(res, 500, 'error'); }
+              handleResponse(res, 200, 'success');
+            });
+          }
+        })(req, res, next);
       }
     })
   // return authFuncs.createMember(req, res).then((response) => {
@@ -48,6 +58,11 @@ exports.login = (req, res, next) => {
   })(req, res, next);
 }
 
+exports.logout = (req, res, next) => {
+  req.logout();
+  handleResponse(res, 200, 'success');
+}
+
 /*
   ORGANIZATION ROUTES
 */
@@ -60,7 +75,7 @@ exports.getOrganizations = (req, res) => {
     })
   }
   else {
-    const query = client.query('SELECT * FROM organizations', (err, results) => {
+    const query = client.query('SELECT * FROM organizations WHERE org_id =' +req.user.member_org, (err, results) => {
       return res.json(results.rows);
     })
   }
@@ -70,7 +85,7 @@ exports.getOrganizations = (req, res) => {
   MEMBERS ROUTES
 */
 exports.getMembers = (req, res) => {
-  const query = client.query('SELECT * FROM members', (err, results) => {
+  const query = client.query('SELECT * FROM members WHERE member_org =' +req.user.member_org, (err, results) => {
     return res.json(results.rows);
   })
 };

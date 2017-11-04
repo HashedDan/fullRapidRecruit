@@ -7,6 +7,7 @@ const authFuncs = require('./auth/auth-functions.js');
 */
 router.post('/register', authFuncs.loginRedirect, requestHandler.register);
 router.post('/login', authFuncs.loginRedirect, requestHandler.login);
+router.get('/logout', authFuncs.loginRequired, requestHandler.logout);
 
 /*
 	ORGANIZATION ROUTES
