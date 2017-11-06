@@ -5,6 +5,7 @@ angular.module('myApp', [
   'voteView',
   'signInView',
   'myOrgView',
+  'loginView',
   'myApp.version'
 ]);
 
@@ -14,6 +15,7 @@ var app = angular.module('myApp', [
   'voteView',
   'signInView',
   'myOrgView',
+  'loginView',
   'myApp.version'
 ]);
 

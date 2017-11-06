@@ -8,8 +8,8 @@ angular.
 
       $routeProvider.
 
-        when('/main', {
-          template: '<h2>Lets get rushin<h2>'
+        when('/login', {
+          template: '<login-view></login-view>'
         }).
         when('/list-active', {
           template: '<list-view-active></list-view-active>'
@@ -38,6 +38,6 @@ angular.
         when('/new-batch-vote', {
           template: '<new-batch-vote-view></new-batch-vote-view>'
         }).
-        otherwise('/main');
+        otherwise('/login');
     }
   ]);

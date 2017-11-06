@@ -12,7 +12,7 @@ router.get('/logout', authFuncs.loginRequired, requestHandler.logout);
 /*
 	ORGANIZATION ROUTES
 */
-router.get('/organizations', authFuncs.loginRequired, requestHandler.getOrganizations);
+router.get('/organizations', requestHandler.getOrganizations);
 
 /*
 	MEMBERS ROUTES

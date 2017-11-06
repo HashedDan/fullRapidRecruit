@@ -44,6 +44,9 @@
 	<script src="new-sign-in-view.component.js"></script>
         <script src="new-vote-view.component.js"></script>
         <script src="new-batch-vote-view.component.js"></script>
+    <script src="login-view.module.js"></script>
+    <script src="login-view.component.js"></script>
+    
 
 	<script src="components/version/version.js"></script>
 	<script src="components/version/version-directive.js"></script>
@@ -99,6 +102,10 @@
 	<!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
-
+<script>
+      console.log("here");
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", '/api/login', true); xhr.setRequestHeader('Content-Type', 'application/json'); xhr.send(JSON.stringify({"email": "testorg2@wustl.edu","password": "testtest"}));
+</script>
 </body>
 </html>

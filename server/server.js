@@ -31,7 +31,7 @@ app.use(passport.session());
 app.use('/api', routes);
 
 router.get('/', (req, res, next) => {
-  res.sendFile(path.join(__dirname, '..', 'client', 'login.html'));
+  res.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
 });
 
 app.listen(port, (err) => {
