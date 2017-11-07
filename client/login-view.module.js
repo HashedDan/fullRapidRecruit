@@ -4,4 +4,4 @@ angular.module('loginView', [
   'ngRoute'
 ]);
 
-app.controller('loginController', loginController);
+//app.controller('loginController', loginController);
