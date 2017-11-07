@@ -52,7 +52,7 @@ exports.login = (req, res, next) => {
     if (user) {
       req.logIn(user, function (err) {
         if (err) { handleResponse(res, 500, 'error'); }
-        handleResponse(res, 200, 'success');
+        handleResponse(res, 200, 'This is a success message.');
       });
     }
   })(req, res, next);
