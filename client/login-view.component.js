@@ -20,13 +20,20 @@ component('loginView', {
           headers: {'Content-Type': 'application/json'}
 				})
 				.then(function(response) {
-					//code to execute on success
+          //code to execute on success
+          //
+          //     app.use(function (req, res, next) {
+          //       req.session.org_id = [replace org id];
+          //     });
+          //
+          // -----
 					console.log(response);
           $scope.responseMessage = "Status: "+response.status+" | Status Text: "+response.statusText;
 				})
 				.catch(function(err) {
 					//code to execute on error
 					console.log(err);
+          $scope.responseMessage = "Status: "+err.status+" | Status Text: "+err.statusText;
 				});
 		};
 	}
