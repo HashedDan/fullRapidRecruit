@@ -11,7 +11,7 @@ var session = require('express-session');
 app.set('view engine', 'html');
 
 app.use([bodyParser.json(), bodyParser.urlencoded({extended: true})]);
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../client/public')));
 
 app.use((err, req, res, next) => {
   console.log(err);
@@ -31,7 +31,7 @@ app.use(passport.session());
 app.use('/api', routes);
 
 router.get('/', (req, res, next) => {
-  res.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'client', 'public', 'index.html'));
 });
 
 app.listen(port, (err) => {
