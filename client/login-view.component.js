@@ -4,7 +4,10 @@ angular.
     templateUrl: 'login-view.html',
     controller:
       function loginController($routeParams, $scope, $http) {
-              //this needs to figure out what page you are on then pull the correct data to populate the cards
+              $scope.logMeIn = function() {
+              	console.log("here");
+              	alert('clicked here');
+              }
               
       }
 
