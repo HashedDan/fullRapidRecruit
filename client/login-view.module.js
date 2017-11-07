@@ -3,3 +3,5 @@
 angular.module('loginView', [
   'ngRoute'
 ]);
+
+app.controller('loginController', loginController);
