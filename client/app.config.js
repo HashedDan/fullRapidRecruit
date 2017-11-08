@@ -9,7 +9,7 @@ angular.
       $routeProvider.
 
         when('/login', {
-          template: '<login-view></login-view>'
+          templateUrl: '<login-view></login-view>'
         }).
         when('/list-active', {
           template: '<list-view-active></list-view-active>'
