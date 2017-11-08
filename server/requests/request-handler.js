@@ -52,10 +52,7 @@ exports.login = (req, res, next) => {
     if (user) {
       req.logIn(user, function (err) {
         if (err) { handleResponse(res, 500, 'error'); }
-        handleResponse(res, 200, 'This is a success message. Member ID: '+user.member_id);
-        app.get('/', function(req, res, next){ //Set the session information so it can be accessed in other parts of the site
-          req.session.user = user;
-        });
+        handleResponse(res, 200, 'success');
       });
     }
   })(req, res, next);
