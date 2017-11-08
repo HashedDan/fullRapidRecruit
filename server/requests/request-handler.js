@@ -94,7 +94,7 @@ exports.getMembers = (req, res) => {
   LISTS ROUTES
 */
 exports.getLists = (req, res) => {
-  const query = client.query('SELECT * FROM lists', (err, results) => {
+  const query = client.query('SELECT * FROM lists WHERE list_org =' +req.user.member_org, (err, results) => {
     return res.json(results.rows);
   })
 };
@@ -103,7 +103,7 @@ exports.getLists = (req, res) => {
   EVENTS ROUTES
 */
 exports.getEvents = (req, res) => {
-  const query = client.query('SELECT * FROM events', (err, results) => {
+  const query = client.query('SELECT * FROM events WHERE event_org =' +req.user.member_org, (err, results) => {
     return res.json(results.rows);
   })
 };
@@ -112,25 +112,25 @@ exports.getEvents = (req, res) => {
   RECRUIT ROUTES
 */
 exports.getRecruits = (req, res) => {
-  const query = client.query('SELECT * FROM recruits', (err, results) => {
+  const query = client.query('SELECT * FROM recruits WHERE recruit_org =' +req.user.member_org, (err, results) => {
     return res.json(results.rows);
   })
 };
 
 /*
-  INTERACTIONS ROUTES
+  INTERACTIONS ROUTES --> We no longer have an interactons table, the interactions records are linked to the events table.
 */
-exports.getInteractions = (req, res) => {
-  const query = client.query('SELECT * FROM interactions', (err, results) => {
-    return res.json(results.rows);
-  })
-};
+//exports.getInteractions = (req, res) => {
+//  const query = client.query('SELECT * FROM interactions WHERE member_org =' +req.user.member_org, (err, results) => {
+//    return res.json(results.rows);
+//  })
+//};
 
 /*
   INTERACTIONS_RECORDS ROUTES
 */
 exports.getInteractionsRecords = (req, res) => {
-  const query = client.query('SELECT * FROM interactions_records', (err, results) => {
+  const query = client.query('SELECT * FROM interactions_records WHERE member_org =' +req.user.member_org, (err, results) => {
     return res.json(results.rows);
   })
 };
@@ -139,7 +139,7 @@ exports.getInteractionsRecords = (req, res) => {
   SIGN_IN ROUTES
 */
 exports.getSignIn = (req, res) => {
-  const query = client.query('SELECT * FROM sign_in', (err, results) => {
+  const query = client.query('SELECT * FROM sign_in WHERE member_org =' +req.user.member_org, (err, results) => {
     return res.json(results.rows);
   })
 };
@@ -148,7 +148,7 @@ exports.getSignIn = (req, res) => {
   VOTES ROUTES
 */
 exports.getVotes = (req, res) => {
-  const query = client.query('SELECT * FROM votes', (err, results) => {
+  const query = client.query('SELECT * FROM votes WHERE member_org =' +req.user.member_org, (err, results) => {
     return res.json(results.rows);
   })
 };
@@ -157,7 +157,7 @@ exports.getVotes = (req, res) => {
   VOTES_RECORDS ROUTES
 */
 exports.getVoteRecords = (req, res) => {
-  const query = client.query('SELECT * FROM votes_records', (err, results) => {
+  const query = client.query('SELECT * FROM votes_records WHERE member_org =' +req.user.member_org, (err, results) => {
     return res.json(results.rows);
   })
 };
@@ -166,7 +166,7 @@ exports.getVoteRecords = (req, res) => {
   SHARE ROUTES
 */
 exports.getShare = (req, res) => {
-  const query = client.query('SELECT * FROM share', (err, results) => {
+  const query = client.query('SELECT * FROM share WHERE member_org =' +req.user.member_org, (err, results) => {
     return res.json(results.rows);
   })
 };
