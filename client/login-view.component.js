@@ -5,6 +5,7 @@ component('loginView', {
   controller: function loginController($routeParams, $scope, $http) {
 
     $scope.responseMessage = "";
+	//$scope.returnArray = "";
 
     $scope.createPost = function(data) {
       
@@ -29,6 +30,7 @@ component('loginView', {
           // -----
           console.log(response);
           $scope.responseMessage = "Status: "+response.status+" | Status Text: "+response.statusText;
+		  //$scope.returnArray = response.data.user;
         })
         .catch(function(err) {
           //code to execute on error
