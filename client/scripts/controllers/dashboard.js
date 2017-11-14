@@ -50,6 +50,15 @@ angular.module('yapp')
                   $log.info(data);
               });
 
+              $http.get('/api/organizations')
+                      .success(function(result) {
+                              console.log(result);
+                          $scope.organizations = result;
+                      })
+                      .error(function(data, status) {
+                          $log.info(data);
+                      });
+
       $http.get('/api/events')
               .success(function(result) {
                   $scope.events = result;
