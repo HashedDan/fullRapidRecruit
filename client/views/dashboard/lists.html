@@ -9,12 +9,49 @@
 				<i ng-show="menuOpen" class="fa fa-times fa-2x" ></i>
 			</span>
 		</a>
-		
+
 		<div class="fr">
-		<h2>Lists <small>Manage your recruitment lists.</small></h2>
+		<h2>Lists </h2>
 		</div>
         <div class="main_content">
-            
+            <div class="new_container">
+		    <!-- This is NG if rush chair -->
+		    <h2> New List</h2>
+		    <button id="new-list-btn" type="button" class="btn btn-info">Create New</button>
+
+	    </div>
+	    <hr />
+	    <table id="list-table">
+		<tr>
+			<th>
+				Name
+			</th>
+			<th>
+				Creation Date
+			</th>
+			<th>
+				Count
+			</th>
+			<th>
+				Status
+			</th>
+		</tr>
+		<!-- ng repeat for each list in that org	 -->
+		<tr>
+			<td>
+				name
+			</td>
+			<td>
+				date
+			</td>
+			<td>
+				count
+			</td>
+			<td>
+				name
+			</td>
+		</tr>
+	    </table>
         </div>
-	</snap-content>	
+	</snap-content>
 </div>
