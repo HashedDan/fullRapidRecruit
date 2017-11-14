@@ -32,36 +32,36 @@ router.get('/events', requestHandler.getEvents);
 /*
 	RECRUITS ROUTES
 */
-//router.get('/recruits', );
-//
-///*
-//	INTERACTIONS ROUTES
-//*/
-//router.get('/interactions', );
-//
-///*
-//	INTERACTIONS_RECORDS ROUTES
-//*/
-//router.get('/interactions_records', );
-//
-///*
-//	SIGN_IN ROUTES
-//*/
-//router.get('/sign_in', );
-//
-///*
-//	VOTES ROUTES
-//*/
-//router.get('/votes', );
-//
-///*
-//	VOTES_RECORDS ROUTES
-//*/
-//router.get('/vote_records', );
-//
-///*
-//	SHARE ROUTES
-//*/
-//router.get('/share', );
+router.get('/recruits', requestHandler.getRecruits);
+
+/*
+	INTERACTIONS ROUTES
+*/
+router.get('/interactions', requestHandler.getInteractions);
+
+/*
+	INTERACTIONS_RECORDS ROUTES
+*/
+router.get('/interactions_records', requestHandler.getInteractionsRecords);
+
+/*
+	SIGN_IN ROUTES
+*/
+router.get('/sign_in', requestHandler.getSignIn);
+
+/*
+	VOTES ROUTES
+*/
+router.get('/votes', requestHandler.getVotes);
+
+/*
+	VOTES_RECORDS ROUTES
+*/
+router.get('/vote_records', requestHandler.getVoteRecords);
+
+/*
+	SHARE ROUTES
+*/
+router.get('/share', requestHandler.getShare);
 
 module.exports = router;
