@@ -20,7 +20,7 @@ app.use((err, req, res, next) => {
 
 app.use(session({
       secret: "this-is-a-secret-key",
-      cookie: { maxAge: 60000 },
+      cookie: { maxAge: null },
       resave: false,
       saveUninitialized: true
       }));
