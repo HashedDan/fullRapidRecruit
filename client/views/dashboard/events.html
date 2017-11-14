@@ -23,7 +23,7 @@
 
 	    	    </div>
 		    <hr />
-		   <table id="events-table">
+		   <table class="table table-bordered" id="events-table">
 		       <tr>
 			       <th>
 				       Name
@@ -42,21 +42,21 @@
 			       </th>
 		       </tr>
 		       <!-- ng repeat for each event in that org assocaited with an active list -->
-		       <tr>
+		       <tr ng-repeat="event in events">
 			       <td>
-				       event name
+				       {{event.event_name}}
 			       </td>
 			       <td>
-				      event create date
+				      {{event.event_creation}}
 			       </td>
 			       <td>
-				       location
+				       {{event.event_location}}
 			       </td>
 			       <td>
-				       interaction form link (or create button)
+				       {{event.event_sign_in_link}}
 			       </td>
 			       <td>
-				       signup form link (or create button)
+				       {{event.event_interaction_link}}
 			       </td>
 		       </tr>
 		   </table>
