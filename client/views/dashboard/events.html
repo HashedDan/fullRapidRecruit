@@ -9,12 +9,55 @@
 				<i ng-show="menuOpen" class="fa fa-times fa-2x" ></i>
 			</span>
 		</a>
-		
+
 		<div class="fr">
-		<h2>Events <small>Manage your Recruitment Events</small></h2>
+		<h2>Events </h2>
 		</div>
 		<div class="main_content">
-			
+			<div class="new_container">
+	    		    <!-- This is NG if rush chair -->
+	    		    <h2> New Event</h2>
+	    		    <button id="new-event-btn" type="button" class="btn btn-info"><a href="/#/dashboard/events/new-event">Create New</a></button>
+
+	    	    </div>
+		    <hr />
+		   <table id="events-table">
+		       <tr>
+			       <th>
+				       Name
+			       </th>
+			       <th>
+				       Creation Date
+			       </th>
+			       <th>
+				       Location
+			       </th>
+			       <th>
+				       Interaction Form
+			       </th>
+			       <th>
+				       Sign-In Form
+			       </th>
+		       </tr>
+		       <!-- ng repeat for each event in that org assocaited with an active list -->
+		       <tr>
+			       <td>
+				       event name
+			       </td>
+			       <td>
+				      event create date
+			       </td>
+			       <td>
+				       location
+			       </td>
+			       <td>
+				       interaction form link (or create button)
+			       </td>
+			       <td>
+				       signup form link (or create button)
+			       </td>
+		       </tr>
+		   </table>
 		</div>
-	</snap-content>	
+	</snap-content>
 </div>
