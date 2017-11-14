@@ -94,7 +94,7 @@ exports.getMembers = (req, res) => {
   LISTS ROUTES
 */
 exports.getLists = (req, res) => {
-  const query = client.query('SELECT * FROM lists', (err, results) => {
+  const query = client.query('SELECT * FROM lists WHERE list_org =' +req.user.member_org', (err, results) => {
     return res.json(results.rows);
   })
 };
@@ -103,7 +103,7 @@ exports.getLists = (req, res) => {
   EVENTS ROUTES
 */
 exports.getEvents = (req, res) => {
-  const query = client.query('SELECT * FROM events', (err, results) => {
+  const query = client.query('SELECT * FROM events WHERE event_org =' +req.user.member_org', (err, results) => {
     return res.json(results.rows);
   })
 };
