@@ -103,7 +103,7 @@ exports.getLists = (req, res) => {
   EVENTS ROUTES
 */
 exports.getEvents = (req, res) => {
-  const query = client.query('SELECT * FROM events WHERE event_org =' +req.user.member_org', (err, results) => {
+  const query = client.query('SELECT * FROM events WHERE event_org =' +req.user.member_org, (err, results) => {
     return res.json(results.rows);
   })
 };
