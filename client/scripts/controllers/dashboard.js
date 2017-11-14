@@ -34,7 +34,7 @@ angular.module('yapp')
 					//code to execute on error
 				});
 		};
-    
+
       $http.get('/api/lists')
               .success(function(result) {
                   $scope.lists = result;
@@ -42,7 +42,14 @@ angular.module('yapp')
               .error(function(data, status) {
                   $log.info(data);
               });
-              
+      $http.get('/api/members')
+              .success(function(result) {
+                  $scope.members = result;
+              })
+              .error(function(data, status) {
+                  $log.info(data);
+              });
+
       $http.get('/api/events')
               .success(function(result) {
                   $scope.events = result;
@@ -50,6 +57,6 @@ angular.module('yapp')
               .error(function(data, status) {
                   $log.info(data);
               });
-    
+
 
 	});
