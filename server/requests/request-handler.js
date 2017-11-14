@@ -67,18 +67,10 @@ exports.logout = (req, res, next) => {
   ORGANIZATION ROUTES
 */
 exports.getOrganizations = (req, res) => {
-  // TODO: query by provided params
-  if (req.query == "fkbdgdfjhk") {
-    console.log(req.query.id);
-    const query = client.query('SELECT * FROM organizations WHERE org_id =' + req.query.id, (err, results) => {
-      return res.json(results.rows);
-    })
-  }
-  else {
-    const query = client.query('SELECT * FROM organizations WHERE org_id =' +req.user.member_org, (err, results) => {
-      return res.json(results.rows);
-    })
-  }
+  console.log(req.query)
+  const query = client.query('SELECT * FROM organizations WHERE org_id =' +req.user.member_org, (err, results) => {
+    return res.json(results.rows);
+  })
 };
 
 /*
