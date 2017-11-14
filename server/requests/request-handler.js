@@ -94,7 +94,7 @@ exports.getMembers = (req, res) => {
   LISTS ROUTES
 */
 exports.getLists = (req, res) => {
-  const query = client.query('SELECT * FROM lists WHERE list_org =' +req.user.member_org', (err, results) => {
+  const query = client.query('SELECT * FROM lists WHERE list_org =' + req.user.member_org, (err, results) => {
     return res.json(results.rows);
   })
 };
