@@ -61,9 +61,10 @@ exports.login = (req, res, next) => {
 }
 
 exports.logout = (req, res, next) => {
-  req.logout();
-  delete req.session;
-  delete req.user;
+  // req.logout();
+  // delete req.session;
+  // delete req.user;
+  req.session.destroy();
   //console.log("Logout successful.");
   //console.log(req.session);
   handleResponse(res, 200, 'success');
