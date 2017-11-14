@@ -19,6 +19,7 @@ var states = [
         { name: 'new-event', state: { url: '/new-event', parent: 'events', templateUrl: 'views/dashboard/new-event.html', data: {text: "New Event", visible: false } } },
         { name: 'votes', state: { url: '/votes', parent: 'dashboard', templateUrl: 'views/dashboard/votes.html', data: {text: "Vote", visible: true } } },
         { name: 'new-vote', state: { url: '/new-vote', parent: 'votes', templateUrl: 'views/dashboard/new-vote.html', data: {text: "New Vote", visible: false } } },
+        { name: 'vote-history', state: { url: '/vote-history', parent: 'votes', templateUrl: 'views/dashboard/vote-history.html', data: {text: "Vote History", visible: false } } },
         { name: 'my-org', state: { url: '/my-org', parent: 'dashboard', templateUrl: 'views/dashboard/my-org.html', data: {text: "My Org", visible: true } } },
         { name: 'logout', state: { url: '/login', data: {text: "Logout", visible: true }} }
     ];
