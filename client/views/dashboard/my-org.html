@@ -14,10 +14,31 @@
 		<h2>My Org</h2>
 		</div>
 		<div class="main_content">
-			<div class="container">
 
-        
-			</div>
+
+                        		<h2 >{{ organization[0].org_name }} </h2>
+
+
+                        		<strong>School:</strong> {{ organization[0].org_school }} <br>
+                        		<strong>Location:</strong> {{ organization[0].org_location }} <br>
+                        		<strong>Type:</strong> {{ organization[0].org_type }} <br>
+                        		<strong>Owner:</strong> {{ organization[0].org_owner }}
+
+                        		<table class="table">
+                        			<tr>
+                        				<th >First Name</th>
+                        				<th >Last Name</th>
+                        				<th >Email</th>
+                        				<th>Creation</th>
+                        			</tr>
+                        			<tr ng-repeat="member in members">
+                        				<td >{{member.member_first }}</td>
+                        				<td >{{ member.member_last }}</td>
+                        				<td >{{ member.member_email }}</td>
+                        				<td>{{ member.member_creation }}</td>
+                        			</tr>
+                        		</table>
+
 		</div>
 	</snap-content>
 </div>
