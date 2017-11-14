@@ -8,7 +8,7 @@
  * Controller of yapp
  */
 angular.module('yapp')
-	.controller('DashboardCtrl', function($scope, $state, $http) {
+	.controller('DashboardCtrl', function($scope, $state, $http, $location) {
 		$scope.$state = $state;
 
 		$scope.menuItems = [];
@@ -20,20 +20,10 @@ angular.module('yapp')
 				});
 			}
 		});
-
-		$scope.logout = function() {
-			$http({
-					method: 'POST',
-					url: '/api/logout'
-				})
-				.then(function(response) {
-					//code to execute on success
-					$location.path('/login');
-				})
-				.catch(function(err) {
-					//code to execute on error
-				});
-		};
+		
+	  $scope.newVote = function(){
+		$location.path('/dashboard/new-list');
+	  };
 
       $http.get('/api/lists')
               .success(function(result) {

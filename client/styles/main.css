@@ -1344,7 +1344,7 @@ textarea {
 }
 
 a {
-	color: #1abc9c;
+	color: #4087aa;
 	text-decoration: none
 }
 
@@ -7943,7 +7943,7 @@ button.close {
 	right: 0;
 	bottom: 0;
 	background: #1abc9c;
-	color: #fff
+	color: #555f61
 }
 
 .dashboard-page .sub-header {
@@ -8042,7 +8042,7 @@ snap-content {
 }
 
 snap-content {
-	background: #1abc9c
+	background: #efefef
 }
 
 snap-content a {
@@ -8062,7 +8062,7 @@ snap-content .menutoggle .fa {
 }
 
 snap-drawer {
-	background: #18aa8d
+	background: #336b87
 }
 
 snap-drawer a {
@@ -8091,7 +8091,7 @@ snap-drawer ul.snap-ul {
 }
 
 snap-drawer ul.snap-ul li.active {
-	background: #1abc9c
+	background: #3d7fa0
 }
 
 snap-drawer ul.snap-ul li {
@@ -8103,7 +8103,7 @@ snap-drawer ul.snap-ul li {
 }
 
 snap-drawer ul.snap-ul li:hover {
-	background: #1abc9c
+	background: #3d7fa0
 }
 
 snap-drawer ul.snap-ul li a {

@@ -5,6 +5,7 @@ const passport = require('../auth/local.js');
 const pg = require('pg');
 const connection = 'postgres://g4:guqdTp5A2VSUjedF@localhost:5432/g4';
 const bcrypt = require('bcryptjs');
+//const logout = require('express-passport-logout');
 
 var client = new pg.Client(connection);
 client.connect();
@@ -53,6 +54,7 @@ exports.login = (req, res, next) => {
       req.logIn(user, function (err) {
         if (err) { handleResponse(res, 500, 'error'); }
         handleResponse(res, 200, 'success');
+        console.log(req.session);
       });
     }
   })(req, res, next);
@@ -60,6 +62,10 @@ exports.login = (req, res, next) => {
 
 exports.logout = (req, res, next) => {
   req.logout();
+  delete req.session;
+  delete req.user;
+  //console.log("Logout successful.");
+  //console.log(req.session);
   handleResponse(res, 200, 'success');
 }
 

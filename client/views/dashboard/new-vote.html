@@ -11,41 +11,36 @@
 		</a>
 
 		<div class="fr">
-		<h2>New Vote</h2>
+			<h2>New Vote</h2>
 		</div>
 		<div class="main_content">
-                        <form id="new-vote-form">
-                                <h2>Make a Vote</h2>
-                                <br />
-                                <h3>List</h3>
-                                <!-- ng repeat options from non archived lists -->
-                                <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="new-vote-form-list">
-
-                                        <option selected>List 1<option>
-                                        <option value="1">List 2</option>
-                                        <option value="2">List 3</option>
-                                        <option value="3">List 4</option>
-                                 </select>
-                                 <br />
-                                 <h3>Vote On</h3>
-                                 <!-- ng repeat options from  selected list -->
-                                 <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="new-vote-form-person">
-
-                                         <option selected>person<option>
-                                         <option value="1">person 2</option>
-                                         <option value="2">person 3</option>
-                                         <option value="3">person 4</option>
-                                  </select>
-                                  <br />
-                                  <h3>Allow Abstain</h3>
-                                <input type="checkbox" class="custom-control-input" id="new-vote-allow-abstain">
-                                <br />
-                                <h3>Percent Require for Bid</h3>
-                                 <input type="number" class="form-control" id="new-vote-percent">
-                                 <br />
-                                 <br />
-                                <button type="submit" class="btn btn-success">Create</button>
-                        </form>
+			<div class="col-md-4"></div>
+			<div class="col-md-4" id="new_vote_form">
+				<form id="new-vote-form">
+					<div class="form-group">
+						<label for="new-vote-form-list">List</label>
+						<select class="form-control" id="new-vote-form-list">
+							<option ng-repeat="list in lists">{{list.list_name}}</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="new-vote-form-recruit">Vote On</label>
+						<select class="form-control" id="new-vote-form-recruit">
+							<option>Recruit 1</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="new-vote-form-percent">Percentage Required for Bid</label>
+						<input type="text" class="form-control" id="new-vote-form-percent"></input>
+					</div>
+					<div class="form-check">
+						<label class="form-check-label">
+							<input type="checkbox" class="form-check-input" id="new-vote-form-abstain">  Allow Abstentions</label>
+					</div><br>
+					<button type="submit" class="btn btn-secondary">Create</button>
+				</form>
+			</div>
+			<div class="col-md-4"></div>
 		</div>
 	</snap-content>
 </div>

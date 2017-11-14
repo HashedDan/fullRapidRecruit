@@ -2,13 +2,15 @@
     <div class=snap-menu>
         <div class="sidebar-header text-center">
             <!-- <img src=images/flat-avatar.png class="sidebar-img img-circle"> -->
-            <h2>RapidRecruit</h2>
+            <h2 class="menu_header">RapidRecruit</h2>
+            <h4 ng-controller="MenuCtrl" id="menu_org_name">{{organizations[0].org_name}}</h4>
         </div>
 
         <ul class=snap-ul>
-            <li ng-repeat="item in menuItems" ng-class="{active: $state.includes('{{item.name}}') }">
+            <li id="menu_items" ng-repeat="item in menuItems" ng-class="{active: $state.includes('{{item.name}}') }">
                 <a ui-sref={{item.name}}>{{item.text}}</a>
             </li>
+            <li ng-controller="MenuCtrl"><a href="" ng-click="logout()">Logout</a></>
         </ul>
     </div>
 </snap-drawer>
