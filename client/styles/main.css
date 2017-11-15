@@ -7683,7 +7683,7 @@ button.close {
 	display: table;
 	width: 100%;
 	height: 100%;
-	background: #1abc9c;
+	background: #336b87;
 	color: #fff;
 	padding: 3em;
 	position: relative
@@ -7697,7 +7697,7 @@ button.close {
 	top: 0;
 	bottom: 0;
 	width: 40%;
-	border-right: solid 120px #1abc9c
+	border-right: solid 120px #336b87
 }
 
 .login-page h1 {

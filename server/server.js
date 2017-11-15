@@ -34,24 +34,7 @@ app.use(passport.session());
 
 app.use('/api', routes);
 
-//app.use(function(req, res, next) {
-//  if(req.session.user == null){
-//    res.redirect('/login');
-//  } else {
-//    next();
-//  }
-//});
-
-function isAuthenticated(req, res, next) {
-  if(req.user.authenticated){
-    console.log("User is Authenticated.");
-    return next();
-  } else {
-    res.redirect('/login');
-  }
-}
-
-router.get('/', isAuthenticated, (req, res, next) => {
+router.get('/', (req, res, next) => {
 		res.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
 });
 
