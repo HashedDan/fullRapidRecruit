@@ -24,20 +24,30 @@
                         		<strong>Type:</strong> {{ organizations[0].org_type }} <br>
                         		<strong>Owner:</strong> {{ organizations[0].org_owner }}
 
-                        		<br><br><table class="table table-bordered">
-                        			<tr>
-                        				<th >First Name</th>
-                        				<th >Last Name</th>
-                        				<th >Email</th>
-                        				<th>Creation</th>
-                        			</tr>
-                        			<tr ng-repeat="member in members">
-                        				<td >{{member.member_first }}</td>
-                        				<td >{{ member.member_last }}</td>
-                        				<td >{{ member.member_email }}</td>
-                        				<td>{{ member.member_creation }}</td>
-                        			</tr>
-                        		</table>
+                        		<br><br>
+					<div class="outline">
+						<table class="table table-hover">
+							<thead class="table-head">
+								<tr>
+		                        				<th >First Name</th>
+		                        				<th >Last Name</th>
+		                        				<th >Email</th>
+		                        				<th>Creation</th>
+		                        			</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="member in members">
+									<td >{{member.member_first }}</td>
+									<td >{{ member.member_last }}</td>
+									<td >{{ member.member_email }}</td>
+									<td>{{ member.member_creation }}</td>
+								</tr>
+							</tbody>
+
+
+	                        		</table>
+					</div>
+
 
 		</div>
 	</snap-content>

@@ -22,8 +22,16 @@ angular.module('yapp')
 		});
 		
 	  $scope.newVote = function(){
-		$location.path('/dashboard/new-list');
-	  };
+		$location.path('/dashboard/new-vote'); };
+		
+	$scope.newEvent = function(){
+		$location.path('/dashboard/new-event'); };
+	  
+	  $scope.voteResults = function(){
+		$location.path('/dashboard/vote-history'); };
+	  
+	  $scope.newBatchVote = function(){
+		$location.path('/dashboard/new-batch-vote'); };
 
       $http.get('/api/lists')
               .success(function(result) {

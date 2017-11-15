@@ -19,47 +19,56 @@
 			<div class="new_container">
 	    		    <!-- This is NG if rush chair -->
 	    		    <h2> New Event</h2>
-	    		    <button id="new-event-btn" type="button" class="btn btn-info"><a href="/#/dashboard/new-event">Create New</a></button>
+	    		    <button id="new-event-btn" type="button" class="btn btn-info" ng-click="newEvent()">Create New Event</button>
 
 	    	    </div>
 		    <hr />
-		   <table class="table table-bordered" id="events-table">
-		       <tr>
-			       <th>
-				       Name
-			       </th>
-			       <th>
-				       Creation Date
-			       </th>
-			       <th>
-				       Location
-			       </th>
-			       <th>
-				       Interaction Form
-			       </th>
-			       <th>
-				       Sign-In Form
-			       </th>
-		       </tr>
-		       <!-- ng repeat for each event in that org assocaited with an active list -->
-		       <tr ng-repeat="event in events">
-			       <td>
-				       {{event.event_name}}
-			       </td>
-			       <td>
-				      {{event.event_creation}}
-			       </td>
-			       <td>
-				       {{event.event_location}}
-			       </td>
-			       <td>
-				       {{event.event_sign_in_link}}
-			       </td>
-			       <td>
-				       {{event.event_interaction_link}}
-			       </td>
-		       </tr>
-		   </table>
+		    <div class="outline">
+			    <table class="table table-hover" id="events-table">
+				    <thead class="table-head">
+					    <tr>
+	     	 			       <th>
+	     	 				       Name
+	     	 			       </th>
+	     	 			       <th>
+	     	 				       Creation Date
+	     	 			       </th>
+	     	 			       <th>
+	     	 				       Location
+	     	 			       </th>
+	     	 			       <th>
+	     	 				       Interaction Form
+	     	 			       </th>
+	     	 			       <th>
+	     	 				       Sign-In Form
+	     	 			       </th>
+	     	 		       </tr>
+				    </thead>
+				    <tbody>
+
+					    <!-- ng repeat for each event in that org assocaited with an active list -->
+					    <tr ng-repeat="event in events">
+					    	<td>
+					    		{{event.event_name}}
+					    	</td>
+					    	<td>
+					    	       {{event.event_creation}}
+					    	</td>
+					    	<td>
+					    		{{event.event_location}}
+					    	</td>
+					    	<td>
+					    		{{event.event_sign_in_link}}
+					    	</td>
+					    	<td>
+					    		{{event.event_interaction_link}}
+					    	</td>
+					    </tr>
+				    </tbody>
+
+	 		   </table>
+		    </div>
+
 		</div>
 	</snap-content>
 </div>
