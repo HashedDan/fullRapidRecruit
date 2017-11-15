@@ -1,3 +1,4 @@
+const path = require('path');
 const bcrypt = require('bcryptjs');
 const pg = require('pg');
 const connection = 'postgres://g4:guqdTp5A2VSUjedF@localhost:5432/g4';
@@ -23,7 +24,7 @@ function createMember(req, res) {
 }
 
 function loginRequired(req, res, next) {
-	if (!req.user) return res.status(401).json({status: 'Please log in'});
+	if (!req.user) return res.status(401).sendFile(path.join(__dirname, '..', '..', 'client', '401.html'));
 	return next();
 }
 
