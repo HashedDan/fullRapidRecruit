@@ -12,6 +12,11 @@ angular.module('yapp')
 
 		//$scope.responseMessage = "No Response Message.";
 
+		$scope.goToLogin = function() {
+			document.getElementById('landingPage').hidden = 'true';
+			document.getElementById('loginWrapper').removeAttribute('hidden');
+		}
+
 		$scope.createPost = function(data) {
 
 			var dataObj = {};
