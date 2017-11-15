@@ -20,13 +20,13 @@
                                                 <div class="new_container">
                                                         <!-- This is NG if rush chair -->
                                                     <h2> New Vote</h2>
-                                                    <button id="new-vote-btn" type="button" class="btn btn-info"><a href="/#/dashboard/new-vote">Single Vote</a></button>
-                                                    <button id="new-batch-btn" type="button" class="btn btn-success"><a href="/#/dashboard/new-batch-vote">Batch Create</a></button>
+                                                    <button id="new-vote-btn" type="button" class="btn btn-info" ng-click="newVote()">Single Vote</button>
+                                                    <button id="new-batch-btn" type="button" class="btn btn-success" ng-click="newBatchVote()">Batch Create</button>
                                                 </div>
                                         </div>
                                         <div class="col-6">
                                                 <h2>Voting History</h2>
-                                                <button id="vote-hist-btn" type="button" class="btn"><a href="/#/dashboard/vote-history">Results</a></button>
+                                                <button id="vote-hist-btn" type="button" class="btn" ng-click="voteResults()">Results</button>
                                         </div>
                                 </div>
 
