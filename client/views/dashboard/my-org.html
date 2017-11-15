@@ -1,0 +1,54 @@
+<div>
+	<div ng-include="'menu.html'"></div>
+	<snap-dragger></snap-dragger>
+	<snap-content snap-opt-tap-to-close="false">
+
+		<a href="" snap-toggle="left" ng-click="menuOpen = !menuOpen">
+			<span class="menutoggle">
+				<i ng-hide="menuOpen" class="fa fa-bars fa-2x" ></i>
+				<i ng-show="menuOpen" class="fa fa-times fa-2x" ></i>
+			</span>
+		</a>
+
+		<div class="fr">
+		<h2>My Org</h2>
+		</div>
+		<div class="main_content">
+
+
+                        		<h2 ><strong>Name:</strong> {{ organizations[0].org_name }} </h2>
+
+
+                        		<strong>School:</strong> {{ organizations[0].org_school }} <br>
+                        		<strong>Location:</strong> {{ organizations[0].org_location }} <br>
+                        		<strong>Type:</strong> {{ organizations[0].org_type }} <br>
+                        		<strong>Owner:</strong> {{ organizations[0].org_owner }}
+
+                        		<br><br>
+					<div class="outline">
+						<table class="table table-hover">
+							<thead class="table-head">
+								<tr>
+		                        				<th >First Name</th>
+		                        				<th >Last Name</th>
+		                        				<th >Email</th>
+		                        				<th>Creation</th>
+		                        			</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="member in members">
+									<td >{{member.member_first }}</td>
+									<td >{{ member.member_last }}</td>
+									<td >{{ member.member_email }}</td>
+									<td>{{ member.member_creation }}</td>
+								</tr>
+							</tbody>
+
+
+	                        		</table>
+					</div>
+
+
+		</div>
+	</snap-content>
+</div>

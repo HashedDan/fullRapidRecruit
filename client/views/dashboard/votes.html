@@ -1,0 +1,39 @@
+<div>
+	<div ng-include="'menu.html'"></div>
+	<snap-dragger></snap-dragger>
+	<snap-content snap-opt-tap-to-close="false">
+
+		<a href="" snap-toggle="left" ng-click="menuOpen = !menuOpen">
+			<span class="menutoggle">
+				<i ng-hide="menuOpen" class="fa fa-bars fa-2x" ></i>
+				<i ng-show="menuOpen" class="fa fa-times fa-2x" ></i>
+			</span>
+		</a>
+
+		<div class="fr">
+		<h2>Votes</h2>
+		</div>
+		<div class="main_content">
+
+                                <div class="row">
+                                        <div class="col-6">
+                                                <div class="new_container">
+                                                        <!-- This is NG if rush chair -->
+                                                    <h2> New Vote</h2>
+                                                    <button id="new-vote-btn" type="button" class="btn btn-info" ng-click="newVote()">Single Vote</button>
+                                                    <button id="new-batch-btn" type="button" class="btn btn-success" ng-click="newBatchVote()">Batch Create</button>
+                                                </div>
+                                        </div>
+                                        <div class="col-6">
+                                                <h2>Voting History</h2>
+                                                <button id="vote-hist-btn" type="button" class="btn" ng-click="voteResults()">Results</button>
+                                        </div>
+                                </div>
+
+
+                        <hr />
+                        <h2> Active Votes</h2>
+
+		</div>
+	</snap-content>
+</div>

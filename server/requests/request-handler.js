@@ -5,6 +5,7 @@ const passport = require('../auth/local.js');
 const pg = require('pg');
 const connection = 'postgres://g4:guqdTp5A2VSUjedF@localhost:5432/g4';
 const bcrypt = require('bcryptjs');
+//const logout = require('express-passport-logout');
 
 var client = new pg.Client(connection);
 client.connect();
@@ -53,15 +54,20 @@ exports.login = (req, res, next) => {
     if (user) {
       req.logIn(user, function (err) {
         if (err) { handleResponse(res, 500, 'error'); }
-        // handleResponse(res, 200, 'success');
-        res.status(200).json({user: req.user});
+        handleResponse(res, 200, 'success');
+        console.log(req.session);
       });
     }
   })(req, res, next);
 }
 
 exports.logout = (req, res, next) => {
-  req.logout();
+  // req.logout();
+  // delete req.session;
+  // delete req.user;
+  req.session.destroy();
+  //console.log("Logout successful.");
+  //console.log(req.session);
   handleResponse(res, 200, 'success');
 }
 
@@ -96,7 +102,7 @@ exports.getMembers = (req, res) => {
   LISTS ROUTES
 */
 exports.getLists = (req, res) => {
-  const query = client.query('SELECT * FROM lists', (err, results) => {
+  const query = client.query('SELECT * FROM lists WHERE list_org =' + req.user.member_org, (err, results) => {
     return res.json(results.rows);
   })
 };
@@ -105,7 +111,7 @@ exports.getLists = (req, res) => {
   EVENTS ROUTES
 */
 exports.getEvents = (req, res) => {
-  const query = client.query('SELECT * FROM events', (err, results) => {
+  const query = client.query('SELECT * FROM events WHERE event_org =' +req.user.member_org, (err, results) => {
     return res.json(results.rows);
   })
 };

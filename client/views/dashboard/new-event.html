@@ -1,0 +1,41 @@
+<div>
+	<div ng-include="'menu.html'"></div>
+	<snap-dragger></snap-dragger>
+	<snap-content snap-opt-tap-to-close="false">
+
+		<a href="" snap-toggle="left" ng-click="menuOpen = !menuOpen">
+			<span class="menutoggle">
+				<i ng-hide="menuOpen" class="fa fa-bars fa-2x" ></i>
+				<i ng-show="menuOpen" class="fa fa-times fa-2x" ></i>
+			</span>
+		</a>
+
+		<div class="fr">
+		<h2>New Event</h2>
+		</div>
+		<div class="main_content">
+                        <form id="new-event-form">
+                                <h2>Make an Event</h2>
+                                <br />
+                                <h3>Title</h3>
+                                <input id="new-event-form-input-title" class="form-control" type="text" placeholder="Event Name">
+                                <br />
+                                <h3>Location</h3>
+                                <input id="new-event-form-input-location" class="form-control" type="text" placeholder="Event Location">
+                                <br />
+                                <h3>List</h3>
+                                <!-- ng repeat options from non archived lists -->
+                                <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="new-event-form-list">
+
+                                        <option selected>List 1<option>
+                                        <option value="1">List 2</option>
+                                        <option value="2">List 3</option>
+                                        <option value="3">List 4</option>
+                                 </select>
+                                 <br />
+                                 <br />
+                                <button type="submit" class="btn btn-success">Create</button>
+                        </form>
+		</div>
+	</snap-content>
+</div>

@@ -1,0 +1,35 @@
+.main_content {
+        margin: auto;
+        width: 80%;
+        text-align: center;
+        vertical-align: middle;
+        align-items: center;
+}
+
+#new_vote_form, #new_batch_vote_form {
+        padding-top: 100px;
+        max-width: 350px;
+        text-align: left;
+}
+
+.menu_header {
+        color: #fff;
+}
+
+i {
+        color: #555f61;
+}
+
+#menu_org_name {
+        color: #fff;
+}
+
+.outline {
+        border: 1px solid;
+        border-radius: 1em;
+}
+
+.table-head th{
+        text-align: center;
+
+}

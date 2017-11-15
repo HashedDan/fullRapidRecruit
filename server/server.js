@@ -10,20 +10,24 @@ var session = require('express-session');
 
 app.set('view engine', 'html');
 
-app.use([bodyParser.json(), bodyParser.urlencoded({extended: true})]);
+app.use([bodyParser.json(), bodyParser.urlencoded({
+	extended: true
+})]);
 app.use(express.static(path.join(__dirname, '../client')));
 
 app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(500).send('Server Error');
+	console.log(err);
+	res.status(500).send('Server Error');
 });
 
 app.use(session({
-      secret: "this-is-a-secret-key",
-      cookie: { maxAge: 60000 },
-      resave: false,
-      saveUninitialized: true
-      }));
+	secret: "this-is-a-secret-key",
+	cookie: {
+		maxAge: null
+	},
+	resave: false,
+	saveUninitialized: true
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -31,9 +35,9 @@ app.use(passport.session());
 app.use('/api', routes);
 
 router.get('/', (req, res, next) => {
-  res.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
+		res.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
 });
 
 app.listen(port, (err) => {
-  err ? console.log('Cannot connect...', err) : console.log(`Connected! Server is listening on port ${port}`);
+	err ? console.log('Cannot connect...', err) : console.log(`Connected! Server is listening on port ${port}`);
 });
