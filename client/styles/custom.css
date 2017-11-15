@@ -23,3 +23,13 @@ i {
 #menu_org_name {
         color: #fff;
 }
+
+.outline {
+        border: 1px solid;
+        border-radius: 1em;
+}
+
+.table-head th{
+        text-align: center;
+
+}
