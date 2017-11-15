@@ -107,6 +107,17 @@ exports.getLists = (req, res) => {
   })
 };
 
+exports.postLists = (req, res) => {
+  const query = client.query('INSERT INTO lists (list_name, list_org, list_owner) VALUES ($1, $2, $3)', [req.body.name, req.user.member_org, req.user.member_id], (err, results) => {
+      if (err) {
+        res.status(400).json({status: err.message});
+      }
+      else {
+        handleResponse(res, 200, 'success');
+      }
+  })
+};
+
 /*
   EVENTS ROUTES
 */
@@ -115,6 +126,16 @@ exports.getEvents = (req, res) => {
     return res.json(results.rows);
   })
 };
+
+// exports.postEvents = (req, res) => {
+//   const query = client.query('INSERT INTO events (event_name, event_org, event_owner, event_location) VALUES ($1, $2, $3)', [req.body.name, req.user.member_org, req.user.member_id], (err, results) => {
+//       if (err) {
+//         res.status(400).json({status: err.message});
+//       }
+//       else {
+//         handleResponse(res, 200, 'success');
+//       }
+// };
 
 /*
   RECRUIT ROUTES
@@ -183,5 +204,5 @@ exports.getShare = (req, res) => {
 // HELPERS
 
 function handleResponse(res, code, statusMsg) {
-  res.status(code).json({status: statusMsg});
+  res.status(code).json({status: statusMsg, code: code});
 }

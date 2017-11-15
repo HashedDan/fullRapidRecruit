@@ -23,11 +23,13 @@ router.get('/members', authFuncs.loginRequired, requestHandler.getMembers);
 	LISTS ROUTES
 */
 router.get('/lists', authFuncs.loginRequired, requestHandler.getLists);
+router.post('/lists', authFuncs.loginRequired, requestHandler.postLists);
 
 /*
 	EVENTS ROUTES
 */
 router.get('/events', authFuncs.loginRequired, requestHandler.getEvents);
+// router.post('/events', authFuncs.loginRequired, requestHandler.postEvents);
 
 /*
 	RECRUITS ROUTES
