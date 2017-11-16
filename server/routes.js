@@ -29,12 +29,13 @@ router.post('/lists', authFuncs.loginRequired, requestHandler.postLists);
 	EVENTS ROUTES
 */
 router.get('/events', authFuncs.loginRequired, requestHandler.getEvents);
-// router.post('/events', authFuncs.loginRequired, requestHandler.postEvents);
+router.post('/events', authFuncs.loginRequired, requestHandler.postEvents);
 
 /*
 	RECRUITS ROUTES
 */
 router.get('/recruits', authFuncs.loginRequired, requestHandler.getRecruits);
+router.post('/recruits', authFuncs.loginRequired, requestHandler.postRecruits);
 
 /*
 	INTERACTIONS ROUTES
@@ -55,6 +56,7 @@ router.get('/sign_in', authFuncs.loginRequired, requestHandler.getSignIn);
 	VOTES ROUTES
 */
 router.get('/votes', authFuncs.loginRequired, requestHandler.getVotes);
+router.post('/votes', authFuncs.loginRequired, requestHandler.postVotes);
 
 /*
 	VOTES_RECORDS ROUTES

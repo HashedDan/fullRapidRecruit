@@ -127,15 +127,16 @@ exports.getEvents = (req, res) => {
   })
 };
 
-// exports.postEvents = (req, res) => {
-//   const query = client.query('INSERT INTO events (event_name, event_org, event_owner, event_location) VALUES ($1, $2, $3)', [req.body.name, req.user.member_org, req.user.member_id], (err, results) => {
-//       if (err) {
-//         res.status(400).json({status: err.message});
-//       }
-//       else {
-//         handleResponse(res, 200, 'success');
-//       }
-// };
+exports.postEvents = (req, res) => {
+  const query = client.query('INSERT INTO events (event_name, event_org, event_owner, event_location, event_sign_in_req_fields, event_interaction_req_fields, event_sign_in_id) VALUES ($1, $2, $3, $4, $5, $6, $7)', [req.body.name, req.user.member_org, req.user.member_id, req.body.location, req.body.signInReqFields, req.body.intReqFields, req.body.signInId], (err, results) => {
+      if (err) {
+        res.status(400).json({status: err.message});
+      }
+      else {
+        handleResponse(res, 200, 'success');
+      }
+  })
+};
 
 /*
   RECRUIT ROUTES
@@ -143,6 +144,17 @@ exports.getEvents = (req, res) => {
 exports.getRecruits = (req, res) => {
   const query = client.query('SELECT * FROM recruits', (err, results) => {
     return res.json(results.rows);
+  })
+};
+
+exports.postRecruits = (req, res) => {
+  const query = client.query('INSERT INTO recruits (event_name, event_org, event_owner, event_location, event_sign_in_req_fields, event_interaction_req_fields, event_sign_in_id) VALUES ($1, $2, $3, $4, $5, $6, $7)', [req.body.name, req.user.member_org, req.user.member_id, req.body.location, req.body.signInReqFields, req.body.intReqFields, req.body.signInId], (err, results) => {
+      if (err) {
+        res.status(400).json({status: err.message});
+      }
+      else {
+        handleResponse(res, 200, 'success');
+      }
   })
 };
 
@@ -179,6 +191,17 @@ exports.getSignIn = (req, res) => {
 exports.getVotes = (req, res) => {
   const query = client.query('SELECT * FROM votes', (err, results) => {
     return res.json(results.rows);
+  })
+};
+
+exports.postVotes = (req, res) => {
+  const query = client.query('INSERT INTO events (event_name, event_org, event_owner, event_location, event_sign_in_req_fields, event_interaction_req_fields, event_sign_in_id) VALUES ($1, $2, $3, $4, $5, $6, $7)', [req.body.name, req.user.member_org, req.user.member_id, req.body.location, req.body.signInReqFields, req.body.intReqFields, req.body.signInId], (err, results) => {
+      if (err) {
+        res.status(400).json({status: err.message});
+      }
+      else {
+        handleResponse(res, 200, 'success');
+      }
   })
 };
 
