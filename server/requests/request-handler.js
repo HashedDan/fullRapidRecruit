@@ -148,7 +148,7 @@ exports.getRecruits = (req, res) => {
 };
 
 exports.postRecruits = (req, res) => {
-  const query = client.query('INSERT INTO recruits (event_name, event_org, event_owner, event_location, event_sign_in_req_fields, event_interaction_req_fields, event_sign_in_id) VALUES ($1, $2, $3, $4, $5, $6, $7)', [req.body.name, req.user.member_org, req.user.member_id, req.body.location, req.body.signInReqFields, req.body.intReqFields, req.body.signInId], (err, results) => {
+  const query = client.query('INSERT INTO recruits (recruit_first, recruit_last, recruit_email, recruit_pic_url, recruit_res_url, recruit_org, recruit_list) VALUES ($1, $2, $3, $4, $5, $6, $7)', [req.body.first, req.body.last, req.body.email, req.body.picUrl, req.body.resUrl, req.user.member_org, req.body.recList], (err, results) => {
       if (err) {
         res.status(400).json({status: err.message});
       }
@@ -195,7 +195,7 @@ exports.getVotes = (req, res) => {
 };
 
 exports.postVotes = (req, res) => {
-  const query = client.query('INSERT INTO events (event_name, event_org, event_owner, event_location, event_sign_in_req_fields, event_interaction_req_fields, event_sign_in_id) VALUES ($1, $2, $3, $4, $5, $6, $7)', [req.body.name, req.user.member_org, req.user.member_id, req.body.location, req.body.signInReqFields, req.body.intReqFields, req.body.signInId], (err, results) => {
+  const query = client.query('INSERT INTO votes (vote_on, vote_status, vote_abstain, vote_threshold, vote_result, vote_owner, vote_list_id) VALUES ($1, $2, $3, $4, $5, $6, $7)', [req.body.on, req.body.status, req.body.abstain, req.body.threshold, req.body.result, req.user.member_id, req.body.listId], (err, results) => {
       if (err) {
         res.status(400).json({status: err.message});
       }
