@@ -18,7 +18,6 @@ angular.module('yapp')
 		}
 
 		$scope.createPost = function(data) {
-
 			var dataObj = {};
 
 			dataObj.email = data.email;
