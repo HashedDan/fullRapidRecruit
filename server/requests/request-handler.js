@@ -201,20 +201,25 @@ exports.getVotes = (req, res) => {
 };
 
 exports.postDraftedVotesFromList = (req, res) => {
-  const query = client.query('SELECT vote_id, vote_status, vote_abstain, vote_threshold, vote_list_id, recruit_first, recruit_last FROM votes JOIN recruits on(votes.vote_on=recruits.recruit_id) where vote_status = 0 AND vote_list_id='+req.body.list_id, (err, results) => {
+  const query = client.query('SELECT vote_id, vote_status, vote_abstain, vote_threshold, vote_list_id, recruit_first, recruit_last, lists.list_name FROM votes JOIN recruits on(votes.vote_on=recruits.recruit_id) JOIN lists on (votes.vote_list_id=lists.list_id) where vote_status = 0 AND vote_list_id='+req.body.list_id, (err, results) => {
     return res.json(results.rows);
   })
 };
 
 exports.postActiveVotesFromList = (req, res) => {
-  const query = client.query('SELECT vote_id, vote_status, vote_abstain, vote_threshold, vote_list_id, recruit_first, recruit_last FROM votes JOIN recruits on(votes.vote_on=recruits.recruit_id) where vote_status = 1 AND vote_list_id='+req.body.list_id, (err, results) => {
+  const query = client.query('SELECT vote_id, vote_status, vote_abstain, vote_threshold, vote_list_id, recruit_first, recruit_last, lists.list_name FROM votes JOIN recruits on(votes.vote_on=recruits.recruit_id) JOIN lists on (votes.vote_list_id=lists.list_id) where vote_status = 1 AND vote_list_id='+req.body.list_id, (err, results) => {
     return res.json(results.rows);
   })
 };
 
-exports.postActivateVote = (req, res) => {
-  const query = client.query('UPDATE votes set vote_status = 1 where vote_id='+req.body.vote_id, (err, results) => {
-    return res.json(results.rows);
+exports.changeVoteStatus = (req, res) => {
+  const query = client.query('UPDATE votes set vote_status = '+req.body.new_status+' where vote_id='+req.body.vote_id, (err, results) => {
+      if (err) {
+        res.status(400).json({status: err.message});
+      }
+      else {
+        handleResponse(res, 200, 'success');
+      }
   })
 };
 
@@ -229,12 +234,29 @@ exports.postVotes = (req, res) => {
   })
 };
 
+exports.postActiveVotesExcludeSubmitted = (req, res) => {
+  const query = client.query('SELECT vote_id, vote_status, vote_abstain, vote_threshold, vote_list_id, recruit_first, recruit_last, lists.list_name FROM votes JOIN recruits on(votes.vote_on=recruits.recruit_id) JOIN lists on (votes.vote_list_id=lists.list_id) where vote_status = 1 AND vote_list_id='+req.body.list_id+' AND vote_id not in (SELECT votes_records_vote_id from votes_records where votes_records_member_id ='+req.user.member_id+')', (err, results) => {
+    return res.json(results.rows);
+  })
+};
+
 /*
   VOTES_RECORDS ROUTES
 */
 exports.getVoteRecords = (req, res) => {
   const query = client.query('SELECT * FROM votes_records', (err, results) => {
     return res.json(results.rows);
+  })
+};
+
+exports.postVoteRecord = (req, res) => {
+  const query = client.query('INSERT into votes_records (votes_records_vote_id, votes_records_value, votes_records_member_id) VALUES ($1, $2, $3)', [req.body.vote_id, req.body.vote_value, req.user.member_id], (err, results) => {
+      if (err) {
+        res.status(400).json({status: err.message});
+      }
+      else {
+        handleResponse(res, 200, 'success');
+      }
   })
 };
 

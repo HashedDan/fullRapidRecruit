@@ -60,12 +60,14 @@ router.get('/votes', authFuncs.loginRequired, requestHandler.getVotes);
 router.post('/votes', authFuncs.loginRequired, requestHandler.postVotes);
 router.post('/drafted_votes_from_list', authFuncs.loginRequired, requestHandler.postDraftedVotesFromList);
 router.post('/active_votes_from_list', authFuncs.loginRequired, requestHandler.postActiveVotesFromList);
-router.post('/activate_vote', authFuncs.loginRequired, requestHandler.postActivateVote);
+router.post('/change_vote_status', authFuncs.loginRequired, requestHandler.changeVoteStatus);
+router.post('/active_votes_from_list_exclude_submitted', authFuncs.loginRequired, requestHandler.postActiveVotesExcludeSubmitted);
 
 /*
 	VOTES_RECORDS ROUTES
 */
 router.get('/vote_records', authFuncs.loginRequired, requestHandler.getVoteRecords);
+router.post('/post_vote_record', authFuncs.loginRequired, requestHandler.postVoteRecord);
 
 /*
 	SHARE ROUTES

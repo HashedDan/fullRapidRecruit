@@ -11,16 +11,20 @@
 		</a>
 
 		<div class="fr">
-			<h2>Votes</h2>
+			<h2>Vote Editor</h2>
 		</div>
 		<div class="main_content">
 			<div class="row">
 				<div class="col-md-5">
 					<div id="list_select_container">
-						<h2>Select List</h2>
-						<select class="form-control" id="vote_page_list_dropdown" ng-model="selectedListForVotesPage" ng-change="getActiveVotesFromList(selectedListForVotesPage); getDraftedVotesFromList(selectedListForVotesPage);">
+						<div class="col-md-3"></div>
+						<div class="col-md-6">
+							<h2>Select List</h2>
+							<select class="form-control" id="vote_page_list_dropdown" ng-model="selectedListForVotesPage" ng-change="getActiveVotesFromList(selectedListForVotesPage); getDraftedVotesFromList(selectedListForVotesPage);">
 							<option id="{{list.list_id}}" value="{{list.list_id}}" ng-repeat="list in lists">{{list.list_name}}</option>
 						</select>
+						</div>
+						<div class="col-md-3"></div>
 					</div>
 				</div>
 				<div class="col-md-2"></div>
@@ -36,7 +40,7 @@
 				</div>
 			</div>
 			<hr />
-			{{list_test}}
+			{{selectedList}}
 			<div class="row">
 				<div class="col-md-6" id="active_votes_col">
 					<h2>Active Votes</h2>
@@ -48,16 +52,13 @@
 										Vote On
 									</th>
 									<th>
-										Status
-									</th>
-									<th>
 										Abstain
 									</th>
 									<th>
 										Threshold
 									</th>
 									<th>
-										Vote
+										Options
 									</th>
 								</tr>
 							</thead>
@@ -69,16 +70,13 @@
 										{{vote.recruit_first}} {{vote.recruit_last}}
 									</td>
 									<td>
-										{{vote.vote_status}}
-									</td>
-									<td>
 										{{vote.vote_abstain}}
 									</td>
 									<td>
-										{{vote.vote_threshold}}
+										{{vote.vote_threshold}}%
 									</td>
 									<td>
-										Button
+										<button class="btn btn-warning btn-sm vote_archive_links" id="vote_archive_link_{{vote.vote_id}}" ng-click="changeVoteStatus(vote.vote_id, vote.vote_list, 2)">Close Vote</button>
 									</td>
 								</tr>
 							</tbody>
@@ -94,9 +92,6 @@
 								<tr>
 									<th>
 										Vote On
-									</th>
-									<th>
-										Status
 									</th>
 									<th>
 										Abstain
@@ -117,16 +112,13 @@
 										{{vote.recruit_first}} {{vote.recruit_last}}
 									</td>
 									<td>
-										{{vote.vote_status}}
-									</td>
-									<td>
 										{{vote.vote_abstain}}
 									</td>
 									<td>
-										{{vote.vote_threshold}}
+										{{vote.vote_threshold}}%
 									</td>
 									<td>
-										<button class="btn btn-secondary btn-sm vote_activation_links" id="vote_activate_link_{{vote.vote_id}}" ng-click="activateVote(vote.vote_id, vote.vote_list)">Activate</button>
+										<button class="btn btn-secondary btn-sm vote_activation_links" id="vote_activate_link_{{vote.vote_id}}" ng-click="changeVoteStatus(vote.vote_id, vote.vote_list, 1)">Activate</button>
 									</td>
 								</tr>
 							</tbody>

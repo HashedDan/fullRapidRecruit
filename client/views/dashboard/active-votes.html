@@ -1,0 +1,81 @@
+<div>
+	<div ng-include="'menu.html'"></div>
+	<snap-dragger></snap-dragger>
+	<snap-content snap-opt-tap-to-close="false">
+
+		<a href="" snap-toggle="left" ng-click="menuOpen = !menuOpen">
+			<span class="menutoggle">
+				<i ng-hide="menuOpen" class="fa fa-bars fa-2x" ></i>
+				<i ng-show="menuOpen" class="fa fa-times fa-2x" ></i>
+			</span>
+		</a>
+
+		<div class="fr">
+			<h2>Active Votes</h2>
+		</div>
+		<div class="main_content">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						<h2>Select List</h2>
+						<select class="form-control" id="vote_page_list_dropdown" ng-model="selectedListForVotesPage" ng-change="getActiveVotesFromListExcludeSubmitted(selectedListForVotesPage); getDraftedVotesFromList(selectedListForVotesPage);">
+						<option id="{{list.list_id}}" value="{{list.list_id}}" ng-repeat="list in lists">{{list.list_name}}</option>
+					</select>
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+				<div class="col-md-8"></div>
+			</div>
+			<hr />
+			<div class="well well-md pre-scrollable" id="active_votes_well">
+				<div class="row" ng-repeat="vote in active_votes_exclude_submitted.data" ng-switch on="$index % 3">
+					<div class="col-sm-4" ng-switch-when="0">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3>{{vote.recruit_first}} {{vote.recruit_last}}</h3>
+								<p>
+									<div class="btn-group" role="group">
+										<button class="btn btn-success btn-sm" id="vote_record_submit_{{vote.vote_id}}" ng-click="logVoteRecord(vote.vote_id, 1)">Yes</button>
+										<button class="btn btn-danger btn-sm" id="vote_record_submit_{{vote.vote_id}}" ng-click="logVoteRecord(vote.vote_id, 0)">No</button>
+										<button class="btn btn-info btn-sm" ng-if="vote.vote_abstain" id="vote_record_submit_{{vote.vote_id}}" ng-click="logVoteRecord(vote.vote_id, 2)">Abstain</button>
+									</div>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4" ng-switch-when="0">
+						<div class="thumbnail" ng-show="active_votes_exclude_submitted.data[$index+1]">
+							<div class="caption">
+								<h3>{{active_votes_exclude_submitted.data[$index+1].recruit_first}} {{active_votes_exclude_submitted.data[$index+1].recruit_last}}</h3>
+								<p>
+									<div class="btn-group" role="group">
+										<button class="btn btn-success btn-sm" id="vote_record_submit_{{active_votes_exclude_submitted.data[$index+1].vote_id}}" ng-click="logVoteRecord(active_votes_exclude_submitted.data[$index+1].vote_id, 1)">Yes</button>
+										<button class="btn btn-danger btn-sm" id="vote_record_submit_{{active_votes_exclude_submitted.data[$index+1].vote_id}}" ng-click="logVoteRecord(active_votes_exclude_submitted.data[$index+1].vote_id, 0)">No</button>
+										<button class="btn btn-info btn-sm" ng-if="active_votes_exclude_submitted.data[$index+1].vote_abstain" id="vote_record_submit_{{active_votes_exclude_submitted.data[$index+1].vote_id}}" ng-click="logVoteRecord(active_votes_exclude_submitted.data[$index+1].vote_id, 2)">Abstain</button>
+									</div>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4" ng-switch-when="0">
+						<div class="thumbnail" ng-show="active_votes_exclude_submitted.data[$index+2]">
+							<div class="caption">
+								<h3>{{active_votes_exclude_submitted.data[$index+2].recruit_first}} {{active_votes_exclude_submitted.data[$index+2].recruit_last}}</h3>
+								<p>
+									<div class="btn-group" role="group">
+										<button class="btn btn-success btn-sm" id="vote_record_submit_{{active_votes_exclude_submitted.data[$index+2].vote_id}}" ng-click="logVoteRecord(active_votes_exclude_submitted.data[$index+2].vote_id, 1)">Yes</button>
+										<button class="btn btn-danger btn-sm" id="vote_record_submit_{{active_votes_exclude_submitted.data[$index+2].vote_id}}" ng-click="logVoteRecord(active_votes_exclude_submitted.data[$index+2].vote_id, 0)">No</button>
+										<button class="btn btn-info btn-sm" ng-if="active_votes_exclude_submitted.data[$index+2].vote_abstain" id="vote_record_submit_{{active_votes_exclude_submitted.data[$index+2].vote_id}}" ng-click="logVoteRecord(active_votes_exclude_submitted.data[$index+2].vote_id, 2)">Abstain</button>
+									</div>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+</div>
+</snap-content>
+</div>

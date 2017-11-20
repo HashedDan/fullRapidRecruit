@@ -65,15 +65,62 @@ angular.module('yapp')
                   $log.info(data);
               });
 			  
-	$scope.activateVote = function(vote, list) {
+	$scope.logVoteRecord = function(voteId, voteValue) {
+		var dataObj = {};		
+		dataObj.vote_id = voteId;
+		dataObj.vote_value = voteValue;
+		
+		$http({
+				method: 'POST',
+				url: '/api/post_vote_record',
+				data: dataObj,
+				headers: {
+						'Content-Type': 'application/json'
+				}
+			})
+			.then(function(response) {
+				$scope.getActiveVotesFromListExcludeSubmitted($scope.selected_list);
+				$scope.getActiveVotesFromList($scope.selected_list);
+			})
+			.catch(function(err) {
+
+			});
+	};
+	
+	//Used to populate the active votes on the Active Votes tab with all currently active votes that the logged in member has not voted on.		  
+	$scope.getActiveVotesFromListExcludeSubmitted = function(data) {
+		var dataObj = {};
+		$scope.selected_list = data;		
+		dataObj.list_id = data;
+		
+		$http({
+				method: 'POST',
+				url: '/api/active_votes_from_list_exclude_submitted',
+				data: dataObj,
+				headers: {
+						'Content-Type': 'application/json'
+				}
+			})
+			.then(function(response) {
+				$scope.active_votes_exclude_submitted = response;
+									
+			})
+			.catch(function(err) {
+				//console.log("Couldn't find recruits for the specified list.");
+			});
+	};
+	
+	//Used to change the status of a vote from drafted to active to archived, and vice-versa.		  
+	$scope.changeVoteStatus = function(vote, list, newStatus) {
 		$scope.active_votes = "";
 		$scope.drafted_votes = "";
 		var dataObj = {};
 		dataObj.vote_id = vote;
+		dataObj.new_status = newStatus;
 				
 		$http({
 				method: 'POST',
-				url: '/api/activate_vote',
+				url: '/api/change_vote_status',
 				data: dataObj,
 				headers: {
 					'Content-Type': 'application/json'
@@ -81,12 +128,14 @@ angular.module('yapp')
 				})
 				.then(function(response) {
 					$scope.getActiveVotesFromList($scope.selected_list);
+					$scope.getActiveVotesFromListExcludeSubmitted($scope.selected_list);
 					$scope.getDraftedVotesFromList($scope.selected_list);
 				})
 				.catch(function(err) {
 				});
 	}
-			  
+		
+	//Used to create an individual vote for a recruit within a list from the new-vote view.	  
 	$scope.createIndividualVote = function(list, recruit, percent, abstain) {
 		var dataObj = {};
 		
@@ -97,7 +146,7 @@ angular.module('yapp')
 		dataObj.status = 0;
 		
 		if(!dataObj.abstain){
-			dataObj.abstain = "false";
+			dataObj.abstain = "False";
 		}
 		
 		$scope.vote_post = dataObj;
@@ -114,13 +163,14 @@ angular.module('yapp')
 					//$scope.vote_success = "New Vote Successfully Created!";
 					$scope.getDraftedVotesFromList(list);
 					$scope.getActiveVotesFromList(list);
-					$location.path('/dashboard/votes');
+					$location.path('/dashboard/vote-editor');
 				})
 				.catch(function(err) {
 					//console.log("Couldn't find recruits for the specified list.");
 				});
 		};
 		
+	//Used to iteratively create a group of votes for all recruits within a lists from the new-batch-votes view.
 	$scope.createBatchVote = function(list, percent, abstain) {
 		var dataObj1 = {};
 		var dataObj2 = {};
@@ -138,7 +188,7 @@ angular.module('yapp')
 			dataObj2.status = 0;
 			
 			if(!dataObj2.abstain){
-				dataObj2.abstain = "false";
+				dataObj2.abstain = "False";
 			}
 			
 			$http({
@@ -151,7 +201,7 @@ angular.module('yapp')
 				})
 				.then(function(response) {
 					//$scope.vote_success = "New Vote Successfully Created!";
-					$location.path('/dashboard/votes');
+					$location.path('/dashboard/vote-editor');
 				})
 				.catch(function(err) {
 					//console.log("Couldn't find recruits for the specified list.");
@@ -163,6 +213,7 @@ angular.module('yapp')
 		
 		};
 
+	//Used to get all drafted votes for the selected list within an organization.
 	$scope.getDraftedVotesFromList = function(data) {
 		var dataObj = {};
 		
@@ -186,11 +237,10 @@ angular.module('yapp')
 				});
 		};
 	
+	//Used to get all active votes from the selected list within an organization, regardless of if the logged in user has voted on that recruit or not.
 	$scope.getActiveVotesFromList = function(data) {
 		var dataObj = {};
-		
-		$scope.selected_list = data;
-		
+		$scope.selected_list = data;		
 		dataObj.list_id = data;
 		
 		$http({
@@ -203,12 +253,14 @@ angular.module('yapp')
 				})
 				.then(function(response) {
 					$scope.active_votes = response;
+										
 				})
 				.catch(function(err) {
 					//console.log("Couldn't find recruits for the specified list.");
 				});
 		};
-		
+	
+	//Used to get list of all recruits from a selected list.
 	$scope.getRecruitsFromList = function(data) {
 		var dataObj = {};
 

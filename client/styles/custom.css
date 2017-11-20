@@ -34,6 +34,10 @@ i {
 
 }
 
-.vote_activation_links {
-        color: #555f61;
+#vote_page_list_dropdown {
+        max-width: 250px;
+}
+
+#active_votes_well {
+        min-height: inherit;
 }
