@@ -153,6 +153,7 @@ angular.module('yapp')
 					$scope.getActiveVotesFromList($scope.selected_list);
 					$scope.getActiveVotesFromListExcludeSubmitted($scope.selected_list);
 					$scope.getDraftedVotesFromList($scope.selected_list);
+					$scope.getVoteHistoryFromList($scope.selected_list);
 				})
 				.catch(function(err) {
 				});
