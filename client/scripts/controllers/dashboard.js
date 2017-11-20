@@ -87,6 +87,29 @@ angular.module('yapp')
 			});
 	};
 	
+	$scope.getVoteHistoryFromList = function(data) {
+		var dataObj = {};
+		
+		$scope.selected_list = data;
+		
+		dataObj.list_id = data;
+				
+		$http({
+					method: 'POST',
+					url: '/api/vote_history_from_list',
+					data: dataObj,
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+				.then(function(response) {
+					$scope.vote_history = response;
+				})
+				.catch(function(err) {
+					
+				});
+	};
+	
 	//Used to populate the active votes on the Active Votes tab with all currently active votes that the logged in member has not voted on.		  
 	$scope.getActiveVotesFromListExcludeSubmitted = function(data) {
 		var dataObj = {};

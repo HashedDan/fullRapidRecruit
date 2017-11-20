@@ -11,34 +11,69 @@
 		</a>
 
 		<div class="fr">
-		<h2>Votes History</h2>
+			<h2>Votes History</h2>
 		</div>
 		<div class="main_content">
-		    <table id="vote-hist-table">
-                            <tr>
-                                    <th>
-                                            Rushee
-                                    </th>
-                                    <th>
-                                            Yes %
-                                    </th>
-                                    <th>
-                                            No %
-                                    </th>
-                            </tr>
-                            <tr>
-                                    <!-- ng repeat for each vote in that org display in recent to old -->
-                                    <td>
-                                            rushee name
-                                    </td>
-                                    <td>
-                                            yes votes
-                                    </td>
-                                    <td>
-                                            no votes
-                                    </td>
-                            </tr>
-                    </table>
+			<div class="row">
+				<div class="col-md-9"></div>
+				<div class="col-md-3">
+					<h2>Select List</h2>
+					<select class="form-control" id="vote_history_list_dropdown" ng-model="selectedListForVoteHistory" ng-change="getVoteHistoryFromList(selectedListForVoteHistory)">
+						<option id="{{list.list_id}}" value="{{list.list_id}}" ng-repeat="list in lists">{{list.list_name}}</option>
+					</select>
+				</div>
+			</div>
+			<hr />
+			<div class="row">
+				<div class="col-md-12" id="votes_history_col">
+					<h2>Vote History</h2>
+					<div class="well well-md pre-scrollable">
+						<table class="table table-hover" id="events-table">
+							<thead class="table-head">
+								<tr>
+									<th>
+										Vote On
+									</th>
+									<th>
+										Abstain
+									</th>
+									<th>
+										Threshold
+									</th>
+									<th>
+										Vote List
+									</th>
+									<th>
+										Vote Result
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<!-- ng repeat for each event in that org assocaited with an active list -->
+								<tr ng-repeat="vote in vote_history.data">
+									<td>
+										{{vote.recruit_first}} {{vote.recruit_last}}
+									</td>
+									<td>
+										{{vote.vote_abstain}}
+									</td>
+									<td>
+										{{vote.vote_threshold}}%
+									</td>
+									<td>
+										{{vote.list_name}}
+									</td>
+									<td>
+										{{vote.vote_result}}
+									</td>
+								</tr>
+							</tbody>
+
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 	</snap-content>
 </div>

@@ -62,6 +62,7 @@ router.post('/drafted_votes_from_list', authFuncs.loginRequired, requestHandler.
 router.post('/active_votes_from_list', authFuncs.loginRequired, requestHandler.postActiveVotesFromList);
 router.post('/change_vote_status', authFuncs.loginRequired, requestHandler.changeVoteStatus);
 router.post('/active_votes_from_list_exclude_submitted', authFuncs.loginRequired, requestHandler.postActiveVotesExcludeSubmitted);
+router.post('/vote_history_from_list', authFuncs.loginRequired, requestHandler.voteHistoryFromList);
 
 /*
 	VOTES_RECORDS ROUTES

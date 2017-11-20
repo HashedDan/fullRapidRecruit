@@ -240,6 +240,12 @@ exports.postActiveVotesExcludeSubmitted = (req, res) => {
   })
 };
 
+exports.voteHistoryFromList = (req, res) => {
+  const query = client.query('SELECT vote_id, vote_list_id, vote_abstain, vote_threshold, recruit_first, recruit_last, lists.list_name FROM votes JOIN recruits on(votes.vote_on=recruits.recruit_id) JOIN lists on (votes.vote_list_id=lists.list_id) where vote_status = 2 AND vote_list_id='+req.body.list_id, (err, results) => {
+    return res.json(results.rows);
+  })
+};
+
 /*
   VOTES_RECORDS ROUTES
 */
