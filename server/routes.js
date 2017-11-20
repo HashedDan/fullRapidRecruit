@@ -36,6 +36,7 @@ router.post('/events', authFuncs.loginRequired, requestHandler.postEvents);
 */
 router.get('/recruits', authFuncs.loginRequired, requestHandler.getRecruits);
 router.post('/recruits', authFuncs.loginRequired, requestHandler.postRecruits);
+router.post('/recruits_from_list', authFuncs.loginRequired, requestHandler.postRecruitsFromList);
 
 /*
 	INTERACTIONS ROUTES
@@ -57,6 +58,9 @@ router.get('/sign_in', authFuncs.loginRequired, requestHandler.getSignIn);
 */
 router.get('/votes', authFuncs.loginRequired, requestHandler.getVotes);
 router.post('/votes', authFuncs.loginRequired, requestHandler.postVotes);
+router.post('/drafted_votes_from_list', authFuncs.loginRequired, requestHandler.postDraftedVotesFromList);
+router.post('/active_votes_from_list', authFuncs.loginRequired, requestHandler.postActiveVotesFromList);
+router.post('/activate_vote', authFuncs.loginRequired, requestHandler.postActivateVote);
 
 /*
 	VOTES_RECORDS ROUTES

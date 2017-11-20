@@ -147,6 +147,12 @@ exports.getRecruits = (req, res) => {
   })
 };
 
+exports.postRecruitsFromList = (req, res) => {
+  const query = client.query('SELECT * FROM recruits where recruit_list ='+req.body.list_id, (err, results) => {
+    return res.json(results.rows);
+  })
+};
+
 exports.postRecruits = (req, res) => {
   const query = client.query('INSERT INTO recruits (recruit_first, recruit_last, recruit_email, recruit_pic_url, recruit_res_url, recruit_org, recruit_list) VALUES ($1, $2, $3, $4, $5, $6, $7)', [req.body.first, req.body.last, req.body.email, req.body.picUrl, req.body.resUrl, req.user.member_org, req.body.recList], (err, results) => {
       if (err) {
@@ -194,8 +200,26 @@ exports.getVotes = (req, res) => {
   })
 };
 
+exports.postDraftedVotesFromList = (req, res) => {
+  const query = client.query('SELECT vote_id, vote_status, vote_abstain, vote_threshold, vote_list_id, recruit_first, recruit_last FROM votes JOIN recruits on(votes.vote_on=recruits.recruit_id) where vote_status = 0 AND vote_list_id='+req.body.list_id, (err, results) => {
+    return res.json(results.rows);
+  })
+};
+
+exports.postActiveVotesFromList = (req, res) => {
+  const query = client.query('SELECT vote_id, vote_status, vote_abstain, vote_threshold, vote_list_id, recruit_first, recruit_last FROM votes JOIN recruits on(votes.vote_on=recruits.recruit_id) where vote_status = 1 AND vote_list_id='+req.body.list_id, (err, results) => {
+    return res.json(results.rows);
+  })
+};
+
+exports.postActivateVote = (req, res) => {
+  const query = client.query('UPDATE votes set vote_status = 1 where vote_id='+req.body.vote_id, (err, results) => {
+    return res.json(results.rows);
+  })
+};
+
 exports.postVotes = (req, res) => {
-  const query = client.query('INSERT INTO votes (vote_on, vote_status, vote_abstain, vote_threshold, vote_result, vote_owner, vote_list_id) VALUES ($1, $2, $3, $4, $5, $6, $7)', [req.body.on, req.body.status, req.body.abstain, req.body.threshold, req.body.result, req.user.member_id, req.body.listId], (err, results) => {
+  const query = client.query('INSERT INTO votes (vote_on, vote_status, vote_abstain, vote_threshold, vote_owner, vote_list_id) VALUES ($1, $2, $3, $4, $5, $6)', [req.body.on, req.body.status, req.body.abstain, req.body.threshold, req.user.member_id, req.body.listId], (err, results) => {
       if (err) {
         res.status(400).json({status: err.message});
       }

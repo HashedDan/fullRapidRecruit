@@ -16,22 +16,23 @@
 		<div class="main_content">
 			<div class="col-md-4"></div>
 			<div class="col-md-4" id="new_batch_vote_form">
-				<form id="new-batch-vote-form">
+				<form id="new-batch-vote-form" ng-submit="createBatchVote(selectedList, reqPercentage, abstain)">
 					<div class="form-group">
 						<label for="new-batch-vote-form-list">List</label>
-						<select class="form-control" id="new-batch-vote-form-list">
-							<option ng-repeat="list in lists">{{list.list_name}}</option>
+						<select class="form-control" id="new-batch-vote-form-list" ng-model="selectedList" ng-change="getRecruitsFromList(selectedList)">
+							<option  id="{{list.list_id}}" value="{{list.list_id}}" ng-repeat="list in lists">{{list.list_name}}</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="new-batch-vote-form-percent">Percentage Required for Bid</label>
-						<input type="text" class="form-control" id="new-batch-vote-form-percent"></input>
+						<input type="text" class="form-control" id="new-batch-vote-form-percent" ng-model="reqPercentage"></input>
 					</div>
 					<div class="form-check">
 						<label class="form-check-label">
-							<input type="checkbox" class="form-check-input" id="new-batch-vote-form-abstain">  Allow Abstentions</label>
+							<input type="checkbox" class="form-check-input" id="new-batch-vote-form-abstain" ng-model="abstain">  Allow Abstentions</label>
 					</div><br>
 					<button type="submit" class="btn btn-secondary">Create</button>
+					{{print}}
 				</form>
 			</div>
 			<div class="col-md-4"></div>

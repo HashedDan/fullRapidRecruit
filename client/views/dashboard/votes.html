@@ -11,29 +11,132 @@
 		</a>
 
 		<div class="fr">
-		<h2>Votes</h2>
+			<h2>Votes</h2>
 		</div>
 		<div class="main_content">
+			<div class="row">
+				<div class="col-md-5">
+					<div id="list_select_container">
+						<h2>Select List</h2>
+						<select class="form-control" id="vote_page_list_dropdown" ng-model="selectedListForVotesPage" ng-change="getActiveVotesFromList(selectedListForVotesPage); getDraftedVotesFromList(selectedListForVotesPage);">
+							<option id="{{list.list_id}}" value="{{list.list_id}}" ng-repeat="list in lists">{{list.list_name}}</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
+				<div class="col-md-5">
+					<div class="new_container">
+						<!-- This is NG if rush chair -->
+						<h2>Vote Options</h2>
+						<button id="new-vote-btn" type="button" class="btn btn-info" ng-click="newVote()">Single Vote</button>
+						<button id="new-batch-btn" type="button" class="btn btn-success" ng-click="newBatchVote()">Batch Votes</button>
+						<button id="vote-hist-btn" type="button" class="btn" ng-click="voteResults()">Vote Results</button>
+					</div>
+					<!--<div class="alert alert-success" id="vote_success">{{vote_success}}</div>-->
+				</div>
+			</div>
+			<hr />
+			{{list_test}}
+			<div class="row">
+				<div class="col-md-6" id="active_votes_col">
+					<h2>Active Votes</h2>
+					<div class="well well-sm pre-scrollable">
+						<table class="table table-hover" id="events-table">
+							<thead class="table-head">
+								<tr>
+									<th>
+										Vote On
+									</th>
+									<th>
+										Status
+									</th>
+									<th>
+										Abstain
+									</th>
+									<th>
+										Threshold
+									</th>
+									<th>
+										Vote
+									</th>
+								</tr>
+							</thead>
+							<tbody>
 
-                                <div class="row">
-                                        <div class="col-6">
-                                                <div class="new_container">
-                                                        <!-- This is NG if rush chair -->
-                                                    <h2> New Vote</h2>
-                                                    <button id="new-vote-btn" type="button" class="btn btn-info" ng-click="newVote()">Single Vote</button>
-                                                    <button id="new-batch-btn" type="button" class="btn btn-success" ng-click="newBatchVote()">Batch Create</button>
-                                                </div>
-                                        </div>
-                                        <div class="col-6">
-                                                <h2>Voting History</h2>
-                                                <button id="vote-hist-btn" type="button" class="btn" ng-click="voteResults()">Results</button>
-                                        </div>
-                                </div>
+								<!-- ng repeat for each event in that org assocaited with an active list -->
+								<tr ng-repeat="vote in active_votes.data">
+									<td>
+										{{vote.recruit_first}} {{vote.recruit_last}}
+									</td>
+									<td>
+										{{vote.vote_status}}
+									</td>
+									<td>
+										{{vote.vote_abstain}}
+									</td>
+									<td>
+										{{vote.vote_threshold}}
+									</td>
+									<td>
+										Button
+									</td>
+								</tr>
+							</tbody>
 
+						</table>
+					</div>
+				</div>
+				<div class="col-md-6" id="drafted_votes_col">
+					<h2>Drafted Votes</h2>
+					<div class="well well-sm pre-scrollable">
+						<table class="table table-hover" id="events-table">
+							<thead class="table-head">
+								<tr>
+									<th>
+										Vote On
+									</th>
+									<th>
+										Status
+									</th>
+									<th>
+										Abstain
+									</th>
+									<th>
+										Threshold
+									</th>
+									<th>
+										Vote
+									</th>
+								</tr>
+							</thead>
+							<tbody>
 
-                        <hr />
-                        <h2> Active Votes</h2>
+								<!-- ng repeat for each event in that org assocaited with an active list -->
+								<tr ng-repeat="vote in drafted_votes.data">
+									<td>
+										{{vote.recruit_first}} {{vote.recruit_last}}
+									</td>
+									<td>
+										{{vote.vote_status}}
+									</td>
+									<td>
+										{{vote.vote_abstain}}
+									</td>
+									<td>
+										{{vote.vote_threshold}}
+									</td>
+									<td>
+										<button class="btn btn-secondary btn-sm vote_activation_links" id="vote_activate_link_{{vote.vote_id}}" ng-click="activateVote(vote.vote_id, vote.vote_list)">Activate</button>
+									</td>
+								</tr>
+							</tbody>
 
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
-	</snap-content>
+</div>
+</div>
+</snap-content>
 </div>
