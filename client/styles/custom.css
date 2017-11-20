@@ -41,3 +41,11 @@ i {
 #active_votes_well {
         min-height: inherit;
 }
+
+.activeVoteAlerts {
+        margin-top: 15px;
+}
+
+.vote_result_buttons {
+        min-width: 100px;
+}

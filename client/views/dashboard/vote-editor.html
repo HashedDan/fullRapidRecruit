@@ -40,7 +40,6 @@
 				</div>
 			</div>
 			<hr />
-			{{selectedList}}
 			<div class="row">
 				<div class="col-md-6" id="active_votes_col">
 					<h2>Active Votes</h2>
@@ -76,7 +75,7 @@
 										{{vote.vote_threshold}}%
 									</td>
 									<td>
-										<button class="btn btn-warning btn-sm vote_archive_links" id="vote_archive_link_{{vote.vote_id}}" ng-click="changeVoteStatus(vote.vote_id, vote.vote_list, 2)">Close Vote</button>
+										<button class="btn btn-warning btn-sm vote_archive_links" id="vote_archive_link_{{vote.vote_id}}" ng-click="changeVoteStatus(vote.vote_id, vote.vote_list, 2); tallyVoteResults(vote.vote_id, vote.vote_threshold);">Close Vote</button>
 									</td>
 								</tr>
 							</tbody>

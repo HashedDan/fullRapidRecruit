@@ -241,8 +241,19 @@ exports.postActiveVotesExcludeSubmitted = (req, res) => {
 };
 
 exports.voteHistoryFromList = (req, res) => {
-  const query = client.query('SELECT vote_id, vote_list_id, vote_abstain, vote_threshold, recruit_first, recruit_last, lists.list_name FROM votes JOIN recruits on(votes.vote_on=recruits.recruit_id) JOIN lists on (votes.vote_list_id=lists.list_id) where vote_status = 2 AND vote_list_id='+req.body.list_id, (err, results) => {
+  const query = client.query('SELECT vote_id, vote_list_id, vote_abstain, vote_threshold, recruit_first, recruit_last, vote_result, lists.list_name FROM votes JOIN recruits on(votes.vote_on=recruits.recruit_id) JOIN lists on (votes.vote_list_id=lists.list_id) where vote_status = 2 AND vote_list_id='+req.body.list_id, (err, results) => {
     return res.json(results.rows);
+  })
+};
+
+exports.postVoteResults = (req, res) => {
+  const query = client.query('UPDATE votes set vote_result = '+req.body.vote_result+' where vote_id='+req.body.vote_id, (err, results) => {
+      if (err) {
+        res.status(400).json({status: err.message});
+      }
+      else {
+        handleResponse(res, 200, 'success');
+      }
   })
 };
 
@@ -263,6 +274,12 @@ exports.postVoteRecord = (req, res) => {
       else {
         handleResponse(res, 200, 'success');
       }
+  })
+};
+
+exports.tallyVoteResults = (req, res) => {
+  const query = client.query('select (select count(*) from votes_records where votes_records_vote_id='+req.body.vote_id+' and votes_records_value=1) as a, (select count(*) from votes_records where votes_records_vote_id='+req.body.vote_id+' and votes_records_value != 2) as b', (err, results) => {
+    return res.json(results.rows);
   })
 };
 

@@ -65,7 +65,9 @@
 										{{vote.list_name}}
 									</td>
 									<td>
-										{{vote.vote_result}}
+										<button ng-if="vote.vote_result == 2" class="btn btn-xs disabled btn-info vote_result_buttons">Inconclusive</button>
+										<button ng-if="vote.vote_result == 0" class="btn btn-xs disabled btn-danger vote_result_buttons">No Bid</button>
+										<button ng-if="vote.vote_result == 1" class="btn btn-xs disabled btn-success vote_result_buttons">Bid</button>
 									</td>
 								</tr>
 							</tbody>
