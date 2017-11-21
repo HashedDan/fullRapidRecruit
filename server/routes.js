@@ -30,6 +30,7 @@ router.post('/lists', authFuncs.loginRequired, requestHandler.postLists);
 */
 router.get('/events', authFuncs.loginRequired, requestHandler.getEvents);
 router.post('/events', authFuncs.loginRequired, requestHandler.postEvents);
+router.post('/events_from_list', authFuncs.loginRequired, requestHandler.eventsFromList);
 
 /*
 	RECRUITS ROUTES

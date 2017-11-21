@@ -128,13 +128,19 @@ exports.getEvents = (req, res) => {
 };
 
 exports.postEvents = (req, res) => {
-  const query = client.query('INSERT INTO events (event_name, event_org, event_owner, event_location, event_sign_in_req_fields, event_interaction_req_fields, event_sign_in_id) VALUES ($1, $2, $3, $4, $5, $6, $7)', [req.body.name, req.user.member_org, req.user.member_id, req.body.location, req.body.signInReqFields, req.body.intReqFields, req.body.signInId], (err, results) => {
+  const query = client.query('INSERT INTO events (event_name, event_org, event_owner, event_list, event_location, event_interaction_req_fields) VALUES ($1, $2, $3, $4, $5, $6)', [req.body.event_name, req.user.member_org, req.user.member_id, req.body.list_id, req.body.event_location, req.body.int_req_fields], (err, results) => {
       if (err) {
         res.status(400).json({status: err.message});
       }
       else {
         handleResponse(res, 200, 'success');
       }
+  })
+};
+
+exports.eventsFromList = (req, res) => {
+  const query = client.query('SELECT * FROM events WHERE event_org =' +req.user.member_org+' AND event_list='+req.body.list_id, (err, results) => {
+    return res.json(results.rows);
   })
 };
 
