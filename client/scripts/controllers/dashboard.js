@@ -49,6 +49,11 @@ angular.module('yapp')
 			$location.path('/dashboard/new-vote');
 		};
 		
+		//Redirects user to new-list on button click.
+		$scope.newList = function() {
+			$location.path('/dashboard/new-list');
+		};
+		
 		//Redirects user to new-event view on button click.
 		$scope.newEvent = function() {
 			$location.path('/dashboard/new-event');
@@ -95,6 +100,33 @@ angular.module('yapp')
 			.error(function(data, status) {
 				$log.info(data);
 			});
+			
+		$scope.createNewList = function(listName) {
+			var dataObj = {};
+			dataObj.list_name = listName;
+		
+				$http({
+					method: 'POST',
+					url: '/api/lists',
+					data: dataObj,
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+				.then(function(response) {
+
+				$http.get('/api/lists')
+					.success(function(result) {
+						$scope.lists = result;
+					})
+					.error(function(data, status) {
+					});
+					$location.path('/dashboard/lists');
+				})
+				.catch(function(err) {
+					//response when failure
+				});
+		};
 
 		$scope.logVoteRecord = function(voteId, voteValue) {
 			var dataObj = {};

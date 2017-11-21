@@ -7,7 +7,7 @@
         max-height: 95%;
 }
 
-#new_vote_form, #new_batch_vote_form {
+#new_vote_form, #new_batch_vote_form, #new_list_form {
         padding-top: 100px;
         max-width: 350px;
         text-align: left;

@@ -108,7 +108,7 @@ exports.getLists = (req, res) => {
 };
 
 exports.postLists = (req, res) => {
-  const query = client.query('INSERT INTO lists (list_name, list_org, list_owner) VALUES ($1, $2, $3)', [req.body.name, req.user.member_org, req.user.member_id], (err, results) => {
+  const query = client.query('INSERT INTO lists (list_name, list_org, list_owner) VALUES ($1, $2, $3)', [req.body.list_name, req.user.member_org, req.user.member_id], (err, results) => {
       if (err) {
         res.status(400).json({status: err.message});
       }
