@@ -186,8 +186,19 @@ exports.getInteractionsRecords = (req, res) => {
   SIGN_IN ROUTES
 */
 exports.getSignIn = (req, res) => {
-  const query = client.query('SELECT * FROM sign_in', (err, results) => {
+  const query = client.query('SELECT * FROM sign_in_records', (err, results) => {
     return res.json(results.rows);
+  })
+};
+
+exports.postSignIn = (req, res) => {
+  const query = client.query('INSERT INTO sign_in_records (sign_in_records_first, sign_in_records_last, sign_in_records_email, sign_in_records_event_id) VALUES ($1, $2, $3, $4)', [req.body.first, req.body.last, req.body.email, req.body.signinid], (err, results) => {
+      if (err) {
+        res.status(400).json({status: err.message});
+      }
+      else {
+        handleResponse(res, 200, 'success');
+      }
   })
 };
 
