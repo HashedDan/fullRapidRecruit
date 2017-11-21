@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sign In</title>
+    <style type="text/css">
+    </style>
+  </head>
+  <body>
+    <form id="signinform">
+      First name:<br>
+      <input type="text" id="firstname" placeholder="John"><br>
+      Last name:<br>
+      <input type="text" id="lastname" placeholder="Doe"><br><br>
+      Email:<br>
+      <input type="text" id="email" placeholder="yourname@yourschool.edu"><br><br>
+      <input type="submit" value="Sign In">
+    </form>
+  <script type="text/javascript">
+    var parseQueryString = function(url) {
+      var regex = new RegExp("(?<=signin/)(.*)");
+      return regex.exec(url)[0];
+    }
+    console.log(parseQueryString(window.location.href));
+
+
+    document.getElementById("signinform").onsubmit = function submitSignIn() {
+      data = {};
+      data.first = document.getElementById("firstname");
+      data.last = document.getElementById("lastname");
+      data.email = document.getElementById("email");
+      data.signinid = parseQueryString(window.location.href);
+      $.ajax({
+        type: "POST",
+        url: '/api/signin',
+        data: data,
+        success: success
+      });
+    }
+  </script>
+  </body>
+</html>

@@ -191,6 +191,17 @@ exports.getSignIn = (req, res) => {
   })
 };
 
+exports.postSignIn = (req, res) => {
+  const query = client.query('INSERT INTO sign_in (sign_in_records_first, sign_in_records_last, sign_in_records_email, sign_in_records_event_id) VALUES ($1, $2, $3)', [req.body.first, req.body.last, req.body.email, req.body.singinid], (err, results) => {
+      if (err) {
+        res.status(400).json({status: err.message});
+      }
+      else {
+        handleResponse(res, 200, 'success');
+      }
+  })
+};
+
 /*
   VOTES ROUTES
 */

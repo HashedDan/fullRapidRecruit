@@ -52,6 +52,7 @@ router.get('/interactions_records', authFuncs.loginRequired, requestHandler.getI
 	SIGN_IN ROUTES
 */
 router.get('/sign_in', authFuncs.loginRequired, requestHandler.getSignIn);
+router.post('/sign_in', requestHandler.postSignIn);
 
 /*
 	VOTES ROUTES
