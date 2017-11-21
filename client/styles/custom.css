@@ -31,6 +31,10 @@ i {
         color: #fff;
 }
 
+#drafted_votes_well, #active_votes_well {
+        max-height: 340px;
+}
+
 .outline {
         border: 1px solid;
         border-radius: 1em;
