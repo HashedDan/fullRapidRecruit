@@ -7784,10 +7784,10 @@ button.close {
 }
 
 .login-page .form-content .form-control {
-	background: #18af91;
-	border-color: #18af91;
+	background: #fff;
+	border-color: #fff;
 	box-shadow: none;
-	color: #fff;
+	color: #555f61;
 	font-weight: 600
 }
 
@@ -7817,8 +7817,8 @@ button.close {
 	height: 110px;
 	width: 100px;
 	border-radius: 0;
-	background: orange;
-	border-color: orange;
+	background: #3d7fa0;
+	border-color: black;
 	box-shadow: none;
 	margin-left: 15px;
 	color: #fff;
@@ -7942,7 +7942,6 @@ button.close {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: #1abc9c;
 	color: #555f61;
 }
 

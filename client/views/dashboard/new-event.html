@@ -11,31 +11,31 @@
 		</a>
 
 		<div class="fr">
-		<h2>New Event</h2>
+			<h2>New Event</h2>
 		</div>
 		<div class="main_content">
-                        <form id="new-event-form">
-                                <h2>Make an Event</h2>
-                                <br />
-                                <h3>Title</h3>
-                                <input id="new-event-form-input-title" class="form-control" type="text" placeholder="Event Name">
-                                <br />
-                                <h3>Location</h3>
-                                <input id="new-event-form-input-location" class="form-control" type="text" placeholder="Event Location">
-                                <br />
-                                <h3>List</h3>
-                                <!-- ng repeat options from non archived lists -->
-                                <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="new-event-form-list">
-
-                                        <option selected>List 1<option>
-                                        <option value="1">List 2</option>
-                                        <option value="2">List 3</option>
-                                        <option value="3">List 4</option>
-                                 </select>
-                                 <br />
-                                 <br />
-                                <button type="submit" class="btn btn-success">Create</button>
-                        </form>
+			<div class="col-md-4"></div>
+			<div class="col-md-4" id="new_event_form">
+				<form id="new-event-form" ng-submit="">
+					<div class="form-group">
+						<label for="new-event-form-list">List</label>
+						<select class="form-control" id="new-event-form-list" ng-model="selectedListForNewEvent" ng-change="">
+							<option id="{{list.list_id}}" value="{{list.list_id}}" ng-repeat="list in lists">{{list.list_name}}</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="new-event-form-input-title">Event Name</label>
+						<input id="new-event-form-input-title" class="form-control" ng-model="eventName" type="text" placeholder="Event Name"></input>
+					</div>
+					<div class="form-group">
+						<label for="new-event-form-location">Event Location</label>
+						<input type="text" class="form-control" id="new-event-form-location" ng-model="eventLocation"></input>
+					</div>
+					<br>
+					<button type="submit" class="btn btn-secondary">Create Event</button>
+				</form>
+			</div>
+			<div class="col-md-4"></div>
 		</div>
 	</snap-content>
 </div>

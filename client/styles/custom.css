@@ -6,7 +6,7 @@
         align-items: center;
 }
 
-#new_vote_form, #new_batch_vote_form {
+#new_vote_form, #new_batch_vote_form, #new_event_form {
         padding-top: 100px;
         max-width: 350px;
         text-align: left;
