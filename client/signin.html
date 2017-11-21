@@ -5,6 +5,7 @@
     <title>Sign In</title>
     <style type="text/css">
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body>
     <form id="signinform">
@@ -14,27 +15,33 @@
       <input type="text" id="lastname" placeholder="Doe"><br><br>
       Email:<br>
       <input type="text" id="email" placeholder="yourname@yourschool.edu"><br><br>
-      <input type="submit" value="Sign In">
+      <input type="submit" id="signInButton" value="Sign In">
     </form>
   <script type="text/javascript">
     var parseQueryString = function(url) {
-      var regex = new RegExp("(?<=signin/)(.*)");
+      var regex = new RegExp("(?<=signin/)(.*)[^?]");
       return regex.exec(url)[0];
     }
     console.log(parseQueryString(window.location.href));
 
-
-    document.getElementById("signinform").onsubmit = function submitSignIn() {
+    document.getElementById("signInButton").onclick = function submitSignIn() {
       data = {};
-      data.first = document.getElementById("firstname");
-      data.last = document.getElementById("lastname");
-      data.email = document.getElementById("email");
+      data.first = document.getElementById("firstname").value;
+      data.last = document.getElementById("lastname").value;
+      data.email = document.getElementById("email").value;
       data.signinid = parseQueryString(window.location.href);
+      console.log(data);
       $.ajax({
         type: "POST",
-        url: '/api/signin',
+        url: '/api/sign_in',
         data: data,
-        success: success
+        success: function(succ) {
+          alert("Successful Sign In: Enjoy the event!");
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          console.log(textStatus);
+          alert("Unable to Sign In: Please make sure you have the correct link.");
+        }
       });
     }
   </script>
