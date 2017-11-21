@@ -35,11 +35,14 @@
         type: "POST",
         url: '/api/sign_in',
         data: data,
-        success: function(succ) {
+        // dataType:"json",
+        // contentType:"application/json",
+        success: function(response) {
+          console.log(response);
           alert("Successful Sign In: Enjoy the event!");
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-          console.log(textStatus);
+        error: function(code) {
+          console.log(code);
           alert("Unable to Sign In: Please make sure you have the correct link.");
         }
       });
