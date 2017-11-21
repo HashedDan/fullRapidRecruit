@@ -16,10 +16,10 @@
 		<div class="main_content">
 			<div class="col-md-4"></div>
 			<div class="col-md-4" id="new_event_form">
-				<form id="new-event-form" ng-submit="">
+				<form id="newEventForm"  ng-submit="createNewEvent(selectedListForNewEvent, eventName, eventLocation, intReqFields, newEventComments)">
 					<div class="form-group">
 						<label for="new-event-form-list">List</label>
-						<select class="form-control" id="new-event-form-list" ng-model="selectedListForNewEvent" ng-change="">
+						<select class="form-control" id="new-event-form-list" ng-model="selectedListForNewEvent">
 							<option id="{{list.list_id}}" value="{{list.list_id}}" ng-repeat="list in lists">{{list.list_name}}</option>
 						</select>
 					</div>
@@ -30,6 +30,20 @@
 					<div class="form-group">
 						<label for="new-event-form-location">Event Location</label>
 						<input type="text" class="form-control" id="new-event-form-location" ng-model="eventLocation" placeholder="Ex: Simon Hall Room 112"></input>
+					</div>
+					<div class="form-group">
+						<label for="new-event-form-int_req_fields">Interaction Fields</label>
+						<select class="form-control" id="new-event-form-int_req_fields" ng-model="intReqFields">
+							<option id="int_req_fields_option_1" value="0">No Fields</option>
+							<option id="int_req_fields_option_1" value="1">1 Field</option>
+							<option id="int_req_fields_option_1" value="2">2 Fields</option>
+							<option id="int_req_fields_option_1" value="3">3 Fields</option>
+						</select>
+					</div>
+					<div class="form-check">
+						<label class="form-check-label">
+							<input type="checkbox" value="True" class="form-check-input" id="new-event-comments" ng-model="newEventComments">  Interaction Comments</input>
+						</label>
 					</div>
 					<br>
 					<button type="submit" class="btn btn-secondary">Create Event</button>

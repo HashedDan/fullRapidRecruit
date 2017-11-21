@@ -2,73 +2,87 @@
 	<div ng-include="'menu.html'"></div>
 	<snap-dragger></snap-dragger>
 	<snap-content snap-opt-tap-to-close="false">
-
 		<a href="" snap-toggle="left" ng-click="menuOpen = !menuOpen">
 			<span class="menutoggle">
 				<i ng-hide="menuOpen" class="fa fa-bars fa-2x" ></i>
 				<i ng-show="menuOpen" class="fa fa-times fa-2x" ></i>
 			</span>
 		</a>
-
 		<div class="fr">
-
-		<h2>Events</h2>
-
+			<h2>Events</h2>
 		</div>
 		<div class="main_content">
-			<div class="new_container">
-	    		    <!-- This is NG if rush chair -->
-	    		    <h2> New Event</h2>
-	    		    <button id="new-event-btn" type="button" class="btn btn-info" ng-click="newEvent()">Create New Event</button>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						<h2>Select List</h2>
+						<select class="form-control" id="event_page_list_dropdown" ng-model="selectedListForEventsPage" ng-change="reloadEvents(selectedListForEventsPage)">
+						<option id="{{list.list_id}}" value="{{list.list_id}}" ng-repeat="list in lists">{{list.list_name}}</option>
+					</select>
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+				<div class="col-md-2"></div>
+				<div class="col-md-5">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						<div class="new_container">
+							<h2>Event Options</h2>
+							<button id="new-event-btn" type="button" class="btn btn-info" ng-click="newEvent()">Create New Event</button>
+						</div>
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+			</div>
+			<hr />
+			<div class="row">
+				<div class="well well-md pre-scrollable" id="events_for_list_well">
+					<table class="table table-hover" id="events-table">
+						<thead class="table-head">
+							<tr>
+								<th>
+									Name
+								</th>
+								<th>
+									Creation Date
+								</th>
+								<th>
+									Location
+								</th>
+								<th>
+									Interaction Form
+								</th>
+								<th>
+									Sign-In Form
+								</th>
+							</tr>
+						</thead>
+						<tbody>
 
-	    	    </div>
-		    <hr />
-		    <div class="outline">
-			    <table class="table table-hover" id="events-table">
-				    <thead class="table-head">
-					    <tr>
-	     	 			       <th>
-	     	 				       Name
-	     	 			       </th>
-	     	 			       <th>
-	     	 				       Creation Date
-	     	 			       </th>
-	     	 			       <th>
-	     	 				       Location
-	     	 			       </th>
-	     	 			       <th>
-	     	 				       Interaction Form
-	     	 			       </th>
-	     	 			       <th>
-	     	 				       Sign-In Form
-	     	 			       </th>
-	     	 		       </tr>
-				    </thead>
-				    <tbody>
+							<!-- ng repeat for each event in that org assocaited with an active list -->
+							<tr ng-repeat="event in events_for_list.data">
+								<td>
+									{{event.event_name}}
+								</td>
+								<td>
+									{{event.event_creation}}
+								</td>
+								<td>
+									{{event.event_location}}
+								</td>
+								<td>
+									{{event.event_sign_in_link}}
+								</td>
+								<td>
+									{{event.event_interaction_link}}
+								</td>
+							</tr>
+						</tbody>
 
-					    <!-- ng repeat for each event in that org assocaited with an active list -->
-					    <tr ng-repeat="event in events">
-					    	<td>
-					    		{{event.event_name}}
-					    	</td>
-					    	<td>
-					    	       {{event.event_creation}}
-					    	</td>
-					    	<td>
-					    		{{event.event_location}}
-					    	</td>
-					    	<td>
-					    		{{event.event_sign_in_link}}
-					    	</td>
-					    	<td>
-					    		{{event.event_interaction_link}}
-					    	</td>
-					    </tr>
-				    </tbody>
-
-	 		   </table>
-		    </div>
-
+					</table>
+				</div>
+			</div>
 		</div>
 	</snap-content>
 </div>

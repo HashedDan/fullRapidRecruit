@@ -26,6 +26,7 @@ angular.module('yapp')
 			}
 		});
 
+		//Checks the currently selected list on the Active Votes view to see if there are any active votes. If not, show Admin Message.
 		$scope.checkForActiveVotes = function() {
 			if ($scope.active_votes_exclude_submitted.data.length < 1) {
 				return false;
@@ -34,6 +35,7 @@ angular.module('yapp')
 			}
 		};
 
+		//Checks the select element on the Active Votes view to see if a list has been selected. If not, show Admin Message.
 		$scope.checkForListSelection = function() {
 			if ($scope.selectedListForActiveVotes) {
 				return true;
@@ -42,18 +44,22 @@ angular.module('yapp')
 			}
 		};
 
+		//Redirects user to new-vote view on button click.
 		$scope.newVote = function() {
 			$location.path('/dashboard/new-vote');
 		};
-
+		
+		//Redirects user to new-event view on button click.
 		$scope.newEvent = function() {
 			$location.path('/dashboard/new-event');
 		};
 
+		//Redirects user to vote-history view on button click.
 		$scope.voteResults = function() {
 			$location.path('/dashboard/vote-history');
 		};
 
+		//Redirects user to new-batch-vote view on button click.
 		$scope.newBatchVote = function() {
 			$location.path('/dashboard/new-batch-vote');
 		};
@@ -179,6 +185,59 @@ angular.module('yapp')
 				.catch(function(err) {
 					//console.log("Couldn't find recruits for the specified list.");
 				});
+		};
+		
+		$scope.createNewEvent = function(listId, eventName, eventLocation, intReqFields, newEventComments) {
+			var dataObj = {};
+			dataObj.list_id = listId;
+			dataObj.event_name = eventName;
+			dataObj.event_location = eventLocation;
+			
+			var comments = 0;
+			if(newEventComments) {
+				comments = 1; }
+			
+			var reqFields = String(intReqFields) + String(comments);
+			
+			dataObj.int_req_fields = reqFields;
+		
+			$http({
+					method: 'POST',
+					url: '/api/events',
+					data: dataObj,
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+				.then(function(response) {
+					$scope.reloadEvents(listId);
+					$location.path('/dashboard/events');
+				})
+				.catch(function(err) {
+					//response when failure
+				});
+			
+		};
+		
+		$scope.reloadEvents = function(listId) {
+			var dataObj = {};
+			dataObj.list_id = listId;
+			
+			$http({
+					method: 'POST',
+					url: '/api/events_from_list',
+					data: dataObj,
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+				.then(function(response) {
+					$scope.events_for_list = response;
+					$scope.selectedListForEventsPage = listId;
+				})
+				.catch(function(err) {
+					//response when failure
+				});	
 		};
 		
 		$scope.calculateResults = function(a, b, voteId, voteThreshold) {
