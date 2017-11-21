@@ -2,67 +2,69 @@
 	<div ng-include="'menu.html'"></div>
 	<snap-dragger></snap-dragger>
 	<snap-content snap-opt-tap-to-close="false">
-
 		<a href="" snap-toggle="left" ng-click="menuOpen = !menuOpen">
 			<span class="menutoggle">
 				<i ng-hide="menuOpen" class="fa fa-bars fa-2x" ></i>
 				<i ng-show="menuOpen" class="fa fa-times fa-2x" ></i>
 			</span>
 		</a>
-
 		<div class="fr">
-		<h2>Lists </h2>
+			<h2>Lists </h2>
 		</div>
-        <div class="main_content">
-            <div class="new_container">
-		    <!-- This is NG if rush chair -->
-		    <h2> New List</h2>
-		    <button id="new-list-btn" type="button" class="btn btn-info" ng-click="newVote()">Create New</button>
-
-	    </div>
-	    <hr />
-	    <h2>{{organizations[0].org_name}} Lists</h2>
-	    <div class="outline">
-
-		    <table id="list-table" class="table table-hover">
-			    <thead class="table-head">
-				    <tr>
-				    	<th>
-				    		Name
-				    	</th>
-				    	<th>
-				    		Creation Date
-				    	</th>
-				    	<th>
-				    		Count
-				    	</th>
-				    	<th>
-				    		Status
-				    	</th>
-				    </tr>
-			   </thead>
-			   <tbody>
-				   <!-- ng repeat for each list in that org	 -->
-				   <tr ng-repeat="list in lists">
-				   	<td>
-				   		{{list.list_name}}
-				   	</td>
-				   	<td>
-				   		{{list.list_creation}}
-				   	</td>
-				   	<td>
-				   		{{list.list_count}}
-				   	</td>
-				   	<td>
-				   		{{list.list_archived}}
-				   	</td>
-				   </tr>
-			   </tbody>
-
-
-		    </table>
-	    </div>
-
-        </div>
+		<div class="main_content">
+			<div class="row">
+				<div class="col-md-7"></div>
+				<div class="col-md-5">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						<div class="new_container">
+							<h2>List Options</h2>
+							<button id="new-list-btn" type="button" class="btn btn-info" ng-click="createNewList()">Create New</button>
+						</div>
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+			</div>
+			<hr />
+			<div class="row">
+				<div class="well well-md pre-scrollable">
+					<table id="list-table" class="table table-hover">
+						<thead class="table-head">
+							<tr>
+								<th>
+									Name
+								</th>
+								<th>
+									Creation Date
+								</th>
+								<th>
+									Count
+								</th>
+								<th>
+									Status
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- ng repeat for each list in that org	 -->
+							<tr ng-repeat="list in lists">
+								<td>
+									{{list.list_name}}
+								</td>
+								<td>
+									{{list.list_creation}}
+								</td>
+								<td>
+									{{list.list_count}}
+								</td>
+								<td>
+									{{list.list_archived}}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</snap-content>
 </div>
