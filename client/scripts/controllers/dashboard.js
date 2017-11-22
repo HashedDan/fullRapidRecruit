@@ -48,12 +48,12 @@ angular.module('yapp')
 		$scope.newVote = function() {
 			$location.path('/dashboard/new-vote');
 		};
-		
+
 		//Redirects user to new-list on button click.
 		$scope.newList = function() {
 			$location.path('/dashboard/new-list');
 		};
-		
+
 		//Redirects user to new-event view on button click.
 		$scope.newEvent = function() {
 			$location.path('/dashboard/new-event');
@@ -100,11 +100,11 @@ angular.module('yapp')
 			.error(function(data, status) {
 				$log.info(data);
 			});
-			
+
 		$scope.createNewList = function(listName) {
 			var dataObj = {};
 			dataObj.list_name = listName;
-		
+
 				$http({
 					method: 'POST',
 					url: '/api/lists',
@@ -173,7 +173,7 @@ angular.module('yapp')
 				});
 		};
 
-		//Used to populate the active votes on the Active Votes tab with all currently active votes that the logged in member has not voted on.		  
+		//Used to populate the active votes on the Active Votes tab with all currently active votes that the logged in member has not voted on.
 		$scope.getActiveVotesFromListExcludeSubmitted = function(data) {
 			var dataObj = {};
 			$scope.selected_list = data;
@@ -198,11 +198,11 @@ angular.module('yapp')
 					//console.log("Couldn't find recruits for the specified list.");
 				});
 		};
-		
+
 		$scope.tallyVoteResults = function(voteId, voteThreshold) {
 			var dataObj = {};
 			dataObj.vote_id = voteId;
-			
+
 			$http({
 					method: 'POST',
 					url: '/api/tally_vote_results',
@@ -218,21 +218,21 @@ angular.module('yapp')
 					//console.log("Couldn't find recruits for the specified list.");
 				});
 		};
-		
+
 		$scope.createNewEvent = function(listId, eventName, eventLocation, intReqFields, newEventComments) {
 			var dataObj = {};
 			dataObj.list_id = listId;
 			dataObj.event_name = eventName;
 			dataObj.event_location = eventLocation;
-			
+
 			var comments = 0;
 			if(newEventComments) {
 				comments = 1; }
-			
+
 			var reqFields = String(intReqFields) + String(comments);
-			
+
 			dataObj.int_req_fields = reqFields;
-		
+
 			$http({
 					method: 'POST',
 					url: '/api/events',
@@ -248,13 +248,14 @@ angular.module('yapp')
 				.catch(function(err) {
 					//response when failure
 				});
-			
+
 		};
-		
+
 		$scope.reloadEvents = function(listId) {
 			var dataObj = {};
 			dataObj.list_id = listId;
-			
+
+
 			$http({
 					method: 'POST',
 					url: '/api/events_from_list',
@@ -269,18 +270,18 @@ angular.module('yapp')
 				})
 				.catch(function(err) {
 					//response when failure
-				});	
+				});
 		};
-		
+
 		$scope.calculateResults = function(a, b, voteId, voteThreshold) {
 			var dataObj = {};
 			var percentage = (a/b);
 			var outcome = 0;
 			var c = (voteThreshold/100);
-			
+
 			$scope.test_percentage = percentage;
 			$scope.test_threshold = c;
-			
+
 			if(percentage > c){
 				outcome = 1;
 			} else if(percentage < c){
@@ -290,7 +291,7 @@ angular.module('yapp')
 			}
 			dataObj.vote_result = outcome;
 			dataObj.vote_id = voteId;
-			
+
 			$http({
 					method: 'POST',
 					url: '/api/post_vote_results',
@@ -308,7 +309,7 @@ angular.module('yapp')
 				});
 		}
 
-		//Used to change the status of a vote from drafted to active to archived, and vice-versa.		  
+		//Used to change the status of a vote from drafted to active to archived, and vice-versa.
 		$scope.changeVoteStatus = function(vote, list, newStatus) {
 			$scope.active_votes = "";
 			$scope.drafted_votes = "";
@@ -333,7 +334,7 @@ angular.module('yapp')
 				.catch(function(err) {});
 		}
 
-		//Used to create an individual vote for a recruit within a list from the new-vote view.	  
+		//Used to create an individual vote for a recruit within a list from the new-vote view.
 		$scope.createIndividualVote = function(list, recruit, percent, abstain) {
 			var dataObj = {};
 
@@ -481,6 +482,7 @@ angular.module('yapp')
 				.then(function(response) {
 					$scope.recruits_dropdown_results = response;
 					$scope.recruits_for_batch_vote = response;
+					$scope.recruits_for_interaction = response;
 				})
 				.catch(function(err) {
 					//console.log("Couldn't find recruits for the specified list.");
