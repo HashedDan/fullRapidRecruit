@@ -1,37 +1,54 @@
-
 <div>
-	<div ng-include="'menu.html'"></div>
-	<snap-dragger></snap-dragger>
-	<snap-content snap-opt-tap-to-close="false">
+        <div ng-include="'menu.html'"></div>
+        <snap-dragger></snap-dragger>
+        <snap-content snap-opt-tap-to-close="false">
 
-		<a href="" snap-toggle="left" ng-click="menuOpen = !menuOpen">
+                <a href="" snap-toggle="left" ng-click="menuOpen = !menuOpen">
 			<span class="menutoggle">
 				<i ng-hide="menuOpen" class="fa fa-bars fa-2x" ></i>
 				<i ng-show="menuOpen" class="fa fa-times fa-2x" ></i>
 			</span>
 		</a>
 
-		<div class="fr">
-			<h2>New Interaction Score</h2>
-		</div>
-		<div class="main_content">
+                <div class="fr">
+                        <h2>New Interaction Score</h2>
+                </div>
+                <div class="main_content">
+
+                        <form id="new-interaction" ng-submit="">
+                                <div class="interaction-recruit-div" ng-repeat="recruit in recruits_for_interaction.data">
+                                        <h2 class="interaction-recruit-name">{{recruit.recruit_first}} {{recruit.recruit_last}}</h2>
+
+                                        <img class="interaction-recruit-img" src="{{recruit.recruit_pic_URL}}" alt="No Recruit Image Found" />
+                                        <br />
+                                        <label>NA</label>
+                                        <input type="radio" class="interaction-radio" id="{{recruit.recruit_id}}" name="{{recruit.recruit_id}}" />
+                                        <label>1</label>
+                                        <input type="radio" class="interaction-radio" id="{{recruit.recruit_id}}" name="{{recruit.recruit_id}}" />
+                                        <label>2</label>
+                                        <input type="radio" class="interaction-radio" id="{{recruit.recruit_id}}" name="{{recruit.recruit_id}}" />
+                                        <label>3</label>
+                                        <input type="radio" class="interaction-radio" id="{{recruit.recruit_id}}" name="{{recruit.recruit_id}}" />
+                                        <label>4</label>
+                                        <input type="radio" class="interaction-radio" id="{{recruit.recruit_id}}" name="{{recruit.recruit_id}}" />
+                                        <label>5</label>
+                                        <input type="radio" class="interaction-radio" id="{{recruit.recruit_id}}" name="{{recruit.recruit_id}}" />
+
+
+                                </div>
+                                <br />
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <br />
+                        </form>
 
 
 
-                        <div class="interaction-recruit-div" ng-repeat="recruit in recruits_for_interaction.data">
-                                <h2 class="interaction-recruit-name">{{recruit.recruit_first}} {{recruit.recruit_last}}</h2>
-
-                                <img class="interaction-recruit-img" src="{{recruit.recruit_pic_URL}}" alt="No Recruit Image Found" />
-
-
-                        </div>
 
 
 
 
 
-
-                        </div>
+                </div>
 
 
 </div>

@@ -59,6 +59,8 @@ angular.module('yapp')
 			$location.path('/dashboard/new-event');
 		};
 
+
+
 		//Redirects user to vote-history view on button click.
 		$scope.voteResults = function() {
 			$location.path('/dashboard/vote-history');
@@ -487,6 +489,13 @@ angular.module('yapp')
 				.catch(function(err) {
 					//console.log("Couldn't find recruits for the specified list.");
 				});
+		};
+
+		//Redirects user to new-interaction view on button click, also calls getRecruitsFromList(selectedListForEventsPage)
+		$scope.newInteraction = function() {
+			$scope.getRecruitsFromList($scope.selectedListForEventsPage);
+			$location.path('/dashboard/new-interaction');
+
 		};
 
 	});
