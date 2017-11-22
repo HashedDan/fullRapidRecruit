@@ -16,6 +16,7 @@ var states = [
         { name: 'lists', state: { url: '/lists', parent: 'dashboard', templateUrl: 'views/dashboard/lists.html', data: {text: "Lists", visible: true } } },
         { name: 'new-list', state: { url: '/new-list', parent: 'dashboard', templateUrl: 'views/dashboard/new-list.html', data: {text: "New List", visible: false } } },
         { name: 'events', state: { url: '/events', parent: 'dashboard', templateUrl: 'views/dashboard/events.html', data: {text: "Events", visible: true } } },
+        { name: 'new-interaction', state: { url: '/new-interaction', parent: 'dashboard', templateUrl: 'views/dashboard/new-interaction.html', data: {text: "New Interaction", visible: false } } },
         { name: 'new-event', state: { url: '/new-event', parent: 'dashboard', templateUrl: 'views/dashboard/new-event.html', data: {text: "New Event", visible: false } } },
         { name: 'active-votes', state: { url: '/active-votes', parent: 'dashboard', templateUrl: 'views/dashboard/active-votes.html', data: {text: "Active Votes", visible: true } } },
         { name: 'vote-editor', state: { url: '/vote-editor', parent: 'dashboard', templateUrl: 'views/dashboard/vote-editor.html', data: {text: "Vote Editor", visible: true } } },
