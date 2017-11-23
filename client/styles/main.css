@@ -3088,11 +3088,11 @@ output,
 }
 
 .form-control:-ms-input-placeholder {
-	color: #999
+	color: #999;
 }
 
 .form-control::-webkit-input-placeholder {
-	color: #999
+	color: #999;
 }
 
 .form-control[disabled],
@@ -7784,10 +7784,10 @@ button.close {
 }
 
 .login-page .form-content .form-control {
-	background: #fff;
+	background: #555f61;
 	border-color: #fff;
 	box-shadow: none;
-	color: #555f61;
+	color: #fff;
 	font-weight: 600
 }
 
