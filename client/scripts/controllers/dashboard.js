@@ -504,13 +504,12 @@ angular.module('yapp')
 			// for (var i = 0, len = elements.length; i < len; i++) {
 			//     // elements[i].style ...
 			// }
-			console.log("logging interaction scores");
+
 			$scope.interactionRadioBtns = document.getElementsByClassName("interaction-radio");
 			$scope.interactionRadioBtnsLen = $scope.interactionRadioBtns.length;
-			$scope.interactionArray =  [];
 			for (var i = 0; i < $scope.interactionRadioBtnsLen; ++i) {
 				if ($scope.interactionRadioBtns[i].checked) {
-					$scope.interactionArray.push([$scope.interactionRadioBtns[i].id, $scope.interactionRadioBtns[i].name]);
+					
 					var dataObjInteraction = {};
 
 					dataObjInteraction.interactionOnEventID = $scope.interactionOnEventID;
@@ -539,7 +538,7 @@ angular.module('yapp')
 				}
 
 			}
-			console.log($scope.interactionArray);
+
 		}
 
 	});
