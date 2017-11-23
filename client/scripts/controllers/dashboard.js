@@ -59,8 +59,6 @@ angular.module('yapp')
 			$location.path('/dashboard/new-event');
 		};
 
-
-
 		//Redirects user to vote-history view on button click.
 		$scope.voteResults = function() {
 			$location.path('/dashboard/vote-history');
@@ -231,9 +229,14 @@ angular.module('yapp')
 			if(newEventComments) {
 				comments = 1; }
 
-			var reqFields = String(intReqFields) + String(comments);
+			//var reqFields = String(intReqFields) + String(comments);
+			//We will return to the method above when we provide the option for selecting the number of fields on the interaction log.
+			
+			var reqFields = String("1") + String(comments);
 
 			dataObj.int_req_fields = reqFields;
+			
+			$scope.testing_data = dataObj;
 
 			$http({
 					method: 'POST',
