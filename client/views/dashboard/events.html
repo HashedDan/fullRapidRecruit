@@ -72,10 +72,10 @@
 									{{event.event_location}}
 								</td>
 								<td>
-									{{event.event_sign_in_link}}
+									<button id="sign_in_button_{{event.event_id}}" ng-click="openSignIn(event.event_id)" class="btn btn-primary" >Sign In Link</button>
 								</td>
 								<td>
-									<button class="btn btn-secondary" ng-click="newInteraction(event.event_id)" >Interaction Form</button>
+									<button class="btn btn-secondary" ng-click="newInteraction(event.event_id)">Interaction Form</button>
 								</td>
 							</tr>
 						</tbody>

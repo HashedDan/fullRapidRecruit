@@ -8,7 +8,7 @@
  * Controller of yapp
  */
 angular.module('yapp')
-	.controller('DashboardCtrl', function($scope, $state, $http, $location) {
+	.controller('DashboardCtrl', function($scope, $state, $http, $location, $window) {
 		$scope.$state = $state;
 
 		//Need these to be instantiated when the scope is first loaded. They will be set later by functions below.
@@ -25,7 +25,13 @@ angular.module('yapp')
 				});
 			}
 		});
-
+	
+		$scope.openSignIn = function(eventId) {
+			var baseUrl = "http://34.203.219.137/g4/signin/";
+			var fullUrl = String(baseUrl) + String(eventId);
+			$window.open(fullUrl, '_blank');
+		};
+	
 		//Checks the currently selected list on the Active Votes view to see if there are any active votes. If not, show Admin Message.
 		$scope.checkForActiveVotes = function() {
 			if ($scope.active_votes_exclude_submitted.data.length < 1) {
