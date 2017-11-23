@@ -13,7 +13,19 @@
 		</div>
 		<div class="main_content">
 			<div class="row">
-				<div class="col-md-7"></div>
+				<div class="col-md-5">
+					<div id="list_select_container">
+						<div class="col-md-3"></div>
+						<div class="col-md-6">
+							<h2>Select List</h2>
+							<select class="form-control" id="lists_page_list_dropdown" ng-model="selectedListForListsPage" ng-change="getRecruitsFromList(selectedListForListsPage)">
+								<option id="{{list.list_id}}" value="{{list.list_id}}" ng-repeat="list in lists">{{list.list_name}}</option>
+							</select>
+						</div>
+						<div class="col-md-3"></div>
+					</div>
+				</div>
+				<div class="col-md-2"></div>
 				<div class="col-md-5">
 					<div class="col-md-2"></div>
 					<div class="col-md-8">
@@ -28,37 +40,37 @@
 			<hr />
 			<div class="row">
 				<div class="well well-md pre-scrollable">
-					<table id="list-table" class="table table-hover">
+					<table id="recruits-from-list-table" class="table table-hover">
 						<thead class="table-head">
 							<tr>
 								<th>
-									Name
+									First
+								</th>
+								<th>
+									Last
 								</th>
 								<th>
 									Creation Date
 								</th>
 								<th>
-									Count
-								</th>
-								<th>
-									Status
+									Email
 								</th>
 							</tr>
 						</thead>
 						<tbody>
 							<!-- ng repeat for each list in that org	 -->
-							<tr ng-repeat="list in lists">
+							<tr ng-repeat="recruit in recruits_for_lists_page.data">
 								<td>
-									{{list.list_name}}
+									{{recruit.recruit_first}}
 								</td>
 								<td>
-									{{list.list_creation}}
+									{{recruit.recruit_last}}
 								</td>
 								<td>
-									{{list.list_count}}
+									{{recruit.recruit_creation}}
 								</td>
 								<td>
-									{{list.list_archived}}
+									{{recruit.recruit_email}}
 								</td>
 							</tr>
 						</tbody>

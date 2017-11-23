@@ -178,6 +178,7 @@ angular.module('yapp')
 
 				});
 		};
+		
 
 		//Used to populate the active votes on the Active Votes tab with all currently active votes that the logged in member has not voted on.
 		$scope.getActiveVotesFromListExcludeSubmitted = function(data) {
@@ -496,6 +497,7 @@ angular.module('yapp')
 					$scope.recruits_dropdown_results = response;
 					$scope.recruits_for_batch_vote = response;
 					$scope.recruits_for_interaction = response;
+					$scope.recruits_for_lists_page = response;
 				})
 				.catch(function(err) {
 					//console.log("Couldn't find recruits for the specified list.");
