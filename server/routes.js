@@ -48,6 +48,7 @@ router.get('/interactions', authFuncs.loginRequired, requestHandler.getInteracti
 	INTERACTIONS_RECORDS ROUTES
 */
 router.get('/interactions_records', authFuncs.loginRequired, requestHandler.getInteractionsRecords);
+router.post('/interactions_records', authFuncs.loginRequired, requestHandler.postInteractionRecords);
 
 /*
 	SIGN_IN ROUTES

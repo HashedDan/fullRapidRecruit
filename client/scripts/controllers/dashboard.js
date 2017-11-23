@@ -492,10 +492,54 @@ angular.module('yapp')
 		};
 
 		//Redirects user to new-interaction view on button click, also calls getRecruitsFromList(selectedListForEventsPage)
-		$scope.newInteraction = function() {
+		$scope.newInteraction = function(eventID) {
 			$scope.getRecruitsFromList($scope.selectedListForEventsPage);
+			$scope.interactionOnEventID = eventID;
 			$location.path('/dashboard/new-interaction');
 
 		};
+
+		$scope.newInteractionLog = function() {
+			// var elements = document.getElementsByClassName("class-1");
+			// for (var i = 0, len = elements.length; i < len; i++) {
+			//     // elements[i].style ...
+			// }
+			console.log("logging interaction scores");
+			$scope.interactionRadioBtns = document.getElementsByClassName("interaction-radio");
+			$scope.interactionRadioBtnsLen = $scope.interactionRadioBtns.length;
+			$scope.interactionArray =  [];
+			for (var i = 0; i < $scope.interactionRadioBtnsLen; ++i) {
+				if ($scope.interactionRadioBtns[i].checked) {
+					$scope.interactionArray.push([$scope.interactionRadioBtns[i].id, $scope.interactionRadioBtns[i].name]);
+					var dataObjInteraction = {};
+
+					dataObjInteraction.interactionOnEventID = $scope.interactionOnEventID;
+					dataObjInteraction.interaction_recruit = $scope.interactionRadioBtns[i].name;
+					dataObjInteraction.interaction_score1 = $scope.interactionRadioBtns[i].id;
+
+
+
+
+					$http({
+							method: 'POST',
+							url: '/api/interactions_records',
+							data: dataObjInteraction,
+							headers: {
+								'Content-Type': 'application/json'
+							}
+						})
+						.then(function(response) {
+							//$scope.vote_success = "New Vote Successfully Created!";
+							$location.path('/dashboard/events');
+						})
+						.catch(function(err) {
+							//console.log("Couldn't find recruits for the specified list.");
+						});
+
+				}
+
+			}
+			console.log($scope.interactionArray);
+		}
 
 	});

@@ -188,6 +188,22 @@ exports.getInteractionsRecords = (req, res) => {
   })
 };
 
+
+
+
+
+
+exports.postInteractionRecords = (req, res) => {
+  const query = client.query('INSERT INTO interactions_records (int_records_event, interaction_member, interaction_recruit, interaction_score1) VALUES ($1, $2, $3, $4)', [req.body.interactionOnEventID,req.user.member_id, req.body.interaction_recruit,req.body.interaction_score1], (err, results) => {
+      if (err) {
+        res.status(400).json({status: err.message});
+      }
+      else {
+        handleResponse(res, 200, 'success');
+      }
+  })
+};
+
 /*
   SIGN_IN ROUTES
 */

@@ -15,24 +15,24 @@
                 </div>
                 <div class="main_content">
 
-                        <form id="new-interaction" ng-submit="">
+                        <form id="new-interaction" ng-submit="newInteractionLog()">
                                 <div class="interaction-recruit-div" ng-repeat="recruit in recruits_for_interaction.data">
                                         <h2 class="interaction-recruit-name">{{recruit.recruit_first}} {{recruit.recruit_last}}</h2>
 
                                         <img class="interaction-recruit-img" src="{{recruit.recruit_pic_URL}}" alt="No Recruit Image Found" />
                                         <br />
                                         <label>NA</label>
-                                        <input type="radio" class="interaction-radio" id="{{recruit.recruit_id}}" name="{{recruit.recruit_id}}" />
+                                        <input type="radio" class="interaction-radio" name="{{recruit.recruit_id}}" id="0" required/>
                                         <label>1</label>
-                                        <input type="radio" class="interaction-radio" id="{{recruit.recruit_id}}" name="{{recruit.recruit_id}}" />
+                                        <input type="radio" class="interaction-radio" name="{{recruit.recruit_id}}" id="1" required/>
                                         <label>2</label>
-                                        <input type="radio" class="interaction-radio" id="{{recruit.recruit_id}}" name="{{recruit.recruit_id}}" />
+                                        <input type="radio" class="interaction-radio" name="{{recruit.recruit_id}}" id="2" required/>
                                         <label>3</label>
-                                        <input type="radio" class="interaction-radio" id="{{recruit.recruit_id}}" name="{{recruit.recruit_id}}" />
+                                        <input type="radio" class="interaction-radio" name="{{recruit.recruit_id}}" id="3" required/>
                                         <label>4</label>
-                                        <input type="radio" class="interaction-radio" id="{{recruit.recruit_id}}" name="{{recruit.recruit_id}}" />
+                                        <input type="radio" class="interaction-radio" name="{{recruit.recruit_id}}" id="4" required/>
                                         <label>5</label>
-                                        <input type="radio" class="interaction-radio" id="{{recruit.recruit_id}}" name="{{recruit.recruit_id}}" />
+                                        <input type="radio" class="interaction-radio" name="{{recruit.recruit_id}}" id="5" required/>
 
 
                                 </div>
