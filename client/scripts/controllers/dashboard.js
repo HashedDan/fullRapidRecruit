@@ -233,6 +233,8 @@ angular.module('yapp')
 			//We will return to the method above when we provide the option for selecting the number of fields on the interaction log.
 			
 			var reqFields = String("1") + String(comments);
+			
+			//var sign_in_link = "34.203.219.137/g4/dashboard/signin/"+$scope.organizations[0].org_name+"/"+eventName+
 
 			dataObj.int_req_fields = reqFields;
 			
