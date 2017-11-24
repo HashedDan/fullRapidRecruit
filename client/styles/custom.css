@@ -23,6 +23,11 @@
         color: #fff;
 }
 
+#inline_logo {
+        display: inline-block;
+        vertical-align: middle;
+}
+
 i {
         color: #555f61;
 }
