@@ -8,15 +8,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body>
-    <form id="signinform">
+    <!-- <form id="signinform"> -->
       First name:<br>
       <input type="text" id="firstname" placeholder="John"><br>
       Last name:<br>
       <input type="text" id="lastname" placeholder="Doe"><br><br>
       Email:<br>
       <input type="text" id="email" placeholder="yourname@yourschool.edu"><br><br>
-      <input type="submit" id="signInButton" value="Sign In">
-    </form>
+      <!-- <input type="submit" id="signInButton" value="Sign In"> -->
+      <button id="signInButton">Sign In</button>
+    <!-- </form> -->
   <script type="text/javascript">
     var parseQueryString = function(url) {
       var regex = new RegExp("(?<=signin/)(.*)[^?]");
@@ -31,20 +32,32 @@
       data.email = document.getElementById("email").value;
       data.signinid = parseQueryString(window.location.href);
       console.log(data);
-      $.ajax({
-        type: "POST",
-        url: '/api/sign_in',
-        data: data,
-        // dataType:"json",
-        // contentType:"application/json",
-        success: function(response) {
-          console.log(response);
+      // $.ajax({
+      //   type: "POST",
+      //   url: '/api/sign_in',
+      //   data: data,
+      //   // dataType:"json",
+      //   // contentType:"application/json",
+      //   success: function(response) {
+      //     console.log(response);
+      //     alert("Successful Sign In: Enjoy the event!");
+      //   },
+      //   error: function(code) {
+      //     console.log(code);
+      //     alert("Unable to Sign In: Please make sure you have the correct link.");
+      //   }
+      // });
+      $.post( "/api/sign_in", data, function(data, status, xhr) {
+        if (status == "success") {
           alert("Successful Sign In: Enjoy the event!");
-        },
-        error: function(code) {
-          console.log(code);
-          alert("Unable to Sign In: Please make sure you have the correct link.");
         }
+        else {
+          alert("Unable to Sign In: Please make sure you have the correct link and have entered all information");
+        }
+        location.reload();
+      }).fail(function(e) {
+        alert("Unable to Sign In: Please make sure you have the correct link and have entered all information.");
+        location.reload();
       });
     }
   </script>
