@@ -32,7 +32,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/api', routes);
+app.use('//api', routes);
 
 app.get('/signin/:uniqueid', (req, res, next) => {
 		res.sendFile(path.join(__dirname, '..', 'client', 'signin.html'));
