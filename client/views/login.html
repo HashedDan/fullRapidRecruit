@@ -1,70 +1,83 @@
 <div class="login-page" id="mainLogin">
 	<div id="landingPage">
+		<div class="col-md-12" >
+			<img src="/Images/Rapid Recruit Logo.png" alt="Rapid Recruit Logo"  id="landing-img">
+			<h1 class="center">Welcome to the next generation of collegiate recruiting</h1>
+			<br />
+			<h3 class="center">Congratulations! It looks like someone gave you a RapidRecruit early access invite!</h3>
+			<hr />
+		</div>
+
+
 		<div class="col-md-12">
-			<h1>Are you ready to revolutionize recruiting?</h1>
-			<button ng-click="goToLogin()" class="btn btn-default">I want to join!</button>
+
+			<br />
+			<br />
+			<h3 class="center">There are early access accounts still available. Join now!</h3>
+			<br />
+			<button ng-click="goToLogin()" class="btn btn-default center">I want early access!</button>
 		</div>
 	</div>
 	<div id="loginWrapper" hidden="true">
-	<div class="col-md-6">
-	<div class="form-content">
-	<h2>Login</h2>
-		<form role="form" class="bottom-75 login-form" name="login-form" id="login-form" ng-submit="createPost(formData)">
-			<div class="table-form">
-				<div class="form-groups">
-					<div class="form-group">
-						<input type="text" class="form-control input-lg" id="email" name="email" ng-model="formData.email" placeholder="EMAIL">
-					</div>
-					<div class="form-group">
-						<input type="password" name="password" id="password" ng-model="formData.password" class="form-control input-lg" id="" placeholder="PASSWORD">
-					</div>
+		<div class="col-md-6">
+			<div class="form-content">
+				<h2>Login</h2>
+				<form role="form" class="bottom-75 login-form" name="login-form" id="login-form" ng-submit="createPost(formData)">
+					<div class="table-form">
+						<div class="form-groups">
+							<div class="form-group">
+								<input type="text" class="form-control input-lg" id="email" name="email" ng-model="formData.email" placeholder="EMAIL">
+							</div>
+							<div class="form-group">
+								<input type="password" name="password" id="password" ng-model="formData.password" class="form-control input-lg" id="" placeholder="PASSWORD">
+							</div>
 
 
-				</div>
-				<div class="button-container">
-					<input type="submit" class="btn btn-default login"></button>
-				</div>
-			</div>
-			<div class="remember">
-				<label class="checkbox1" for="Option"> 
+						</div>
+						<div class="button-container">
+							<input type="submit" class="btn btn-default login"></button>
+						</div>
+					</div>
+					<div class="remember">
+						<label class="checkbox1" for="Option">
 					<input id="Option" type="checkbox" class="">
 					<span></span>
 				</label> remember me
-				<span class="pass"> forgot password?</span>
+						<span class="pass"> forgot password?</span>
+					</div>
+				</form>
 			</div>
-		</form>
-	</div>
-	</div>
-	<div class="col-md-6">
-	<div class="form-content">
-	<h2>Create Account</h2>
-		<form role="form" class="bottom-75 login-form" name="create-form" id="create-form" ng-submit="createPostRegister(formData)">
-			<div class="table-form">
-				<div class="form-groups">
-					<div class="form-group">
-						<input type="text" class="form-control input-lg" id="regmail" name="regemail" ng-model="formData.regemail" placeholder="EMAIL">
-					</div>
-					<div class="form-group">
-						<input type="password" name="regpassword" id="regpassword" ng-model="formData.regpassword" class="form-control input-lg" id="" placeholder="PASSWORD">
-					</div>
-					<div class="form-group">
-						<input type="text" name="regfirst" id="regfirst" ng-model="formData.regfirst" class="form-control input-lg" id="" placeholder="FIRST">
-					</div>
-					<div class="form-group">
-						<input type="text" name="reglast" id="reglast" ng-model="formData.reglast" class="form-control input-lg" id="" placeholder="LAST">
-					</div>
-					<div class="form-group">
-						<input type="number" name="regorg" id="regorg" ng-model="formData.regorg" class="form-control input-lg" id="" placeholder="ORG ID">
-					</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-content">
+				<h2>Create Account</h2>
+				<form role="form" class="bottom-75 login-form" name="create-form" id="create-form" ng-submit="createPostRegister(formData)">
+					<div class="table-form">
+						<div class="form-groups">
+							<div class="form-group">
+								<input type="text" class="form-control input-lg" id="regmail" name="regemail" ng-model="formData.regemail" placeholder="EMAIL">
+							</div>
+							<div class="form-group">
+								<input type="password" name="regpassword" id="regpassword" ng-model="formData.regpassword" class="form-control input-lg" id="" placeholder="PASSWORD">
+							</div>
+							<div class="form-group">
+								<input type="text" name="regfirst" id="regfirst" ng-model="formData.regfirst" class="form-control input-lg" id="" placeholder="FIRST">
+							</div>
+							<div class="form-group">
+								<input type="text" name="reglast" id="reglast" ng-model="formData.reglast" class="form-control input-lg" id="" placeholder="LAST">
+							</div>
+							<div class="form-group">
+								<input type="number" name="regorg" id="regorg" ng-model="formData.regorg" class="form-control input-lg" id="" placeholder="ORG ID">
+							</div>
 
-				</div>
-				<div class="button-container">
-					<input type="submit" class="btn btn-default login"></button>
-				</div>
+						</div>
+						<div class="button-container">
+							<input type="submit" class="btn btn-default login"></button>
+						</div>
+					</div>
+				</form>
 			</div>
-		</form>
+		</div>
 	</div>
-	</div>
-</div>
 </div>
 </div>

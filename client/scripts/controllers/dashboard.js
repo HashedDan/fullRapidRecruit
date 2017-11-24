@@ -25,13 +25,13 @@ angular.module('yapp')
 				});
 			}
 		});
-	
+
 		$scope.openSignIn = function(eventId) {
 			var baseUrl = "http://34.203.219.137/g4/signin/";
 			var fullUrl = String(baseUrl) + String(eventId);
 			$window.open(fullUrl, '_blank');
 		};
-	
+
 		//Checks the currently selected list on the Active Votes view to see if there are any active votes. If not, show Admin Message.
 		$scope.checkForActiveVotes = function() {
 			if ($scope.active_votes_exclude_submitted.data.length < 1) {
@@ -92,7 +92,7 @@ angular.module('yapp')
 
 		$http.get('/api/organizations')
 			.success(function(result) {
-				console.log(result);
+				// console.log(result);
 				$scope.organizations = result;
 			})
 			.error(function(data, status) {
@@ -178,7 +178,7 @@ angular.module('yapp')
 
 				});
 		};
-		
+
 
 		//Used to populate the active votes on the Active Votes tab with all currently active votes that the logged in member has not voted on.
 		$scope.getActiveVotesFromListExcludeSubmitted = function(data) {
@@ -238,13 +238,13 @@ angular.module('yapp')
 
 			//var reqFields = String(intReqFields) + String(comments);
 			//We will return to the method above when we provide the option for selecting the number of fields on the interaction log.
-			
+
 			var reqFields = String("1") + String(comments);
-			
+
 			//var sign_in_link = "34.203.219.137/g4/dashboard/signin/"+$scope.organizations[0].org_name+"/"+eventName+
 
 			dataObj.int_req_fields = reqFields;
-			
+
 			$scope.testing_data = dataObj;
 
 			$http({
@@ -522,7 +522,7 @@ angular.module('yapp')
 			$scope.interactionRadioBtnsLen = $scope.interactionRadioBtns.length;
 			for (var i = 0; i < $scope.interactionRadioBtnsLen; ++i) {
 				if ($scope.interactionRadioBtns[i].checked) {
-					
+
 					var dataObjInteraction = {};
 
 					dataObjInteraction.interactionOnEventID = $scope.interactionOnEventID;
