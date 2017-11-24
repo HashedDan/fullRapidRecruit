@@ -25,7 +25,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '//api/login',
+					url: 'http://34.203.219.137/g4/api/login',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
