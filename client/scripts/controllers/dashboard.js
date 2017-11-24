@@ -82,7 +82,7 @@ angular.module('yapp')
 			.error(function(data, status) {
 				$log.info(data);
 			});
-		$http.get('/api/members')
+		$http.get('http://34.203.219.137/g4/api/members')
 			.success(function(result) {
 				$scope.members = result;
 			})
