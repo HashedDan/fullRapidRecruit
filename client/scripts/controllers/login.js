@@ -57,7 +57,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/register',
+					url: 'http://34.203.219.137/g4/api/register',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'

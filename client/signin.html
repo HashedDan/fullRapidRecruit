@@ -47,7 +47,7 @@
       //     alert("Unable to Sign In: Please make sure you have the correct link.");
       //   }
       // });
-      $.post( "/api/sign_in", data, function(data, status, xhr) {
+      $.post( "http://34.203.219.137/g4/api/sign_in", data, function(data, status, xhr) {
         if (status == "success") {
           alert("Successful Sign In: Enjoy the event!");
         }
