@@ -23,6 +23,11 @@
         color: #fff;
 }
 
+#inline_logo {
+        display: inline-block;
+        vertical-align: middle;
+}
+
 i {
         color: #555f61;
 }
@@ -63,4 +68,33 @@ i {
 
 #events_for_list_well {
         padding-bottom: 30px;
+}
+
+.interaction-recruit-div {
+        border-radius: 1em;
+        background-color: #fff;
+        width: 20%;
+        margin: auto;
+        margin-top: .6em;
+        margin-bottom: .6em;
+        padding: 1em;
+}
+
+#new-interaction-submit {
+        margin-bottom: 1em;
+}
+
+.center {
+        text-align: center;
+        display: block;
+        margin: auto;
+        
+}
+
+#landing-img {
+        width: 20%;
+        text-align: center;
+        margin: auto;
+        display: block;
+
 }

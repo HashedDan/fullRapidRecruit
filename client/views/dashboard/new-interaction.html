@@ -19,7 +19,7 @@
                                 <div class="interaction-recruit-div" ng-repeat="recruit in recruits_for_interaction.data">
                                         <h2 class="interaction-recruit-name">{{recruit.recruit_first}} {{recruit.recruit_last}}</h2>
 
-                                        <img class="interaction-recruit-img" src="{{recruit.recruit_pic_URL}}" alt="No Recruit Image Found" />
+
                                         <br />
                                         <label>NA</label>
                                         <input type="radio" class="interaction-radio" name="{{recruit.recruit_id}}" id="0" required/>
@@ -37,7 +37,7 @@
 
                                 </div>
                                 <br />
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" id="new-interaction-submit">Submit</button>
                                 <br />
                         </form>
 
