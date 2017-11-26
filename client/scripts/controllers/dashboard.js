@@ -26,6 +26,40 @@ angular.module('yapp')
 			}
 		});
 
+		$scope.getMemberFromCurrentId = function() {
+			var dataObj = {};
+			$http({
+					method: 'POST',
+					url: '/api/member_from_id',
+					data: dataObj,
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+				.then(function(response) {
+					$scope.current_user_level = response.data[0].member_level;
+					if ($scope.current_user_level < 1) {
+						$scope.adminAccess = false;
+					} else {
+						$scope.adminAccess = true;
+					}
+				})
+				.catch(function(err) {
+					//response when failure
+				});
+		};
+
+		$scope.getMemberFromCurrentId();
+
+		//$scope.checkAccess = function() {
+		//	if (($location.path() == '/dashboard/my-org') || ($location.path() == '/dashboard/lists') || ($location.path() == '/dashboard/vote-editor') || ($location.path() == '/dashboard/new-list') ||
+		//		($location.path() == '/dashboard/new-event') || ($location.path() == '/dashboard/new-vote') || ($location.path() == '/dashboard/new-batch-vote') || ($location.path() == '/dashboard/vote-history')) {
+		//		if (!$scope.adminAccess) {
+		//			$location.path('/dashboard/restricted-page');
+		//		}
+		//	}
+		//};
+
 		$scope.openSignIn = function(eventId) {
 			var baseUrl = "http://34.203.219.137/g4/signin/";
 			var fullUrl = String(baseUrl) + String(eventId);
@@ -50,9 +84,63 @@ angular.module('yapp')
 			}
 		};
 
+
+		$scope.removeAdmin = function(memberId) {
+			var dataObj = {};
+			dataObj.member_id = memberId;
+
+			$http({
+					method: 'POST',
+					url: '/api/remove_admin',
+					data: dataObj,
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+				.then(function(response) {
+					$scope.getCurrentAdmins();
+				})
+				.catch(function(err) {
+					//response when failure
+				});
+		};
+
+		$scope.newAdmin = function(memberId) {
+			$scope.getAllMembers();
+			var dataObj = {};
+			dataObj.member_id = memberId;
+
+			$http({
+					method: 'POST',
+					url: '/api/new_admin',
+					data: dataObj,
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+				.then(function(response) {
+					$scope.getCurrentAdmins();
+				})
+				.catch(function(err) {
+					//response when failure
+				});
+		};
+
+
+
 		//Redirects user to new-vote view on button click.
 		$scope.newVote = function() {
 			$location.path('/dashboard/new-vote');
+		};
+
+		//Redirects user to admin-options view on button click.
+		$scope.adminOptions = function() {
+			$location.path('/dashboard/admin-options');
+		};
+
+		//Redirects user to overview view on button click.
+		$scope.returnToOverview = function() {
+			$location.path('/dashboard/overview');
 		};
 
 		//Redirects user to new-list on button click.
@@ -82,6 +170,8 @@ angular.module('yapp')
 			.error(function(data, status) {
 				$log.info(data);
 			});
+		
+		$scope.getAllMembers = function() {
 		$http.get('/api/members')
 			.success(function(result) {
 				$scope.members = result;
@@ -89,6 +179,9 @@ angular.module('yapp')
 			.error(function(data, status) {
 				$log.info(data);
 			});
+		};
+		
+		$scope.getAllMembers();
 
 		$http.get('/api/organizations')
 			.success(function(result) {
@@ -107,11 +200,23 @@ angular.module('yapp')
 				$log.info(data);
 			});
 
+		$scope.getCurrentAdmins = function() {
+			$http.get('/api/members_with_admin')
+				.success(function(result) {
+					$scope.members_with_admin = result;
+				})
+				.error(function(data, status) {
+					$log.info(data);
+				});
+		};
+		
+		$scope.getCurrentAdmins();
+
 		$scope.createNewList = function(listName) {
 			var dataObj = {};
 			dataObj.list_name = listName;
 
-				$http({
+			$http({
 					method: 'POST',
 					url: '/api/lists',
 					data: dataObj,
@@ -121,12 +226,11 @@ angular.module('yapp')
 				})
 				.then(function(response) {
 
-				$http.get('/api/lists')
-					.success(function(result) {
-						$scope.lists = result;
-					})
-					.error(function(data, status) {
-					});
+					$http.get('/api/lists')
+						.success(function(result) {
+							$scope.lists = result;
+						})
+						.error(function(data, status) {});
 					$location.path('/dashboard/lists');
 				})
 				.catch(function(err) {
@@ -233,8 +337,9 @@ angular.module('yapp')
 			dataObj.event_location = eventLocation;
 
 			var comments = 0;
-			if(newEventComments) {
-				comments = 1; }
+			if (newEventComments) {
+				comments = 1;
+			}
 
 			//var reqFields = String(intReqFields) + String(comments);
 			//We will return to the method above when we provide the option for selecting the number of fields on the interaction log.
@@ -289,18 +394,18 @@ angular.module('yapp')
 
 		$scope.calculateResults = function(a, b, voteId, voteThreshold) {
 			var dataObj = {};
-			var percentage = (a/b);
+			var percentage = (a / b);
 			var outcome = 0;
-			var c = (voteThreshold/100);
+			var c = (voteThreshold / 100);
 
 			$scope.test_percentage = percentage;
 			$scope.test_threshold = c;
 
-			if(percentage > c){
+			if (percentage > c) {
 				outcome = 1;
-			} else if(percentage < c){
+			} else if (percentage < c) {
 				outcome = 0;
-			} else if(percentage == c){
+			} else if (percentage == c) {
 				outcome = 2;
 			}
 			dataObj.vote_result = outcome;

@@ -21,6 +21,8 @@ var states = [
         { name: 'active-votes', state: { url: '/active-votes', parent: 'dashboard', templateUrl: 'views/dashboard/active-votes.html', data: {text: "Active Votes", visible: true } } },
         { name: 'vote-editor', state: { url: '/vote-editor', parent: 'dashboard', templateUrl: 'views/dashboard/vote-editor.html', data: {text: "Vote Editor", visible: true } } },
         { name: 'new-vote', state: { url: '/new-vote', parent: 'dashboard', templateUrl: 'views/dashboard/new-vote.html', data: {text: "New Vote", visible: false } } },
+        { name: 'restricted-page', state: { url: '/restricted-page', parent: 'dashboard', templateUrl: 'views/dashboard/restricted-page.html', data: {text: "Restricted Page", visible: false } } },
+        { name: 'admin-options', state: { url: '/admin-options', parent: 'dashboard', templateUrl: 'views/dashboard/admin-options.html', data: {text: "Admin Options", visible: false } } },
         { name: 'new-batch-vote', state: { url: '/new-batch-vote', parent: 'dashboard', templateUrl: 'views/dashboard/new-batch-vote.html', data: {text: "New Batch Vote", visible: false } } },
         { name: 'vote-history', state: { url: '/vote-history', parent: 'dashboard', templateUrl: 'views/dashboard/vote-history.html', data: {text: "Vote History", visible: false } } },
         { name: 'my-org', state: { url: '/my-org', parent: 'dashboard', templateUrl: 'views/dashboard/my-org.html', data: {text: "My Org", visible: true } } }

@@ -5,10 +5,10 @@
             <div id="inline_logo"><img src="/Images/Rapid Recruit Logo.png" alt="Rapid Recruit Logo" align="middle" width="150px"></div>
             <h4 ng-controller="MenuCtrl" id="menu_org_name">{{organizations[0].org_name}}</h4>
         </div>
-
+        {{test_name}}
         <ul class=snap-ul>
             <li id="menu_items" ng-repeat="item in menuItems" ng-class="{active: $state.includes('{{item.name}}') }">
-                <a ui-sref={{item.name}}>{{item.text}}</a>
+                <a ui-sref={{item.name}} ng-click="checkAccess(item.name)">{{item.text}}</a>
             </li>
             <li ng-controller="MenuCtrl"><a href="" ng-click="logout()">Logout</a></>
         </ul>

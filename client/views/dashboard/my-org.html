@@ -11,43 +11,54 @@
 		</a>
 
 		<div class="fr">
-		<h2>My Organization</h2>
+			<h2>My Organization</h2>
 		</div>
 		<div class="main_content">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-4">
+				<h3><strong>Name:</strong> {{ organizations[0].org_name }} </h3>
+				<strong>Org ID:</strong> {{organizations[0].org_id}}<br />
+				<strong>School:</strong> {{ organizations[0].org_school }} <br>
+				<strong>Location:</strong> {{ organizations[0].org_location }} <br>
+				<strong>Type:</strong> {{ organizations[0].org_type }} <br>
+				<!--<strong>Owner:</strong> {{ organizations[0].org_owner }}-->
+				</div>
+				<div class="col-md-4">
+					<div class="new_container">
+							<h2>Admin Options</h2>
+							<button id="admin-options-btn" type="button" class="btn btn-info" ng-click="adminOptions()">Designate Admins</button>
+						</div>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<br><br>
+			<div class="row">
+
+				<div class="well well-md pre-scrollable" id="my_org_well">
+					<table class="table table-hover">
+						<thead class="table-head">
+							<tr>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Email</th>
+								<th>Creation</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="member in members">
+								<td>{{member.member_first }}</td>
+								<td>{{ member.member_last }}</td>
+								<td>{{ member.member_email }}</td>
+								<td>{{ member.member_creation }}</td>
+							</tr>
+						</tbody>
 
 
-                        		<h3 ><strong>Name:</strong> {{ organizations[0].org_name }} </h3>
-					<strong>Org ID:</strong> {{organizations[0].org_id}}<br />
-                        		<strong>School:</strong> {{ organizations[0].org_school }} <br>
-                        		<strong>Location:</strong> {{ organizations[0].org_location }} <br>
-                        		<strong>Type:</strong> {{ organizations[0].org_type }} <br>
-                        		<!--<strong>Owner:</strong> {{ organizations[0].org_owner }}-->
+					</table>
+				</div>
 
-                        		<br><br>
-					<div class="well well-md pre-scrollable">
-						<table class="table table-hover">
-							<thead class="table-head">
-								<tr>
-		                        				<th >First Name</th>
-		                        				<th >Last Name</th>
-		                        				<th >Email</th>
-		                        				<th>Creation</th>
-		                        			</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="member in members">
-									<td >{{member.member_first }}</td>
-									<td >{{ member.member_last }}</td>
-									<td >{{ member.member_email }}</td>
-									<td>{{ member.member_creation }}</td>
-								</tr>
-							</tbody>
-
-
-	                        		</table>
-					</div>
-
-
+			</div>
 		</div>
 	</snap-content>
 </div>

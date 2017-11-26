@@ -18,7 +18,10 @@ router.get('/organizations', authFuncs.loginRequired, requestHandler.getOrganiza
 	MEMBERS ROUTES
 */
 router.get('/members', authFuncs.loginRequired, requestHandler.getMembers);
-
+router.post('/member_from_id', authFuncs.loginRequired, requestHandler.memberFromId);
+router.post('/remove_admin', authFuncs.loginRequired, requestHandler.removeAdmin);
+router.post('/new_admin', authFuncs.loginRequired, requestHandler.newAdmin);
+router.get('/members_with_admin', authFuncs.loginRequired, requestHandler.memberWithAdmin);
 /*
 	LISTS ROUTES
 */

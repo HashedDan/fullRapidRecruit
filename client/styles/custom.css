@@ -23,6 +23,14 @@
         color: #fff;
 }
 
+#restricted_well {
+        margin-top: 100px;
+}
+
+#my_org_well {
+        max-height: 350px;
+}
+
 #inline_logo {
         display: inline-block;
         vertical-align: middle;
@@ -36,7 +44,7 @@ i {
         color: #fff;
 }
 
-#drafted_votes_well, #active_votes_well {
+#drafted_votes_well, #active_votes_well, #current_admins_well {
         max-height: 340px;
 }
 

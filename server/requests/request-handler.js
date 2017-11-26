@@ -98,6 +98,41 @@ exports.getMembers = (req, res) => {
   })
 };
 
+exports.memberFromId = (req, res) => {
+  const query = client.query('SELECT * FROM members WHERE member_org =' +req.user.member_org+' AND member_id='+req.user.member_id, (err, results) => {
+    return res.json(results.rows);
+  })
+};
+
+exports.memberWithAdmin = (req, res) => {
+  const query = client.query('SELECT * FROM members WHERE member_org =' +req.user.member_org+' AND member_level=1', (err, results) => {
+    return res.json(results.rows);
+  })
+};
+
+exports.removeAdmin = (req, res) => {
+  const query = client.query('UPDATE members SET member_level=0 WHERE member_id='+req.body.member_id, (err, results) => {
+      if (err) {
+        res.status(400).json({status: err.message});
+      }
+      else {
+        handleResponse(res, 200, 'success');
+      }
+  })
+};
+
+exports.newAdmin = (req, res) => {
+  const query = client.query('UPDATE members SET member_level=1 WHERE member_id='+req.body.member_id, (err, results) => {
+      if (err) {
+        res.status(400).json({status: err.message});
+      }
+      else {
+        handleResponse(res, 200, 'success');
+      }
+  })
+};
+
+
 /*
   LISTS ROUTES
 */
