@@ -60,9 +60,9 @@ angular.module('yapp')
 		//	}
 		//};
 
-		$scope.openSignIn = function(eventId, eventOrg) {
+		$scope.openSignIn = function(eventId, eventOrg, eventList) {
 			var baseUrl = "http://34.203.219.137/g4/signin/";
-			var fullUrl = String(baseUrl) + String(eventOrg) + '/' + String(eventId);
+			var fullUrl = String(baseUrl) + String(eventOrg) + '/' + String(eventList) + '/' + String(eventId);
 			$window.open(fullUrl, '_blank');
 		};
 

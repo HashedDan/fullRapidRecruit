@@ -33,7 +33,8 @@
       urlParts = parseQueryString(window.location.href).toString();
       urlParts = urlParts.split('/');
       data.org = urlParts[0];
-      data.signinid = urlParts[1];
+      data.list = urlParts[1];
+      data.signinid = urlParts[2];
       console.log(data);
       // $.ajax({
       //   type: "POST",

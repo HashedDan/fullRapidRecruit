@@ -254,8 +254,9 @@ exports.postSignIn = (req, res) => {
         res.status(400).json({status: err.message});
       }
       else {
-        const queryRecruits = client.query('INSERT INTO recruits (recruit_first, recruit_last, recruit_email, recruit_org, recruit_list) VALUES ($1, $2, $3, $4, $5)', [req.body.first, req.body.last, req.body.email, req.body.org, req.body.signinid], (err, results) => {
+        const queryRecruits = client.query('INSERT INTO recruits (recruit_first, recruit_last, recruit_email, recruit_org, recruit_list) SELECT $1, $2, $3, $4, $5 WHERE NOT EXISTS (SELECT * FROM recruits WHERE recruit_first = $6 AND recruit_last = $7 AND recruit_email = $8 AND recruit_org = $9 AND recruit_list = $10)', [req.body.first, req.body.last, req.body.email, req.body.org, req.body.list, req.body.first, req.body.last, req.body.email, req.body.org, req.body.list], (err, results) => {
             if (err) {
+              console.log(err);
               res.status(400).json({status: err.message});
             }
             else {
