@@ -254,7 +254,14 @@ exports.postSignIn = (req, res) => {
         res.status(400).json({status: err.message});
       }
       else {
-        handleResponse(res, 200, 'success');
+        const queryRecruits = client.query('INSERT INTO recruits (recruit_first, recruit_last, recruit_email, recruit_org, recruit_list) VALUES ($1, $2, $3, $4, $5)', [req.body.first, req.body.last, req.body.email, req.body.org, req.body.signinid], (err, results) => {
+            if (err) {
+              res.status(400).json({status: err.message});
+            }
+            else {
+              handleResponse(res, 200, 'success');
+            }
+        })
       }
   })
 };

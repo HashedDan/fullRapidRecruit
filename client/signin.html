@@ -20,8 +20,8 @@
     <!-- </form> -->
   <script type="text/javascript">
     var parseQueryString = function(url) {
-      var regex = new RegExp("(?<=signin/)(.*)[^?]");
-      return regex.exec(url)[0];
+      var regex = new RegExp("(?<=signin/).*[^?]");
+      return regex.exec(url);
     }
     console.log(parseQueryString(window.location.href));
 
@@ -30,7 +30,10 @@
       data.first = document.getElementById("firstname").value;
       data.last = document.getElementById("lastname").value;
       data.email = document.getElementById("email").value;
-      data.signinid = parseQueryString(window.location.href);
+      urlParts = parseQueryString(window.location.href).toString();
+      urlParts = urlParts.split('/');
+      data.org = urlParts[0];
+      data.signinid = urlParts[1];
       console.log(data);
       // $.ajax({
       //   type: "POST",
