@@ -270,17 +270,23 @@ angular.module('yapp')
 					})
 					.then(function(response) {
 						$scope.interactions_from_event = response.data;
-						var csv = Papa.unparse($scope.interactions_from_event);
 
-					        var downloadLink = document.createElement("a");
-					        var blob = new Blob(["\ufeff", csv]);
-					        var url = URL.createObjectURL(blob);
-					        downloadLink.href = url;
-					        downloadLink.download = "data.csv";
+						if ($scope.interactions_from_event.length>0) {
+							var csv = Papa.unparse($scope.interactions_from_event);
 
-					        document.body.appendChild(downloadLink);
-					        downloadLink.click();
-					        document.body.removeChild(downloadLink);
+						        var downloadLink = document.createElement("a");
+						        var blob = new Blob(["\ufeff", csv]);
+						        var url = URL.createObjectURL(blob);
+						        downloadLink.href = url;
+						        downloadLink.download = "data.csv";
+
+						        document.body.appendChild(downloadLink);
+						        downloadLink.click();
+						        document.body.removeChild(downloadLink);
+						} else {
+								alert("No data found");
+						}
+
 
 					})
 					.catch(function(err) {
