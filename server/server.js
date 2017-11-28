@@ -48,8 +48,8 @@ router.get('/', (req, res, next) => {
 // 	err ? console.log('Cannot connect...', err) : console.log(`Connected! Server is listening on port ${port}`);
 // });
 
-var privateKey = fs.readFileSync( './server/privkey.pem' );
-var certificate = fs.readFileSync( './server/fullchain.pem' );
+var privateKey = fs.readFileSync( 'privkey.pem' );
+var certificate = fs.readFileSync( 'fullchain.pem' );
 
 https.createServer({
     key: privateKey,
