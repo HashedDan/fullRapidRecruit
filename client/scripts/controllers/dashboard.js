@@ -105,7 +105,7 @@ angular.module('yapp')
 		});
 
 		$scope.openSignIn = function(eventId, eventOrg, eventList) {
-			var baseUrl = "http://34.203.219.137/g4/signin/";
+			var baseUrl = "https://cse437.codenamedante.com/g4/signin/";
 			var fullUrl = String(baseUrl) + String(eventOrg) + '/' + String(eventList) + '/' + String(eventId);
 			$window.open(fullUrl, '_blank');
 		};
