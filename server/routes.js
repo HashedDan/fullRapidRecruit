@@ -41,6 +41,8 @@ router.post('/events_from_list', authFuncs.loginRequired, requestHandler.eventsF
 router.get('/recruits', authFuncs.loginRequired, requestHandler.getRecruits);
 router.post('/recruits', authFuncs.loginRequired, requestHandler.postRecruits);
 router.post('/recruits_from_list', authFuncs.loginRequired, requestHandler.postRecruitsFromList);
+router.post('/recruits_from_list_event', authFuncs.loginRequired, requestHandler.postRecruitsFromListEvent);
+
 
 /*
 	INTERACTIONS ROUTES
@@ -53,6 +55,8 @@ router.get('/interactions', authFuncs.loginRequired, requestHandler.getInteracti
 router.get('/interactions_records', authFuncs.loginRequired, requestHandler.getInteractionsRecords);
 router.post('/interactions_records', authFuncs.loginRequired, requestHandler.postInteractionRecords);
 router.post('/interactions_from_event', authFuncs.loginRequired, requestHandler.interactionsFromEvent);
+
+
 
 /*
 	SIGN_IN ROUTES

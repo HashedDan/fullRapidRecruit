@@ -194,6 +194,12 @@ exports.postRecruitsFromList = (req, res) => {
   })
 };
 
+exports.postRecruitsFromListEvent = (req, res) => {
+  const query = client.query('select distinct sign_in_records_id, sign_in_records_first, sign_in_records_last, sign_in_records_email, sign_in_records_event_id, recruit_id, recruit_email from sign_in_records JOIN recruits on (recruits.recruit_email=sign_in_records.sign_in_records_email) where sign_in_records_event_id= '+req.body.event_id, (err, results) => {
+    return res.json(results.rows);
+  })
+};
+
 exports.postRecruits = (req, res) => {
   const query = client.query('INSERT INTO recruits (recruit_first, recruit_last, recruit_email, recruit_pic_url, recruit_res_url, recruit_org, recruit_list) VALUES ($1, $2, $3, $4, $5, $6, $7)', [req.body.first, req.body.last, req.body.email, req.body.picUrl, req.body.resUrl, req.user.member_org, req.body.recList], (err, results) => {
       if (err) {

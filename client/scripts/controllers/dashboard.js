@@ -270,6 +270,7 @@ angular.module('yapp')
 					})
 					.then(function(response) {
 						$scope.interactions_from_event = response.data;
+						console.log(response.data);
 
 						if ($scope.interactions_from_event.length>0) {
 							var csv = Papa.unparse($scope.interactions_from_event);
@@ -692,7 +693,8 @@ angular.module('yapp')
 				.then(function(response) {
 					$scope.recruits_dropdown_results = response;
 					$scope.recruits_for_batch_vote = response;
-					$scope.recruits_for_interaction = response;
+
+
 					$scope.recruits_for_lists_page = response;
 					$scope.selectedListForListsPage = data;
 
@@ -704,9 +706,38 @@ angular.module('yapp')
 
 		//Redirects user to new-interaction view on button click, also calls getRecruitsFromList(selectedListForEventsPage)
 		$scope.newInteraction = function(eventID) {
-			$scope.getRecruitsFromList($scope.selectedListForEventsPage);
 			$scope.interactionOnEventID = eventID;
-			$location.path('/dashboard/new-interaction');
+			var dataObj = {};
+
+			dataObj.event_id = eventID;
+
+			$http({
+					method: 'POST',
+					url: '/api/recruits_from_list_event',
+					data: dataObj,
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+				.then(function(response) {
+					$scope.recruits_for_interaction = response;
+					if ($scope.recruits_for_interaction.data.length > 0) {
+						$location.path('/dashboard/new-interaction');
+					}
+					else {
+						alert("No on has signed in to this event yet");
+					}
+
+
+				})
+				.catch(function(err) {
+					//console.log("Couldn't find recruits for the specified list.");
+
+				});
+
+
+
+
 
 		};
 
