@@ -7,6 +7,8 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const passport = require('./auth/local.js');
 var session = require('express-session');
+var fs = require('fs');
+var https = require('https');
 
 app.set('view engine', 'html');
 
@@ -42,6 +44,16 @@ router.get('/', (req, res, next) => {
 		res.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
 });
 
-app.listen(port, (err) => {
+// app.listen(port, (err) => {
+// 	err ? console.log('Cannot connect...', err) : console.log(`Connected! Server is listening on port ${port}`);
+// });
+
+var privateKey = fs.readFileSync( 'privkey.pem' );
+var certificate = fs.readFileSync( 'fullchain.pem' );
+
+https.createServer({
+    key: privateKey,
+    cert: certificate
+}, app).listen(port, (err) => {
 	err ? console.log('Cannot connect...', err) : console.log(`Connected! Server is listening on port ${port}`);
 });
