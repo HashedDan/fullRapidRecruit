@@ -38,7 +38,8 @@ angular.module('yapp')
 				})
 				.catch(function(err) {
 					//code to execute on error
-					//$scope.responseMessage = "Status: " + err.status + " | Status Text: " + err.statusText;
+					//$scope.responseMessage = "Status: " + err.status + " | Status Text: " + err.statusText;\
+					alert("Wrong Login Credentials");
 				});
 		};
 

@@ -96,7 +96,7 @@ i {
         text-align: center;
         display: block;
         margin: auto;
-        
+
 }
 
 #landing-img {
@@ -105,4 +105,8 @@ i {
         margin: auto;
         display: block;
 
+}
+
+.pass a {
+        color: #fff;
 }
