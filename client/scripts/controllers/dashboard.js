@@ -73,7 +73,7 @@ angular.module('yapp')
 		};
 
 		$scope.checkSignIn = function () {
-	
+
 			if ($scope.current_member_id == 0) {
 					$location.path('/login');
 			}
@@ -257,34 +257,43 @@ angular.module('yapp')
 		$scope.getCurrentAdmins();
 
 		$scope.getInteractionCSV = function(event_id) {
-			var dataObj = {};
-			dataObj.event_id = event_id;
-			$http({
-					method: 'POST',
-					url: '/api/interactions_from_event',
-					data: dataObj,
-					headers: {
-						'Content-Type': 'application/json'
-					}
-				})
-				.then(function(response) {
-					$scope.interactions_from_event = response.data;
-					var csv = Papa.unparse($scope.interactions_from_event);
+			if ($scope.adminAccess) {
+				var dataObj = {};
+				dataObj.event_id = event_id;
+				$http({
+						method: 'POST',
+						url: '/api/interactions_from_event',
+						data: dataObj,
+						headers: {
+							'Content-Type': 'application/json'
+						}
+					})
+					.then(function(response) {
+						$scope.interactions_from_event = response.data;
+						var csv = Papa.unparse($scope.interactions_from_event);
 
-				        var downloadLink = document.createElement("a");
-				        var blob = new Blob(["\ufeff", csv]);
-				        var url = URL.createObjectURL(blob);
-				        downloadLink.href = url;
-				        downloadLink.download = "data.csv";
+					        var downloadLink = document.createElement("a");
+					        var blob = new Blob(["\ufeff", csv]);
+					        var url = URL.createObjectURL(blob);
+					        downloadLink.href = url;
+					        downloadLink.download = "data.csv";
 
-				        document.body.appendChild(downloadLink);
-				        downloadLink.click();
-				        document.body.removeChild(downloadLink);
+					        document.body.appendChild(downloadLink);
+					        downloadLink.click();
+					        document.body.removeChild(downloadLink);
 
-				})
-				.catch(function(err) {
-					//response when failure
-				});
+					})
+					.catch(function(err) {
+						//response when failure
+					});
+
+			}else {
+				var csvA = document.getElementsByClassName('csv-btn');
+				for (var i = 0; i < csvA.length; ++i) {
+					csvA[i].innerHTML = "Admin Only";
+				}
+			}
+
 
 		}
 
