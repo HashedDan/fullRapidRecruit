@@ -223,10 +223,11 @@ exports.getInteractionsRecords = (req, res) => {
   })
 };
 
-
-
-
-
+exports.interactionsFromEvent = (req, res) => {
+  const query = client.query('SELECT * FROM interactions_records where int_records_event='+req.body.event_id, (err, results) => {
+    return res.json(results.rows);
+  })
+};
 
 exports.postInteractionRecords = (req, res) => {
   const query = client.query('INSERT INTO interactions_records (int_records_event, interaction_member, interaction_recruit, interaction_score1) VALUES ($1, $2, $3, $4)', [req.body.interactionOnEventID,req.user.member_id, req.body.interaction_recruit,req.body.interaction_score1], (err, results) => {

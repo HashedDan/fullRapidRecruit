@@ -72,6 +72,14 @@ angular.module('yapp')
 				});
 		};
 
+		$scope.checkSignIn = function () {
+	
+			if ($scope.current_member_id == 0) {
+					$location.path('/login');
+			}
+
+		};
+
 		$scope.getMemberFromCurrentId();
 
 		// $scope.checkAccess = function() {
@@ -83,7 +91,7 @@ angular.module('yapp')
 		// 	}
 		// };
 		$rootScope.$on('$stateChangeStart', function() {
-			$scope.getMemberFromCurrentId();
+			$scope.checkSignIn();
 
 			if (!$scope.adminAccess) {
 
@@ -247,6 +255,38 @@ angular.module('yapp')
 		};
 
 		$scope.getCurrentAdmins();
+
+		$scope.getInteractionCSV = function(event_id) {
+			var dataObj = {};
+			dataObj.event_id = event_id;
+			$http({
+					method: 'POST',
+					url: '/api/interactions_from_event',
+					data: dataObj,
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+				.then(function(response) {
+					$scope.interactions_from_event = response.data;
+					var csv = Papa.unparse($scope.interactions_from_event);
+
+				        var downloadLink = document.createElement("a");
+				        var blob = new Blob(["\ufeff", csv]);
+				        var url = URL.createObjectURL(blob);
+				        downloadLink.href = url;
+				        downloadLink.download = "data.csv";
+
+				        document.body.appendChild(downloadLink);
+				        downloadLink.click();
+				        document.body.removeChild(downloadLink);
+
+				})
+				.catch(function(err) {
+					//response when failure
+				});
+
+		}
 
 		$scope.createNewList = function(listName) {
 			var dataObj = {};
@@ -640,6 +680,7 @@ angular.module('yapp')
 					$scope.recruits_for_interaction = response;
 					$scope.recruits_for_lists_page = response;
 					$scope.selectedListForListsPage = data;
+
 				})
 				.catch(function(err) {
 					//console.log("Couldn't find recruits for the specified list.");
