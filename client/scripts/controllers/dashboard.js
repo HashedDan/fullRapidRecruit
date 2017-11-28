@@ -24,7 +24,7 @@ angular.module('yapp')
 			var dataObj = {};
 			$http({
 					method: 'POST',
-					url: '/api/member_from_id',
+					url: 'https://cse437.codenamedante.com/g4/api/member_from_id',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -105,7 +105,7 @@ angular.module('yapp')
 		});
 
 		$scope.openSignIn = function(eventId, eventOrg, eventList) {
-			var baseUrl = "http://34.203.219.137/g4/signin/";
+			var baseUrl = "https://cse437.codenamedante.com/g4/signin/";
 			var fullUrl = String(baseUrl) + String(eventOrg) + '/' + String(eventList) + '/' + String(eventId);
 			$window.open(fullUrl, '_blank');
 		};
@@ -135,7 +135,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/remove_admin',
+					url: 'https://cse437.codenamedante.com/g4/api/remove_admin',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -156,7 +156,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/new_admin',
+					url: 'https://cse437.codenamedante.com/g4/api/new_admin',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -207,7 +207,7 @@ angular.module('yapp')
 			$location.path('/dashboard/new-batch-vote');
 		};
 
-		$http.get('/api/lists')
+		$http.get('https://cse437.codenamedante.com/g4/api/lists')
 			.success(function(result) {
 				$scope.lists = result;
 			})
@@ -216,7 +216,7 @@ angular.module('yapp')
 			});
 
 		$scope.getAllMembers = function() {
-		$http.get('/api/members')
+		$http.get('https://cse437.codenamedante.com/g4/api/members')
 			.success(function(result) {
 				$scope.members = result;
 			})
@@ -227,7 +227,7 @@ angular.module('yapp')
 
 		$scope.getAllMembers();
 
-		$http.get('/api/organizations')
+		$http.get('https://cse437.codenamedante.com/g4/api/organizations')
 			.success(function(result) {
 				// console.log(result);
 				$scope.organizations = result;
@@ -236,7 +236,7 @@ angular.module('yapp')
 				$log.info(data);
 			});
 
-		$http.get('/api/events')
+		$http.get('https://cse437.codenamedante.com/g4/api/events')
 			.success(function(result) {
 				$scope.events = result;
 			})
@@ -245,7 +245,7 @@ angular.module('yapp')
 			});
 
 		$scope.getCurrentAdmins = function() {
-			$http.get('/api/members_with_admin')
+			$http.get('https://cse437.codenamedante.com/g4/api/members_with_admin')
 				.success(function(result) {
 					$scope.members_with_admin = result;
 				})
@@ -262,7 +262,7 @@ angular.module('yapp')
 				dataObj.event_id = event_id;
 				$http({
 						method: 'POST',
-						url: '/api/interactions_from_event',
+						url: 'https://cse437.codenamedante.com/g4/api/interactions_from_event',
 						data: dataObj,
 						headers: {
 							'Content-Type': 'application/json'
@@ -310,7 +310,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/lists',
+					url: 'https://cse437.codenamedante.com/g4/api/lists',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -318,7 +318,7 @@ angular.module('yapp')
 				})
 				.then(function(response) {
 
-					$http.get('/api/lists')
+					$http.get('https://cse437.codenamedante.com/g4/api/lists')
 						.success(function(result) {
 							$scope.lists = result;
 						})
@@ -337,7 +337,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/post_vote_record',
+					url: 'https://cse437.codenamedante.com/g4/api/post_vote_record',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -361,7 +361,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/vote_history_from_list',
+					url: 'https://cse437.codenamedante.com/g4/api/vote_history_from_list',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -384,7 +384,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/active_votes_from_list_exclude_submitted',
+					url: 'https://cse437.codenamedante.com/g4/api/active_votes_from_list_exclude_submitted',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -408,7 +408,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/tally_vote_results',
+					url: 'https://cse437.codenamedante.com/g4/api/tally_vote_results',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -446,7 +446,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/events',
+					url: 'https://cse437.codenamedante.com/g4/api/events',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -469,7 +469,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/events_from_list',
+					url: 'https://cse437.codenamedante.com/g4/api/events_from_list',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -505,7 +505,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/post_vote_results',
+					url: 'https://cse437.codenamedante.com/g4/api/post_vote_results',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -530,7 +530,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/change_vote_status',
+					url: 'https://cse437.codenamedante.com/g4/api/change_vote_status',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -563,7 +563,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/votes',
+					url: 'https://cse437.codenamedante.com/g4/api/votes',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -603,7 +603,7 @@ angular.module('yapp')
 
 				$http({
 						method: 'POST',
-						url: '/api/votes',
+						url: 'https://cse437.codenamedante.com/g4/api/votes',
 						data: dataObj2,
 						headers: {
 							'Content-Type': 'application/json'
@@ -633,7 +633,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/drafted_votes_from_list',
+					url: 'https://cse437.codenamedante.com/g4/api/drafted_votes_from_list',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -658,7 +658,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/active_votes_from_list',
+					url: 'https://cse437.codenamedante.com/g4/api/active_votes_from_list',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -684,7 +684,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/recruits_from_list',
+					url: 'https://cse437.codenamedante.com/g4/api/recruits_from_list',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -713,7 +713,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: '/api/recruits_from_list_event',
+					url: 'https://cse437.codenamedante.com/g4/api/recruits_from_list_event',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -763,7 +763,7 @@ angular.module('yapp')
 
 					$http({
 							method: 'POST',
-							url: '/api/interactions_records',
+							url: 'https://cse437.codenamedante.com/g4/api/interactions_records',
 							data: dataObjInteraction,
 							headers: {
 								'Content-Type': 'application/json'

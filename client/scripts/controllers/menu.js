@@ -14,7 +14,7 @@ angular.module('yapp')
 			//console.log("Function Reached.");
 			$http({
 				method: 'GET',
-				url: '/api/logout'
+				url: 'https://cse437.codenamedante.com/g4/api/logout'
 				})
 				.then(function(response) {
 					//code to execute on success
@@ -29,7 +29,7 @@ angular.module('yapp')
 		//	var dataObj = {};
 		//	$http({
 		//			method: 'POST',
-		//			url: '/api/member_from_id',
+		//			url: 'https://cse437.codenamedante.com/g4/api/member_from_id',
 		//			data: dataObj,
 		//			headers: {
 		//				'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ angular.module('yapp')
 		//};
 
 
-		$http.get('/api/organizations')
+		$http.get('https://cse437.codenamedante.com/g4/api/organizations')
 			.success(function(result) {
 				$scope.organizations = result;
 			})
