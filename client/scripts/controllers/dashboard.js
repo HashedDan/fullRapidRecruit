@@ -8,7 +8,7 @@
  * Controller of yapp
  */
 angular.module('yapp')
-	.controller('DashboardCtrl', function($scope, $state, $http, $location, $window) {
+	.controller('DashboardCtrl', function($scope, $state, $http, $location, $window, $rootScope) {
 		$scope.$state = $state;
 
 		//Need these to be instantiated when the scope is first loaded. They will be set later by functions below.
@@ -17,14 +17,8 @@ angular.module('yapp')
 		$scope.drafted_votes = {};
 
 		$scope.menuItems = [];
-		angular.forEach($state.get(), function(item) {
-			if (item.data && item.data.visible) {
-				$scope.menuItems.push({
-					name: item.name,
-					text: item.data.text
-				});
-			}
-		});
+
+
 
 		$scope.getMemberFromCurrentId = function() {
 			var dataObj = {};
@@ -40,25 +34,67 @@ angular.module('yapp')
 					$scope.current_user_level = response.data[0].member_level;
 					if ($scope.current_user_level < 1) {
 						$scope.adminAccess = false;
+						if (!$scope.adminAccess) {
+							console.log($scope.adminAccess);
+							angular.forEach($state.get(), function(item) {
+								if (item.data && item.data.visible && !item.data.admin) {
+
+									$scope.menuItems.push({
+										name: item.name,
+										text: item.data.text
+									});
+								}
+							});
+
+						}
+
 					} else {
 						$scope.adminAccess = true;
+						if ($scope.adminAccess) {
+							console.log("admin");
+							angular.forEach($state.get(), function(item) {
+								if (item.data && item.data.visible) {
+
+									$scope.menuItems.push({
+
+										name: item.name,
+										text: item.data.text
+									});
+								}
+							});
+
+						}
 					}
 				})
 				.catch(function(err) {
-					//response when failure
+					$scope.current_member_id = 0;
+					$location.path('/login');
 				});
 		};
 
 		$scope.getMemberFromCurrentId();
 
-		//$scope.checkAccess = function() {
-		//	if (($location.path() == '/dashboard/my-org') || ($location.path() == '/dashboard/lists') || ($location.path() == '/dashboard/vote-editor') || ($location.path() == '/dashboard/new-list') ||
-		//		($location.path() == '/dashboard/new-event') || ($location.path() == '/dashboard/new-vote') || ($location.path() == '/dashboard/new-batch-vote') || ($location.path() == '/dashboard/vote-history')) {
-		//		if (!$scope.adminAccess) {
-		//			$location.path('/dashboard/restricted-page');
-		//		}
-		//	}
-		//};
+		// $scope.checkAccess = function() {
+		// 	if (($location.path() == '/dashboard/my-org') || ($location.path() == '/dashboard/lists') || ($location.path() == '/dashboard/vote-editor') || ($location.path() == '/dashboard/new-list') ||
+		// 		($location.path() == '/dashboard/new-event') || ($location.path() == '/dashboard/new-vote') || ($location.path() == '/dashboard/new-batch-vote') || ($location.path() == '/dashboard/vote-history')) {
+		// 		if (!$scope.adminAccess) {
+		// 			$location.path('/dashboard/restricted-page');
+		// 		}
+		// 	}
+		// };
+		$rootScope.$on('$stateChangeStart', function() {
+			$scope.getMemberFromCurrentId();
+
+			if (!$scope.adminAccess) {
+
+				if (($location.path() == '/dashboard/admin-options') || ($location.path() == '/dashboard/vote-editor') || ($location.path() == '/dashboard/new-list') ||
+					($location.path() == '/dashboard/new-event') || ($location.path() == '/dashboard/new-vote') || ($location.path() == '/dashboard/new-batch-vote') || ($location.path() == '/dashboard/vote-editor') ) {
+
+						$location.path('/dashboard/restricted-page');
+
+				}
+		}
+		});
 
 		$scope.openSignIn = function(eventId, eventOrg, eventList) {
 			var baseUrl = "http://34.203.219.137/g4/signin/";
@@ -603,6 +639,7 @@ angular.module('yapp')
 					$scope.recruits_for_batch_vote = response;
 					$scope.recruits_for_interaction = response;
 					$scope.recruits_for_lists_page = response;
+					$scope.selectedListForListsPage = data;
 				})
 				.catch(function(err) {
 					//console.log("Couldn't find recruits for the specified list.");
