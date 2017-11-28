@@ -14,7 +14,7 @@ angular.module('yapp')
 			//console.log("Function Reached.");
 			$http({
 				method: 'GET',
-				url: 'http://34.203.219.137/g4/api/logout'
+				url: 'https://cse437.codenamedante.com/g4/api/logout'
 				})
 				.then(function(response) {
 					//code to execute on success
@@ -61,7 +61,7 @@ angular.module('yapp')
 		//};
 
 
-		$http.get('http://34.203.219.137/g4/api/organizations')
+		$http.get('https://cse437.codenamedante.com/g4/api/organizations')
 			.success(function(result) {
 				$scope.organizations = result;
 			})

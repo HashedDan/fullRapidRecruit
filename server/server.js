@@ -44,16 +44,16 @@ router.get('/', (req, res, next) => {
 		res.sendFile(path.join(__dirname, '..', 'client', 'index.html'));
 });
 
-// app.listen(port, (err) => {
-// 	err ? console.log('Cannot connect...', err) : console.log(`Connected! Server is listening on port ${port}`);
-// });
-
-var privateKey = fs.readFileSync(path.join(__dirname, '..', 'server', 'privkey.pem' ));
-var certificate = fs.readFileSync(path.join(__dirname, '..', 'server', 'fullchain.pem' ));
-
-https.createServer({
-    key: privateKey,
-    cert: certificate
-}, app).listen(port, (err) => {
+app.listen(port, (err) => {
 	err ? console.log('Cannot connect...', err) : console.log(`Connected! Server is listening on port ${port}`);
 });
+
+// var privateKey = fs.readFileSync(path.join(__dirname, '..', 'server', 'privkey.pem' ));
+// var certificate = fs.readFileSync(path.join(__dirname, '..', 'server', 'fullchain.pem' ));
+
+// https.createServer({
+//     key: privateKey,
+//     cert: certificate
+// }, app).listen(port, (err) => {
+// 	err ? console.log('Cannot connect...', err) : console.log(`Connected! Server is listening on port ${port}`);
+// });

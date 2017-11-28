@@ -25,7 +25,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: 'http://34.203.219.137/g4/api/login',
+					url: 'https://cse437.codenamedante.com/g4/api/login',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
@@ -58,7 +58,7 @@ angular.module('yapp')
 
 			$http({
 					method: 'POST',
-					url: 'http://34.203.219.137/g4/api/register',
+					url: 'https://cse437.codenamedante.com/g4/api/register',
 					data: dataObj,
 					headers: {
 						'Content-Type': 'application/json'
