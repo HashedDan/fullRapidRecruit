@@ -1,69 +1,84 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Sign In</title>
-    <style type="text/css">
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  </head>
-  <body>
-    <!-- <form id="signinform"> -->
-      First name:<br>
-      <input type="text" id="firstname" placeholder="John"><br>
-      Last name:<br>
-      <input type="text" id="lastname" placeholder="Doe"><br><br>
-      Email:<br>
-      <input type="text" id="email" placeholder="yourname@yourschool.edu"><br><br>
-      <!-- <input type="submit" id="signInButton" value="Sign In"> -->
-      <button id="signInButton">Sign In</button>
-    <!-- </form> -->
-  <script type="text/javascript">
-    var parseQueryString = function(url) {
-      var regex = new RegExp("(?<=signin/).*[^?]");
-      return regex.exec(url);
-    }
-    console.log(parseQueryString(window.location.href));
 
-    document.getElementById("signInButton").onclick = function submitSignIn() {
-      data = {};
-      data.first = document.getElementById("firstname").value;
-      data.last = document.getElementById("lastname").value;
-      data.email = document.getElementById("email").value;
-      urlParts = parseQueryString(window.location.href).toString();
-      urlParts = urlParts.split('/');
-      data.org = urlParts[0];
-      data.list = urlParts[1];
-      data.signinid = urlParts[2];
-      console.log(data);
-      // $.ajax({
-      //   type: "POST",
-      //   url: '/api/sign_in',
-      //   data: data,
-      //   // dataType:"json",
-      //   // contentType:"application/json",
-      //   success: function(response) {
-      //     console.log(response);
-      //     alert("Successful Sign In: Enjoy the event!");
-      //   },
-      //   error: function(code) {
-      //     console.log(code);
-      //     alert("Unable to Sign In: Please make sure you have the correct link.");
-      //   }
-      // });
-      $.post( "/api/sign_in", data, function(data, status, xhr) {
-        if (status == "success") {
-          alert("Successful Sign In: Enjoy the event!");
-        }
-        else {
-          alert("Unable to Sign In: Please make sure you have the correct link and have entered all information");
-        }
-        location.reload();
-      }).fail(function(e) {
-        alert("Unable to Sign In: Please make sure you have the correct link and have entered all information.");
-        location.reload();
-      });
-    }
-  </script>
-  </body>
+<head>
+        <meta charset="UTF-8">
+        <title>Sign In</title>
+        <style type="text/css">
+        </style>
+        <link rel="stylesheet" href="../../../styles/main.css">
+        <link rel="stylesheet" href="../../../styles/custom.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body class="sign-in">
+        <img src="../../../images/rrlogo.png" alt="Rapid Recruit Logo" id="sign-in-logo"/>
+        <div id="sign-in-container" class="center outline">
+                <!-- <form id="signinform"> -->
+                <h1 class="display ">First Name</h1>
+                <br>
+                <input type="text" class="form-control mb-2 mr-md-2 mb-lg-0" id="firstname" placeholder="John"><br>
+                <h1 class="display "> Last Name</h1>
+                <br>
+                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="lastname" placeholder="Doe"><br>
+                <h1 class="display">Email</h1>
+                <br>
+
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon">@</div>
+                        <input type="email" class="form-control" id="email" placeholder="yourname@yourschool.edu">
+                </div>
+                <br><br>
+                <!-- <input type="submit" id="signInButton" value="Sign In"> -->
+                <button id="signInButton" type="submit" class="btn btn-primary">Sign In to the Event</button>
+                <!-- </form> -->
+        </div>
+        <script type="text/javascript">
+                var parseQueryString = function(url) {
+                        var regex = new RegExp("(?<=signin/).*[^?]");
+                        return regex.exec(url);
+                }
+                console.log(parseQueryString(window.location.href));
+
+                document.getElementById("signInButton").onclick = function submitSignIn() {
+                        data = {};
+                        data.first = document.getElementById("firstname").value;
+                        data.last = document.getElementById("lastname").value;
+                        data.email = document.getElementById("email").value;
+                        urlParts = parseQueryString(window.location.href).toString();
+                        urlParts = urlParts.split('/');
+                        data.org = urlParts[0];
+                        data.list = urlParts[1];
+                        data.signinid = urlParts[2];
+                        console.log(data);
+                        // $.ajax({
+                        //   type: "POST",
+                        //   url: '/api/sign_in',
+                        //   data: data,
+                        //   // dataType:"json",
+                        //   // contentType:"application/json",
+                        //   success: function(response) {
+                        //     console.log(response);
+                        //     alert("Successful Sign In: Enjoy the event!");
+                        //   },
+                        //   error: function(code) {
+                        //     console.log(code);
+                        //     alert("Unable to Sign In: Please make sure you have the correct link.");
+                        //   }
+                        // });
+                        $.post("/api/sign_in", data, function(data, status, xhr) {
+                                if (status == "success") {
+                                        alert("Successful Sign In: Enjoy the event!");
+                                } else {
+                                        alert("Unable to Sign In: Please make sure you have the correct link and have entered all information");
+                                }
+                                location.reload();
+                        }).fail(function(e) {
+                                alert("Unable to Sign In: Please make sure you have the correct link and have entered all information.");
+                                location.reload();
+                        });
+                }
+        </script>
+</body>
+
 </html>

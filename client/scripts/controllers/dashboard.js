@@ -170,7 +170,7 @@ angular.module('yapp')
 			.error(function(data, status) {
 				$log.info(data);
 			});
-		
+
 		$scope.getAllMembers = function() {
 		$http.get('/api/members')
 			.success(function(result) {
@@ -180,7 +180,7 @@ angular.module('yapp')
 				$log.info(data);
 			});
 		};
-		
+
 		$scope.getAllMembers();
 
 		$http.get('/api/organizations')
@@ -209,7 +209,7 @@ angular.module('yapp')
 					$log.info(data);
 				});
 		};
-		
+
 		$scope.getCurrentAdmins();
 
 		$scope.createNewList = function(listName) {
@@ -344,11 +344,11 @@ angular.module('yapp')
 			//var reqFields = String(intReqFields) + String(comments);
 			//We will return to the method above when we provide the option for selecting the number of fields on the interaction log.
 
-			var reqFields = String("1") + String(comments);
+			// var reqFields = String("1") + String(comments);
 
 			//var sign_in_link = "34.203.219.137/g4/dashboard/signin/"+$scope.organizations[0].org_name+"/"+eventName+
 
-			dataObj.int_req_fields = reqFields;
+			dataObj.int_req_fields = 0;
 
 			$scope.testing_data = dataObj;
 
