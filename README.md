@@ -12,7 +12,7 @@
 ### List View
 ![alt text](https://github.com/HashedDan/fullRapidRecruit/blob/master/screen-shots/list.png "List")
 ### Events View
-![alt text](https://github.com/HashedDan/fullRapidRecruit/blob/master/screen-shots/event.png "Events")
+![alt text](https://github.com/HashedDan/fullRapidRecruit/blob/master/screen-shots/events.png "Events")
 ### Interaction Logging
 ![alt text](https://github.com/HashedDan/fullRapidRecruit/blob/master/screen-shots/interaction.png "Interaction")
 ### Active Votes
